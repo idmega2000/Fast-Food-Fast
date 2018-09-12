@@ -1,0 +1,376 @@
+html{
+    width: 100%;
+}
+body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    font-family:  "Book Antiqua", Palatino, serif;
+    background-color: rgb(245, 230, 230);
+	display: block;
+	height: 100%;
+}
+.allbody{
+    position: relative;
+    margin: 0;
+}
+
+footer{	
+	clear: both;
+    background-color: rgb(94, 83, 83);
+	width: 100%;
+    min-height: 100px;
+    margin: 0;
+    text-align: center;
+    border-top: 2px solid rgb(216, 123, 123);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.9px;
+    padding-bottom: -10;
+    display: inline-block;
+}
+
+footer p,footer a{
+    margin-left: auto; 
+	margin-right: auto; 
+	font-size: 12px;
+	margin-top: 30px;
+	color: #e3e3e3;
+}
+#first-footerbox{
+	clear: both;
+	height: 300px;	
+	position: relative;
+	background: url('../img/delicious-buffet-foods.jpg') no-repeat;
+	background-size: 100%;
+	margin-top: 100px;
+}
+
+
+#first-footer-cover{	
+	height: 100%;
+	background:#4b525b;
+	margin-top: 0;
+	padding: 0;
+	background: rgb(106, 90, 205);
+	opacity: 0.5;
+	position: absolute;
+	width: 100%;
+}
+#first-footer-content{
+	position: absolute;
+	z-index: 1;
+	left: 0; 
+    right: 0; 
+	margin-left: auto; 
+	margin-right: auto; 
+    width: 100%;
+    margin-top: 40px;
+}
+#first-footer-content h2{
+    text-align: center;
+    margin-left: auto; 
+	margin-right: auto; 
+}
+
+.main-body{ 
+    width: 100%;
+    position: relative;
+}
+.main-image-sec{
+    position: relative;
+}
+
+#backimage{
+    width: 100%;
+    height: auto;
+}
+
+#descriptionbox{
+    width: 100%;
+}
+
+.brand-menu{
+    width: 80%;
+    margin: auto;
+    display: flow-root;
+}
+
+#firstfooterbox{
+    clear: both;
+    position: static;
+    width: 100%;
+    background: red;
+}
+
+.brand-image img{
+    margin: 3%;
+    max-width:100%;
+    max-height:100%;
+    border-radius: 8px;
+}
+
+/* content idea from getbootstrap.com*/
+
+
+.container{
+    width: 80%;
+    margin: auto;
+}
+.container-fluid{
+    width: 100%;
+}
+
+.container-fluid {
+    width: 100%;
+}
+.container{
+    width: 80%;
+}
+
+.row {
+    float: left;
+}
+
+.col-1 {
+    width: 8.33%;
+}
+
+.col-2 {
+    width: 16.66%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.33%;
+}
+
+.col-5 {
+    width: 41.66%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.33%;
+}
+
+.col-8 {
+    width: 66.66%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.33%;
+}
+
+.col-11 {
+    width: 91.66%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+.brand-show{
+    margin: auto;
+    overflow: hidden;
+    margin-top: 100px;
+    margin-bottom: 150px;
+    clear: both;  
+}
+.brand-word h1{
+    font-size: 50px;
+}
+
+.brand-activities {
+    display:block;
+    overflow: hidden;
+    margin-top: 90px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;   
+}
+.brand-act-cov{
+    margin: 4%;
+    margin-top: 60px;
+    
+}
+.brand-act-cov p{
+    text-align: justify;
+}
+.brand-act-cov h3{
+ text-align: center;
+}
+
+.brand-act-images{
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+   
+   }
+   .brand-act-images img{
+       width: 100%;
+       border-radius: 6px;
+       margin-left: auto;
+       margin-right: auto;
+   }
+.brand-word{
+    margin: 5%;
+}
+
+.order-meals{
+    clear: both;
+    margin-top: 100px;
+    overflow: hidden;
+}
+
+.anchor-button{
+    display: block;
+    width: 180px;
+    height: 25px;
+    background: rgb(226, 0, 30);
+    padding: 10px;
+    text-align: center;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: auto;
+	margin-right: auto;
+    
+}
+
+.order-meals img{
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 6px;	
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.order-content{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.red-order-meals{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+#front-content-cover{
+	position: absolute;
+	top: 20px;
+	right:0;
+	left: 0;
+	bottom: 0;
+	color: white;
+	margin-left: auto;
+	margin-right: auto;
+    width: 90%;
+    height: auto;
+    z-index: 200;
+}
+#front-content-con{
+    margin-top: 130px;
+	float: left;
+	width: 80%;
+}
+#front-content-con a{
+	margin-left: 0;
+}
+
+ #front-content-con h1{
+    font-family: Open Sans;
+    color: rgb(94, 83, 83);
+	line-height: 1.8;
+	color: white;
+	font-size: 49px;
+}
+
+
+@media screen and (min-width: 600px) and (max-width: 900px) {
+	.brand-act-cov{
+		float:none;
+		display: block;
+		width: 100%;
+    }
+    .order-a-meal{
+        float:none;
+        display: block;
+        width: 100%;
+    }
+    
+    #first-footer-content h2{
+        font-family: Tahoma;
+        font-size: 15px;
+    }
+    #front-content-con{
+        float: none;
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
+    #front-content-con h1{
+        font-size: 23px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+	.brand-act-cov{
+		float:none;
+		display: block;
+		width: 100%;
+    }
+    .order-a-meal{
+        float:none;
+        display: block;
+        width: 100%;
+    }
+
+    #first-footer-content h2{
+    
+        font-family: Tahoma;
+        font-size: 15px;
+    }
+    .anchor-button{
+        width: 100px;
+        font-size: 15px;
+    }
+    #front-content-con{
+        float: none;
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
+    #front-content-con h1{
+        font-size: 18px;
+    }
+
+    #front-content-con a {
+		display: none;
+    }
+    
+}
+
+
