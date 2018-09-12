@@ -6,7 +6,7 @@ body{
     height: 100%;
     margin: 0px;
     padding: 0px;
-    font-family:  "Book Antiqua", Palatino, serif;
+    font-family:  'Roboto', sans-serif, Palatino, serif;
     background-color: rgb(245, 230, 230);
 	display: block;
 	height: 100%;
@@ -305,6 +305,80 @@ footer p,footer a{
 	font-size: 49px;
 }
 
+/* sign in page */
+.all-login-body{
+    margin:0;
+    width: 100%;
+    height: auto;   
+    display:block;
+    background-image: url("../img/delicious-buffet-foods.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 640px;
+}
+
+.login-body-wrapper{
+    position: absolute;
+    top: 150px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    }
+.login-wrapper{
+    width: 280px;
+    margin: auto;
+    padding: 20px;
+    font-weight: bold;
+    border-radius: 7px;
+    background: rgba(255,255,255,0.6);
+    box-shadow: 0 0 4px #aaa;
+    color: rgb(38, 67, 107);
+
+}
+
+
+.login-form-title{
+    font-size: 20px;
+    text-align: center;
+    margin: 16px 0px;
+    margin-top: 0px;
+    font-weight: bold;
+    font-size: 35px;
+    letter-spacing: 0.7px;
+    color: rgb(160, 3, 24);
+}
+
+.user-input{
+    width: 280px;
+    border-radius: 4px;
+    height: 30px;
+    margin-top: 3px;
+}
+.input-div {
+    margin-top: 18px;
+}
+.signin-btn{
+    width: 280px;
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    background: rgb(160, 3, 24);
+    font-size: 20px;
+    cursor: pointer;
+}
+/*
+.font-awesome-re{
+    float: lefr;
+    margin-right: 6px;
+    margin-top: -20px;
+    position: relative;
+    z-index: 2;
+    color: red;
+}
+*/
+
 
 @media screen and (min-width: 600px) and (max-width: 900px) {
 	.brand-act-cov{
@@ -332,6 +406,7 @@ footer p,footer a{
     #front-content-con h1{
         font-size: 23px;
     }
+
 }
 
 @media screen and (max-width: 600px) {
@@ -352,10 +427,7 @@ footer p,footer a{
         font-family: Tahoma;
         font-size: 15px;
     }
-    .anchor-button{
-        width: 100px;
-        font-size: 15px;
-    }
+
     #front-content-con{
         float: none;
         margin-top: 30px;
@@ -370,6 +442,7 @@ footer p,footer a{
     #front-content-con a {
 		display: none;
     }
+
     
 }
 
