@@ -1,0 +1,167 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.header-container{
+    width: 80%;
+	margin: auto;
+    overflow: hidden;
+   
+}
+.nav{
+	background: rgb(226, 0, 30);
+	background-color: rgb(94, 83, 83);
+	color:#ffffff;
+	min-height: 50px;
+	border-bottom: 10px;
+	padding-top: 20px;
+	max-height: 50px;
+	border-bottom: 2px solid rgb(216, 123, 123);
+}	
+
+.nav-list a{
+	color:#ffffff;
+	text-decoration: none;
+	font-size: 20px;
+}
+#headercontainer a{
+	text-decoration: none;
+	color:#ffffff;
+}
+
+header nav{
+	float: right;
+}
+
+header ul{
+	margin-top:10px;;
+	padding:0;
+	float: left;
+}
+
+header ul li{
+	display: inline;
+	padding: 0 20px 0 20px;
+	text-decoration: none;	
+}
+
+
+header a:hover{
+	font-weight: bold;
+	opacity: 0.6;
+}
+
+
+#header-sm-sc{
+	display: none;
+	float: right;
+	margin: auto;
+    cursor: pointer;
+	opacity: 0.9;
+}
+.bar {
+    width: 20px;
+    height: 4px;
+    background-color: #333;
+    margin: 4px 0;
+}
+#homecontainer{
+    float: left;
+	width: 40%;
+}
+
+#homecontainer h1{
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+#homecontainer img{
+	float: left;
+	width: 30px;
+	height: 30px;
+	
+}
+#homecontainer h2{
+	position:relative;
+	margin-top: 0px;
+	padding-top: 0px;
+	font-size: 19px;
+	left:18px;	
+}
+
+/* the navigation menu */
+#slide-nav {
+	display: none;
+	position: relative;
+	width: 100%;
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color:rgba(41, 23, 25, 0.7); 
+	transition: 0.9s; 
+}
+
+/* The navigation menu links */
+
+#slide-nav a {
+    padding: 15px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #f5ebeb;
+    display: block;
+    transition: 0.3s;
+}
+
+
+
+/* When you mouse over the navigation links, change their color */
+#slide-nav a:hover {
+    color: #f1f1f1;
+}
+
+/* */
+.nav-slide-toggle{
+	height: 200px !important;
+	display: block !important;
+}
+
+@media screen and (min-width: 600px) and (max-width: 900px) {
+	#header-sm-sc{
+		display: block;
+	}
+	.nav-list{
+		display: none !important;
+	}
+	header nav{
+		display: none;
+	}
+	#homecontainer{
+		width: 90%;
+	}
+	#homecontainer h1{
+		font-size: 28px;
+	}
+}
+
+
+@media screen and (max-width: 600px) {
+	#header-sm-sc{
+		display: block;
+	}
+	.nav-list{
+		display: none !important;
+	}
+	header nav{
+		display: none;
+	}
+	#homecontainer{
+		width: 90%;
+	}
+	#homecontainer h1{
+		font-size: 23px;
+	}
+	.brand-act-cov{
+		float:none;
+		display: block;
+		width: 100%;
+	}
+}
