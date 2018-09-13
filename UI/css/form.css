@@ -177,15 +177,13 @@ th, tr , td {
     background-color: rgb(94, 83, 83);
 }
 .delete-btn{
-    
-    background-color: rgb(226, 0, 30);
-
+    background: rgb(160, 3, 24);
 }
 
 /*create new food page form*/
 .create-cont-wrapper{
     width: 70%;
-    background-color: rgba(196, 178, 178, 0.6);
+    background: rgba(226, 211, 213, 0.9);
     height: 400px;
     margin: 50px;
 }
@@ -221,7 +219,7 @@ th, tr , td {
     width: 170px;
     height: 40px;
     border-radius: 6px;
-    background-color: rgb(94, 83, 83);
+    background: rgb(160, 3, 24);
     color: white;
 }
 .create-food-btn-div{
