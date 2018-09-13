@@ -59,7 +59,7 @@
 
 .modal-header {
     padding: 2px 16px;
-    background-color: rgb(226, 0, 30);
+    background-color: rgb(94, 83, 83);
     color: white;
     border-radius: 6px 6px 0px 0px;
 }
@@ -68,7 +68,7 @@
 
 .modal-footer {
     padding: 2px 8px;
-    background-color: rgb(226, 0, 30);
+    background-color: rgb(94, 83, 83);
     color: white;
     border-radius: 0px 0px 6px 6px;
 }
@@ -76,8 +76,15 @@
     font-family: Snell Roundhand, cursive;
 }
 
-.modal-btn{
-    background-color: rgb(226, 0, 30);
+
+/* delete modal questions button*/
+.del-ques-btn{
+    background-color: rgb(94, 83, 83);
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
 }
 
 
