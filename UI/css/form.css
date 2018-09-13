@@ -120,6 +120,7 @@
 .order-table{
     border-collapse: collapse;
     margin-top: 30px;
+    font-weight: bold;
 }
 .order-table tr {
     height: 50px;   
@@ -139,7 +140,25 @@ th, tr , td {
 .centerdivh2{
     text-align: center;
 }
+/* pagination css*/
+/* idea gotten from w3school https://www.w3schools.com/howto/howto_css_pagination.asp*/
+.pagination a {
+    color: black;
+    float: left;
+    margin-bottom: 30px;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
 
+/* Style the active/current link */
+.pagination a.active {
+    background-color: rgb(226, 0, 30);
+    color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.pagination a:hover:not(.active) {background-color: #ddd;}
   
 @media screen and (min-width: 600px) and (max-width: 900px) {
     .search-input{
