@@ -1,0 +1,131 @@
+/* sign in page */
+.all-login-body{
+    margin:0;
+    width: 100%;
+    height: auto;   
+    display:block;
+    background-image: url("../img/delicious-buffet-foods.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 640px;
+}
+
+.login-body-wrapper{
+    position: absolute;
+    top: 150px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    }
+.login-wrapper{
+    width: 280px;
+    margin: auto;
+    padding: 20px;
+    font-weight: bold;
+    border-radius: 7px;
+    background: rgba(255,255,255,0.6);
+    box-shadow: 0 0 4px #aaa;
+    color: rgb(38, 67, 107);
+
+}
+.signup-body-wrapper{
+    top: 100px;
+}
+
+
+.login-form-title{
+    font-size: 20px;
+    text-align: center;
+    margin: 16px 0px;
+    margin-top: 0px;
+    font-weight: bold;
+    font-size: 35px;
+    letter-spacing: 0.7px;
+    color: rgb(160, 3, 24);
+}
+
+.user-input{
+    width: 250px;
+    border-radius: 4px;
+    height: 30px;
+    margin-top: 3px;
+    padding-left: 28px;
+}
+.input-div {
+    margin-top: 15px;
+}
+.signin-btn{
+    width: 280px;
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    background: rgb(160, 3, 24);
+    font-size: 20px;
+    color: #e3e3e3;
+    cursor: pointer;
+}
+
+.other-link a {
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .search-wrapper{
+    height: 140px;
+    width: 100%;
+    background-image: url("../img/delicious-buffet-foods.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+  }
+  .search-input{
+    margin-top: 40px;
+      width: 380px;
+      border-radius: 8px;
+      height: 33px;
+      padding-left: 20px;
+  }
+  .search-body{
+      
+    text-align: center;
+    margin-left: auto;
+    margin-bottom: auto;
+  }
+
+  /* font awesome */
+  #filtersearch {
+    position: relative;
+    z-index: 1;
+    left: -25px;
+    top: 1px;
+    color: rgb(80, 70, 70);
+    width: 0;
+}
+
+#filterUserInput {
+    position: relative;
+    z-index: 1;
+    left: 10px;
+    top: -25px;
+    color: rgba(80, 70, 70, 0.5);
+    width: 0;
+}
+  
+@media screen and (min-width: 600px) and (max-width: 900px) {
+    .search-input{
+        width: 290px;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+    .search-input{
+          width: 220px;
+      }
+    
+}

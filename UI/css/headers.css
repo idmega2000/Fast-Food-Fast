@@ -107,6 +107,63 @@ header a:hover{
     display: block;
     transition: 0.3s;
 }
+/*user header*/
+
+/* content and idea gotten from w3schools.com*/
+/*https://www.w3schools.com/css/css_navbar.asp*/
+.ul-user {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+	background-color: #333;
+	border-radius: 4px;
+}
+
+.li-user {
+    float: left;
+}
+
+.li-user a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+	text-decoration: none;
+	
+	
+}
+
+.li-user a:hover, .dropdown:hover .dropbtn {
+    background-color: #333;
+}
+
+.dropdown {
+	display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+	text-align: left;
+	font-size: 13px;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
 
 
