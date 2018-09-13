@@ -181,6 +181,52 @@ th, tr , td {
     background-color: rgb(226, 0, 30);
 
 }
+
+/*create new food page form*/
+.create-cont-wrapper{
+    width: 70%;
+    background-color: rgba(196, 178, 178, 0.6);
+    height: 400px;
+    margin: 50px;
+}
+.left-ad{
+    float: left;
+    margin: 50px;
+
+}
+.right-ad{
+    float: left;
+    margin: 13px;
+    margin-top: 70px;
+ 
+}
+.upload-img-box{
+    border: 1px solid brown;
+    border-radius: 5px;
+    width: 200px;
+    height: 150px;
+    min-height: 100px;
+    min-width: 140px;
+}
+.uploaded-image{
+    margin:auto; 
+    width:200px;
+    display:block;
+}
+.choose-img-btn{
+    width: 80px;
+    margin-top: 30px;
+}
+.create-food-btn{
+    width: 170px;
+    height: 40px;
+    border-radius: 6px;
+    background-color: rgb(94, 83, 83);
+    color: white;
+}
+.create-food-btn-div{
+    clear: both;
+}
   
 @media screen and (min-width: 600px) and (max-width: 900px) {
     .search-input{
@@ -189,6 +235,22 @@ th, tr , td {
     .order-table th, .order-table tr , .order-table td {
         text-align: center;
         padding: 16px;
+    }
+    .left-ad{
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .right-ad{
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    
+    }
+    .create-cont-wrapper{
+        width: 80%;
+        height: 600px;
+        margin: 50px;
     }
 
 }
@@ -201,6 +263,24 @@ th, tr , td {
       .order-table th, .order-table tr , .order-table td {
         text-align: center;
         padding: 7px;
+    }
+    .user-input-small{
+        width: 200px;
+    }
+    .left-ad{
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .right-ad{
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .create-cont-wrapper{
+        width: 80%;
+        height: 650px;
+        margin: 50px;
     }
     
 }
