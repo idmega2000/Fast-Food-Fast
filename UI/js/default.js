@@ -41,3 +41,16 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+//order modal end
+var editbtn = document.getElementsByClassName("edit-btn");
+
+// iterate over all the elements
+for (var i= editbtn.length; i--;) {
+    editbtn[i].addEventListener('click', setRedirect , false);
+}
+
+var editbtn = document.getElementsByClassName("delete-btn");
+
+function setRedirect() {
+    window.location.href = 'editpage.html';
+}
