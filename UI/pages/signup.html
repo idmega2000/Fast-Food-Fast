@@ -8,8 +8,10 @@
     <meta name="keywords" content="Fast-Food-Fast, order for your food, we deliver food">
     <meta name="author" content="Idris Kelani">
     <title> Fast-Food-Fast</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/headers.css">
     <link rel="stylesheet" type="text/css" href="../css/mainstylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../css/form.css">
 </head>
 
 <body>
@@ -50,35 +52,36 @@
             <a href="signup.html">Signup</a>
         </section>
         <div class="main-body all-login-body">
-            <div class="login-body-wrapper">
+            <div class="login-body-wrapper signup-body-wrapper">
                 <div class="login-wrapper">
-                    <form action="orderpage.html">
+                    <form action="fastfood.html">
                         <div class="login-form-title">Sign Up</div>
                         <div class="input-wrapper">
                             <div class="input-div">
                                 <span>Username</span>
-                                <span class="required">*</span>
+                                <span class="is-required">*</span>
                             </div>
-                            <input class="user-input" type="text" name="username" id="username" placeholder="   Enter Username" />
+                            <input class="user-input" type="text" name="username" id="username" placeholder="  Enter Username" />
+                            <i id="filterUserInput" class="fa fa-user"></i>
                         </div>
                         <div class="input-wrapper">
                             <div class="input-div">
                                 <span>Username</span>
                                 <span class="required">*</span>
                             </div>
-                            <input class="user-input" type="password" name="Password" id="password" placeholder="   Enter Password" />
-
-
+                            <input class="user-input" type="password" name="Password" id="password" placeholder="  Enter Password" />
+                            <i id="filterUserInput" class="fa fa-lock"></i>
                         </div>
                         <div class="input-wrapper">
                             <div class="input-div">
                                 <span>Username</span>
                                 <span class="required">*</span>
                             </div>
-                            <input class="user-input" type="password" name="cpassword" id="confirm-password" placeholder="   Confirm Password" />
+                            <input class="user-input" type="password" name="cpassword" id="confirm-password" placeholder="  Confirm Password" />
+                            <i id="filterUserInput" class="fa fa-lock"></i>
                         </div>
                         <div class="form-btn">
-                            <button class="signin-btn" type="submit">Sign In</button>
+                            <button class="signin-btn" type="submit">Sign Up</button>
                         </div>
                         <div class="other-link">
                             <a href="./login.html">Have an Account?</a>
