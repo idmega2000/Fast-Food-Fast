@@ -59,7 +59,7 @@
 
 .modal-header {
     padding: 2px 16px;
-    background-color: rgb(94, 83, 83);
+    background: rgb(160, 3, 24);
     color: white;
     border-radius: 6px 6px 0px 0px;
 }
@@ -68,7 +68,7 @@
 
 .modal-footer {
     padding: 2px 8px;
-    background-color: rgb(94, 83, 83);
+    background: rgb(160, 3, 24);
     color: white;
     border-radius: 0px 0px 6px 6px;
 }
@@ -87,7 +87,17 @@
     cursor: pointer;
 }
 
-
+.order-modal-btn{
+    width: 280px;
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    background: rgb(160, 3, 24);
+    font-size: 20px;
+    color: #e3e3e3;
+    cursor: pointer;
+}
 
 @media screen and (min-width: 600px) and (max-width: 900px) {
     .modal{
