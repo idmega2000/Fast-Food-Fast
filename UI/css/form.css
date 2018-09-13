@@ -114,10 +114,40 @@
     color: rgba(80, 70, 70, 0.5);
     width: 0;
 }
+
+/* css for tables*/
+
+.order-table{
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+.order-table tr {
+    height: 50px;   
+   
+}
+.order-table tr:nth-child(odd) {
+    background-color: rgb(231, 206, 206);
+}
+.table-title{
+    background: rgb(226, 0, 30) !important;
+    color: white;
+}
+th, tr , td {
+    text-align: center;
+    padding: 25px;
+}
+.centerdivh2{
+    text-align: center;
+}
+
   
 @media screen and (min-width: 600px) and (max-width: 900px) {
     .search-input{
         width: 290px;
+    }
+    .order-table th, .order-table tr , .order-table td {
+        text-align: center;
+        padding: 16px;
     }
 
 }
@@ -127,5 +157,9 @@
     .search-input{
           width: 220px;
       }
+      .order-table th, .order-table tr , .order-table td {
+        text-align: center;
+        padding: 7px;
+    }
     
 }

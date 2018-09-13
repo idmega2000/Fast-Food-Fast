@@ -78,6 +78,7 @@ footer p,footer a{
 .main-body{ 
     width: 100%;
     position: relative;
+    min-height: 600px;
 }
 .main-image-sec{
     position: relative;
@@ -173,6 +174,11 @@ footer p,footer a{
 
 .col-12 {
     width: 100%;
+}
+.centerdiv{
+    display: flex;
+    justify-content: center;
+    border-radius: 6px;
 }
 
 .brand-show{
