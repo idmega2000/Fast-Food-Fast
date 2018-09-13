@@ -159,6 +159,28 @@ th, tr , td {
 
 /* Add a grey background color on mouse-over */
 .pagination a:hover:not(.active) {background-color: #ddd;}
+
+/* end of pagination*/
+.food-btn-div{
+    padding-bottom: 10px;
+}
+.ad-ev-btn{
+    color: white;
+    border-radius: 5px;
+    width: 100px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.edit-btn{
+    color: white;
+    background-color: rgb(94, 83, 83);
+}
+.delete-btn{
+    
+    background-color: rgb(226, 0, 30);
+
+}
   
 @media screen and (min-width: 600px) and (max-width: 900px) {
     .search-input{
