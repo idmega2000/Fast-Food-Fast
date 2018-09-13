@@ -15,7 +15,7 @@ if (navbarSlider) {
 var modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
-var btn = document.getElementsByClassName("order-btn");
+var btn = document.getElementsByClassName("modal-btn");
 
 // iterate over all the elements
 for (var i= btn.length; i--;) {
