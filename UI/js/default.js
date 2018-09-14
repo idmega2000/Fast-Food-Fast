@@ -52,5 +52,5 @@ for (var i= editbtn.length; i--;) {
 var editbtn = document.getElementsByClassName("delete-btn");
 
 function setRedirect() {
-    window.location.href = 'editpage.html';
+    window.location.href = 'editfastfood.html';
 }
