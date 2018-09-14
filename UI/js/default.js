@@ -1,8 +1,8 @@
 const navbarSlider = document.getElementById('header-sm-sc');
 
 const drawNav = () => {
-  const navDrawer = document.getElementById('slide-nav');
-  navDrawer.classList.toggle("nav-slide-toggle");
+    const navDrawer = document.getElementById('slide-nav');
+    navDrawer.classList.toggle("nav-slide-toggle");
 };
 
 if (navbarSlider) {
@@ -18,28 +18,28 @@ var modal = document.getElementById('myModal');
 var btn = document.getElementsByClassName("modal-btn");
 
 // iterate over all the elements
-for (var i= btn.length; i--;) {
-  btn[i].addEventListener('click', setModal, false);
+for (var i = btn.length; i--;) {
+    btn[i].addEventListener('click', setModal, false);
 }
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
- function setModal() {
+function setModal() {
     modal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
-if(span){
-    span.onclick = function() {
+if (span) {
+    span.onclick = function () {
         modal.style.display = "none";
     }
 }
 
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
@@ -48,8 +48,8 @@ window.onclick = function(event) {
 var editbtn = document.getElementsByClassName("edit-btn");
 
 // iterate over all the elements
-for (var i= editbtn.length; i--;) {
-    editbtn[i].addEventListener('click', setRedirect , false);
+for (var i = editbtn.length; i--;) {
+    editbtn[i].addEventListener('click', setRedirect, false);
 }
 
 var editbtn = document.getElementsByClassName("delete-btn");
