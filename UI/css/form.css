@@ -133,12 +133,26 @@
     background: rgb(226, 0, 30) !important;
     color: white;
 }
-th, tr , td {
+.order-table th, .order-table tr , .order-table td {
     text-align: center;
     padding: 25px;
 }
-.centerdivh2{
+.centerdivh{
     text-align: center;
+}
+td p{
+    display: inline;
+    padding: 10px;
+}
+
+/* admin orders table.... adapted from user order history*/
+.accept-btn{
+    background: rgb(80, 70, 70);
+    cursor: pointer;
+}
+.reject-btn{
+    background: rgb(226, 0, 30);
+    cursor: pointer;
 }
 /* pagination css*/
 /* idea gotten from w3school https://www.w3schools.com/howto/howto_css_pagination.asp*/
@@ -279,6 +293,11 @@ th, tr , td {
         width: 80%;
         height: 650px;
         margin: 50px;
+    }
+    .order-table th, .order-table tr , .order-table td {
+        text-align: center;
+        padding: 3px;
+        font-size: 12px;
     }
     
 }

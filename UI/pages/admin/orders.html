@@ -8,10 +8,10 @@
     <meta name="keywords" content="Fast-Food-Fast, order for your food, we deliver food">
     <meta name="author" content="Idris Kelani">
     <title> Fast-Food-Fast</title>
-    <link rel="stylesheet" type="text/css" href="../css/headers.css">
-    <link rel="stylesheet" type="text/css" href="../css/mainstylesheet.css">
-    <link rel="stylesheet" type="text/css" href="../css/form.css">
-    <link rel="stylesheet" type="text/css" href="../css/modal.css">
+    <link rel="stylesheet" type="text/css" href="../../css/headers.css">
+    <link rel="stylesheet" type="text/css" href="../../css/mainstylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../../css/form.css">
+    <link rel="stylesheet" type="text/css" href="../../css/modal.css">
 </head>
 
 <body>
@@ -20,91 +20,95 @@
             <div class="nav">
                 <div class="header-container">
                     <div id="homecontainer">
-                        <a href="../index.html">
+                        <a href="../../index.html">
                             <h1>Fast-Food-Fast</h1>
                         </a>
                     </div>
                     <nav class="nav-list">
                         <ul class="ul-user">
                             <li class=" .li-user dropdown">
-                                <a href="javascript:void(0)" class="dropbtn">Idmega
+                                <a href="javascript:void(0)" class="dropbtn">Admin
                                     <span style="font-size: 15px;">&#9660;</span>
                                 </a>
                                 <div class="dropdown-content">
-                                    <a href="fastfood.html">Fast Food</a>
-                                    <a href="userorderhistory.html">Order History</a>
-                                    <a href="#">Profile</a>
+                                    <a href="allfood.html"> All Fast Food</a>
+                                    <a href="orders.html">Orders</a>
+                                    <a href="addfastfood.html">Create New Food</a>
                                     <a href="login.html">Logout</a>
                                 </div>
                             </li>
-
 
                         </ul>
                     </nav>
 
                 </div>
         </header>
-
-
         <div class="main-body centerdivh">
             <h1>Order History</h1>
             <div class="centerdiv container">
-                
+
                 <table class="order-table">
 
                     <tr class="table-title">
-                        <th>SN</th>
                         <th>Order Id</th>
                         <th> Food Name</th>
                         <th> Plates</th>
                         <th> Price</th>
-                        <th> Status</th>
+                        <th>Address</th>
+                        <th> Order Request</th>
+                        <th>Completed</th>
                     </tr>
 
                     <tr class="table-content">
-                        <td>1</td>
                         <td>36756</td>
                         <td>Rice and Chicken</td>
                         <td>1</td>
                         <td>NGN 1,000</td>
+                        <td>28, ishoko street, lagos</td>
                         <td>Processing</td>
+                        <td><input type="checkbox"><br></td>
                     </tr>
                     <tr class="table-content">
-                        <td>2</td>
                         <td>56756</td>
                         <td>Rice and Chicken</td>
                         <td>1</td>
                         <td>NGN 1,000</td>
-                        <td>Completed</td>
+                        <td>28, ishoko street, lagos</td>
+                        <td><button class="accept-btn">&#x2714;</button> <button class="reject-btn">&#x2718;</button></td>
+                        <td><input type="checkbox"><br></td>
+
                     </tr>
                     <tr class="table-content">
-                        <td>3</td>
                         <td>93026</td>
                         <td>Rice and Chicken</td>
                         <td>1</td>
                         <td>NGN 1,000</td>
-                        <td>Completed</td>
+                        <td>28, ishoko street, lagos</td>
+                        <td><button class="accept-btn">&#x2714;</button> <button class="reject-btn">&#x2718;</button></td>
+                        <td><input type="checkbox"><br></td>
                     </tr>
                     <tr class="table-content">
-                        <td>4</td>
                         <td>16857</td>
                         <td>Eba and Okro</td>
                         <td>1</td>
                         <td>NGN 1,000</td>
-                        <td>Completed</td>
+                        <td>28, ishoko street, lagos</td>
+                        <td><button class="accept-btn">&#x2714;</button> <button class="reject-btn">&#x2718;</button></td>
+                        <td><input type="checkbox"><br></td>
                     </tr>
                     <tr class="table-content">
-                        <td>5</td>
                         <td>35956</td>
                         <td>Rice and Beans</td>
                         <td>1</td>
                         <td>NGN 1,000</td>
-                        <td>Completed</td>
+                        <td>28, ishoko street, lagos</td>
+                        <td><button class="accept-btn">&#x2714;</button> <button class="reject-btn">&#x2718;</button></td>
+                        <td><input type="checkbox"><br></td>
                     </tr>
                 </table>
             </div>
         </div>
-        <!--table ends-->
+                <!--table ends-->
         <!-- pagination -->
         <!-- adopted from w3school-->
         <div class="centerdiv pagination">
@@ -125,6 +129,6 @@
         </footer>
         </div>
 </body>
-<script type="text/javascript" src="../js/default.js"></script>
+<script type="text/javascript" src="../../js/default.js"></script>
 
 </html>
