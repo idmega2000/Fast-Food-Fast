@@ -61,7 +61,7 @@
     padding: 2px 16px;
     background: rgb(160, 3, 24);
     color: white;
-    border-radius: 6px 6px 0px 0px;
+   
 }
 
 .modal-body {padding: 2px 16px;}
@@ -70,7 +70,7 @@
     padding: 2px 8px;
     background: rgb(160, 3, 24);
     color: white;
-    border-radius: 0px 0px 6px 6px;
+   
 }
 .modal-footer h3{
     font-family: Snell Roundhand, cursive;
@@ -85,6 +85,7 @@
     border-radius: 5px;
     color: white;
     cursor: pointer;
+    border: none;
 }
 
 .order-modal-btn{
@@ -97,6 +98,7 @@
     font-size: 20px;
     color: #e3e3e3;
     cursor: pointer;
+    border: none;
 }
 
 @media screen and (min-width: 600px) and (max-width: 900px) {

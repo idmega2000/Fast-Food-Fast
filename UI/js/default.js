@@ -11,28 +11,25 @@ if (navbarSlider) {
 
 
 // content and idea gotten from w3schools.com
-// Get the modal
-var modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("modal-btn");
+let modal = document.getElementById('myModal');
 
-// iterate over all the elements
-for (var i = btn.length; i--;) {
-    btn[i].addEventListener('click', setModal, false);
-}
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
+let ModalBtn = document.getElementsByClassName("modal-btn");
 // When the user clicks the button, open the modal 
-function setModal() {
+const setModal = () => {
     modal.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
-if (span) {
-    span.onclick = function () {
+for (var i = ModalBtn.length; i--;) {
+    ModalBtn[i].addEventListener('click', setModal, false);
+}
+
+let closeModal = document.getElementsByClassName("close")[0];
+
+
+
+if (closeModal) {
+    closeModal.onclick = function () {
         modal.style.display = "none";
     }
 }
@@ -44,16 +41,24 @@ window.onclick = function (event) {
         modal.style.display = "none";
     }
 }
-//order modal end
-var editbtn = document.getElementsByClassName("edit-btn");
 
-// iterate over all the elements
-for (var i = editbtn.length; i--;) {
-    editbtn[i].addEventListener('click', setRedirect, false);
+//order modal end
+// delete a food modal
+let editBtn2 = document.getElementsByClassName("edit-btn");
+let setRedirect = (input) => {
+    window.location.href = input;
 }
 
-var editbtn = document.getElementsByClassName("delete-btn");
 
-function setRedirect() {
-    window.location.href = 'editfastfood.html';
+    for (var i = editBtn.length; i--;) {
+        editBtn[i].addEventListener('click', setRedirect('editfastfood.html'), false);
+    }
+
+
+let rejectBtn = document.getElementsByClassName("reject-btn");
+if (rejectBtn) {
+    for (var i = rejectBtn.length; i--;) {
+        rejectBtn[i].addEventListener('click', setModal, false);
+    }
+
 }

@@ -168,10 +168,13 @@ header a:hover{
 
 
 
+
 /* When you mouse over the navigation links, change their color */
 #slide-nav a:hover {
     color: #f1f1f1;
 }
+
+
 
 /* */
 .nav-slide-toggle{
