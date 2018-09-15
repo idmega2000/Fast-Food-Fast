@@ -65,6 +65,7 @@
     font-size: 20px;
     color: #e3e3e3;
     cursor: pointer;
+    border: none;
 }
 
 .other-link a {
@@ -149,10 +150,12 @@ td p{
 .accept-btn{
     background: rgb(80, 70, 70);
     cursor: pointer;
+    border: none;
 }
 .reject-btn{
     background: rgb(226, 0, 30);
     cursor: pointer;
+    border: none;
 }
 /* pagination css*/
 /* idea gotten from w3school https://www.w3schools.com/howto/howto_css_pagination.asp*/
@@ -177,6 +180,7 @@ td p{
 /* end of pagination*/
 .food-btn-div{
     padding-bottom: 10px;
+    border: none;
 }
 .ad-ev-btn{
     color: white;
@@ -184,14 +188,17 @@ td p{
     width: 100px;
     font-weight: bold;
     cursor: pointer;
+    border: none;
 }
 
 .edit-btn{
     color: white;
     background-color: rgb(94, 83, 83);
+    border: none;
 }
 .delete-btn{
     background: rgb(160, 3, 24);
+    border: none;
 }
 
 /*create new food page form*/
@@ -238,6 +245,7 @@ td p{
 }
 .create-food-btn-div{
     clear: both;
+    border: none;
 }
   
 @media screen and (min-width: 600px) and (max-width: 900px) {
