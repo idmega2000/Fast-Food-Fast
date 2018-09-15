@@ -9,7 +9,7 @@
     <meta name="author" content="Idris Kelani">
     <title> Fast-Food-Fast</title>
     <link rel="stylesheet" type="text/css" href="../../css/headers.css">
-    <link rel="stylesheet" type="text/css" href="../../css/mainstylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <link rel="stylesheet" type="text/css" href="../../css/form.css">
     <link rel="stylesheet" type="text/css" href="../../css/modal.css">
 </head>
@@ -36,9 +36,9 @@
                                     <span style="font-size: 15px;">&#9660;</span>
                                 </a>
                                 <div class="dropdown-content">
-                                    <a href="allfood.html"> All Fast Food</a>
+                                    <a href="all-food.html"> All Fast Food</a>
                                     <a href="orders.html">Orders</a>
-                                    <a href="addfastfood.html">Create New Food</a>
+                                    <a href="add-fastfood.html">Create New Food</a>
                                     <a href="login.html">Logout</a>
                                 </div>
                             </li>
@@ -49,17 +49,37 @@
                 </div>
         </header>
         <section id="slide-nav">
-            <a href="allfood.html"> All Fast Food</a>
+            <a href="all-food.html"> All Fast Food</a>
             <a href="orders.html">Orders</a>
-            <a href="addfastfood.html">Create New Food</a>
+            <a href="add-fastfood.html">Create New Food</a>
             <a href="login.html">Logout</a>
         </section>
         <div class="main-body centerdivh">
-            <h1>Order History</h1>
+                <div id="myModal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span class="close">&times;</span>
+                                <h3>Rice and Jollof</h3>
+                                <h3>Price NGN 1000</h3>
+                            </div>
+                            <div class="modal-body">
+                                <h4>Are you sure u want to Decline this food Request?</h4>
+                                <div class="form-btn">
+                                    <button class="del-ques-btn modal-btn" type="submit">Yes</button>
+                                    <button class="del-ques-btn modal-btn" type="submit">No</button>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <h3>Fast-Foof-Fast</h3>
+                            </div>
+                        </div>
+        
+                    </div>
+            <h1>Order Request</h1>
             <div class="centerdiv container">
-
                 <table class="order-table">
-
                     <tr class="table-title">
                         <th>Order Id</th>
                         <th> Food Name</th>
@@ -76,9 +96,12 @@
                         <td>1</td>
                         <td>NGN 1,000</td>
                         <td>28, ishoko street, lagos</td>
-                        <td>Processing</td>
                         <td>
-                            <input type="checkbox">
+                            <button class="accept-btn">&#x2714;</button>
+                            <button class="reject-btn">&#x2718;</button>
+                        </td>
+                        <td>
+                            <input class="completed-checkbox" type="checkbox">
                             <br>
                         </td>
                     </tr>
@@ -93,7 +116,7 @@
                             <button class="reject-btn">&#x2718;</button>
                         </td>
                         <td>
-                            <input type="checkbox">
+                            <input class="completed-checkbox" type="checkbox">
                             <br>
                         </td>
 
@@ -109,7 +132,7 @@
                             <button class="reject-btn">&#x2718;</button>
                         </td>
                         <td>
-                            <input type="checkbox">
+                            <input class="completed-checkbox" type="checkbox">
                             <br>
                         </td>
                     </tr>
@@ -124,7 +147,7 @@
                             <button class="reject-btn">&#x2718;</button>
                         </td>
                         <td>
-                            <input type="checkbox">
+                            <input class="completed-checkbox" type="checkbox">
                             <br>
                         </td>
                     </tr>
@@ -139,7 +162,7 @@
                             <button class="reject-btn">&#x2718;</button>
                         </td>
                         <td>
-                            <input type="checkbox">
+                            <input class="completed-checkbox" type="checkbox">
                             <br>
                         </td>
                     </tr>
