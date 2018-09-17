@@ -1,0 +1,30 @@
+{
+  "name": "fast-food-fast",
+  "version": "1.0.0",
+  "description": "fast-food-fast is a food delivery service app for restaurant",
+  "main": "app.js",
+  "scripts": {
+    "start": "babel-node app",
+    "start:dev": "nodemon --exec \"babel-node app\"",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idmega2000/Fast-Food-Fast.git"
+  },
+  "author": "Idris kelani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/idmega2000/Fast-Food-Fast/issues"
+  },
+  "homepage": "https://github.com/idmega2000/Fast-Food-Fast#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.1"
+  }
+}
