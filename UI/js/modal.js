@@ -3,7 +3,9 @@
 let modal = document.getElementById('myModal');
 
 let ModalBtn = document.getElementsByClassName("modal-btn");
-// When the user clicks the button, open the modal 
+let closeModal = document.getElementsByClassName("close")[0];
+let editBtn2 = document.getElementsByClassName("edit-btn");
+
 const setModal = () => {
     modal.style.display = "block";
 }
@@ -12,27 +14,18 @@ for (var i = ModalBtn.length; i--;) {
     ModalBtn[i].addEventListener('click', setModal, false);
 }
 
-let closeModal = document.getElementsByClassName("close")[0];
-
-
-
 if (closeModal) {
-    closeModal.onclick = function () {
+    closeModal.onclick = () => {
         modal.style.display = "none";
     }
 }
 
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
+window.onclick =  (event) => {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
 
-//order modal end
-// delete a food modal
-let editBtn2 = document.getElementsByClassName("edit-btn");
 let setRedirect = (input) => {
     window.location.href = input;
 }

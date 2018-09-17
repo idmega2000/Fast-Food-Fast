@@ -1,4 +1,6 @@
+let scroolBotton = document.getElementById("arrowP");
 const navbarSlider = document.getElementById('header-sm-sc');
+let rejectBtn = document.getElementsByClassName("reject-btn");
 
 const drawNav = () => {
     const navDrawer = document.getElementById('slide-nav');
@@ -9,9 +11,6 @@ if (navbarSlider) {
     navbarSlider.addEventListener('click', drawNav);
 }
 
-
-
-let rejectBtn = document.getElementsByClassName("reject-btn");
 if (rejectBtn) {
     for (var i = rejectBtn.length; i--;) {
         rejectBtn[i].addEventListener('click', setModal, false);
@@ -20,10 +19,12 @@ if (rejectBtn) {
 }
 
 const moveDownwards = () => {
-    document.body.scrollTop = 600; // For Safari
-    document.documentElement.scrollTop = 600; // For Chrome, Firefox, IE and Opera
+    document.body.scrollTop = 600;
+    document.documentElement.scrollTop = 600;
 }
 
-let scroolBotton = document.getElementById("arrowP");
-scroolBotton.onclick = moveDownwards;
+if (scroolBotton) {
+    scroolBotton.onclick = moveDownwards;
+}
+
 
