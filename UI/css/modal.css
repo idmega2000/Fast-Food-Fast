@@ -1,3 +1,4 @@
+/*Idea from w3schools*/
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -50,27 +51,30 @@
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
 }
 
 .modal-header {
-    padding: 2px 16px;
-    background: rgb(160, 3, 24);
+    padding: 2px 10px;
+    background: #ee6e73;
     color: white;
    
+}
+.modal-header h3{
+    color: #000;
+
 }
 
 .modal-body {padding: 2px 16px;}
 
 .modal-footer {
-    padding: 2px 8px;
-    background: rgb(160, 3, 24);
-    color: white;
-   
+    padding: 0px 8px;
+    background: #ee6e73;
+    color: black;
+    padding: 1px;
 }
 .modal-footer h3{
     font-family: Snell Roundhand, cursive;
@@ -89,12 +93,12 @@
 }
 
 .order-modal-btn{
-    width: 280px;
+    width: 250px;
     height: 40px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     border-radius: 4px;
-    background: rgb(160, 3, 24);
+    background: #ee6e73;
     font-size: 20px;
     color: #e3e3e3;
     cursor: pointer;
