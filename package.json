@@ -6,9 +6,11 @@
   "scripts": {
     "start": "babel-node app",
     "start:dev": "nodemon --exec \"babel-node app\"",
-    "test": "nyc mocha --compilers js:babel-core/register ./server/tests/fast-food-order.spec.js --exit || exit 0",
+
+    "test": "nyc mocha --compilers js:babel-core/register ./server/test/fast-food-order.spec.js --exit || exit 0",
     "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "report-coverage": "cat ./coverage/lcov.info | coveralls"
+
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "morgan": "^1.9.1"
   },
