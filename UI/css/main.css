@@ -307,6 +307,9 @@ footer p,footer a{
     border-radius: 6px;
     background-color: rgba(202, 212, 212, 0.582);
 }
+.main-im-cov{
+    position: relative;
+}
 
 #front-content-cover{
 	position: absolute;
@@ -349,13 +352,14 @@ footer p,footer a{
 .arrow {
     position: absolute;
     text-align: center;
-    top: 255px;
+    top: 335px;
     bottom: 0;
     left: 0; 
     right: 0;
     margin: 8% 0;
     text-decoration: none !important;
     cursor: pointer;
+ 
   }
   .arrow-down{
     width: 150px;
@@ -408,7 +412,7 @@ footer p,footer a{
         width: 80%;
     }
     #front-content-con h1{
-        font-size: 23px;
+        font-size: 21px;
     }
     .order-meals{
 
@@ -416,7 +420,7 @@ footer p,footer a{
 
     }
     .arrow {
-        top: 185px;
+        top: 199px;
       }
 
 }
@@ -463,6 +467,15 @@ footer p,footer a{
     display: none;
   }
     
+}
+
+@media screen and (min-width: 900px) and (max-width: 1200px) {
+    #front-content-con h1{
+        font-size: 33px;
+    }
+    .arrow {
+        top: 225px;
+      }
 }
 
 
