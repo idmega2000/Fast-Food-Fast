@@ -83,6 +83,9 @@ footer p,footer a{
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 100%;
 }
+.main-body-rel{
+    position: relative;
+}
 .main-image-sec{
     position: relative;
 }

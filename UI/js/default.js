@@ -1,6 +1,6 @@
-let scroolBotton = document.getElementById("arrowP");
+const scrollButton = document.getElementById("arrowP");
 const navbarSlider = document.getElementById('header-sm-sc');
-let rejectBtn = document.getElementsByClassName("reject-btn");
+const rejectBtn = document.getElementsByClassName("reject-btn");
 
 const drawNav = () => {
     const navDrawer = document.getElementById('slide-nav');
@@ -23,8 +23,8 @@ const moveDownwards = () => {
     document.documentElement.scrollTop = 600;
 }
 
-if (scroolBotton) {
-    scroolBotton.onclick = moveDownwards;
+if (scrollButton) {
+    scrollButton.onclick = moveDownwards;
 }
 
 
