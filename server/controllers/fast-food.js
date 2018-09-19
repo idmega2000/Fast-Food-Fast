@@ -1,5 +1,5 @@
 import fastFoodData from '../models/fast-food-data';
-/* eslint-disable class-methods-use-this */
+
 
 /**
  * Represents a Fast Food.
