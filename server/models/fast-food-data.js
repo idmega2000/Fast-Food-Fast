@@ -24,7 +24,7 @@ const fastFoodData = {
     {
       userId: 'hdoentnsgel',
       fastFoodId: 'qukdyktyno',
-      fastFoodFood: 'Rice and chicken',
+      fastFoodName: 'Rice and chicken',
       fastFoodPrice: 'NGN 1000',
       FastFoodOrderDate: '20/09/2018',
       FastFoodImage: 'pjrjldnlrblklhhohfrwdnr.jpg',

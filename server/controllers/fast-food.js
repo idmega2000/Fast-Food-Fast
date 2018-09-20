@@ -1,4 +1,5 @@
 import fastFoodData from '../models/fast-food-data';
+import getId from '../helpers/utils';
 
 
 /**
@@ -32,6 +33,27 @@ class FastFood {
     }
 
     return res.status(404).json({ error: 'Order does not Exits' });
+  }
+
+  /**
+     * This function gets A fastfood
+     * @param {object} req - the request file.
+     * @param {object} res - The response file.
+     * @returns {object} Returns the posted order information.
+     */
+  postAFoodOrder(req, res) {
+    const newInput = {
+      userId: getId(),
+      fastFoodId: req.body.foodId,
+      fastFoodName: req.body.foodName,
+      fastFoodPrice: req.body.foodPrice,
+      FastFoodOrderDate: new Date(),
+      FastFoodImage: req.body.foodImage,
+      FastFoodStatus: req.body.foodStatus
+    };
+
+    fastFoodData.foodOrders.push(newInput);
+    return res.status(201).json(newInput);
   }
 }
 
