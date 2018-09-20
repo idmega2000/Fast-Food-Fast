@@ -315,7 +315,7 @@ footer p,footer a{
 }
 
 #front-content-cover{
-	position: absolute;
+    position: absolute;
 	top: 70px;
 	right:0;
 	left: 0;
@@ -324,7 +324,7 @@ footer p,footer a{
 	margin-left: auto;
 	margin-right: auto;
     width: 90%;
-    height: auto;
+    height: 400px;
     z-index: 200;
 }
 #front-content-con{
@@ -355,6 +355,7 @@ footer p,footer a{
 .arrow {
     position: absolute;
     text-align: center;
+    height: 100px;
     top: 335px;
     bottom: 0;
     left: 0; 
@@ -362,7 +363,7 @@ footer p,footer a{
     margin: 8% 0;
     text-decoration: none !important;
     cursor: pointer;
- 
+
   }
   .arrow-down{
     width: 150px;
