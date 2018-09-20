@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/headers.css">
-    <link rel="stylesheet" type="text/css" href="../css/mainstylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/form.css">
     <link rel="stylesheet" type="text/css" href="../css/modal.css">
 </head>
@@ -39,7 +39,7 @@
                                 </a>
                                 <div class="dropdown-content">
                                     <a href="fastfood.html">Fast Food</a>
-                                    <a href="userorderhistory.html">Order History</a>
+                                    <a href="user-order-history.html">Order History</a>
                                     <a href="#">Profile</a>
                                     <a href="login.html">Logout</a>
                                 </div>
@@ -51,14 +51,14 @@
         </header>
         <section id="slide-nav">
             <a href="fastfood.html">Fast Food</a>
-            <a href="userorderhistory.html">Order History</a>
+            <a href="user-order-history.html">Order History</a>
             <a href="#">Profile</a>
             <a href="login.html">Logout</a>
         </section>
         <div class="main-body">
             <div class="search-wrapper container">
                 <div class="search-body">
-                    <input class="search-input" type="text" name="searchfood" id="searchFood" placeholder="   Search Fast Food" />
+                    <input class="search-input" type="text" name="searchfood" id="searchFood" placeholder="Search Fast Food" />
                     <i id="filterSearch" class="fa fa-search"></i>
                 </div>
             </div>
@@ -92,18 +92,9 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
-                            <div class="input-div">
-                                <span>Phone number</span>
-                                <span class="is-required">*</span>
-                            </div>
-                            <input class="user-input" type="text" />
-                            <div class="input-div">
-                                <span>Address</span>
-                                <span class="is-required">*</span>
-                            </div>
-                            <textarea class="user-input"></textarea>
+                           
                             <div class="form-btn">
-                                <button class="order-modal-btn" type="submit">Place Order</button>
+                                <button class="order-modal-btn" type="submit">Add to Cart</button>
                             </div>
                         </form>
 
@@ -127,7 +118,8 @@
 
                             </div>
                             <div>
-                                <button id="orderBtn" class="order-btn modal-btn">Order</button>
+                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
+
 
                             </div>
                         </div>
@@ -142,7 +134,8 @@
                                 <p>Price: NGN 1,000</p>
                             </div>
                             <div>
-                                <button id="orderBtn" class="order-btn modal-btn">Order</button>
+                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
+                        
                             </div>
                         </div>
                     </div>
@@ -156,8 +149,8 @@
                                 <p>Price: NGN 1,000</p>
                             </div>
                             <div>
+                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
 
-                                <button id="orderBtn" class="order-btn modal-btn">Order</button>
                             </div>
                         </div>
                     </div>
@@ -173,7 +166,8 @@
                                 <p>Price: NGN 1,000</p>
                             </div>
                             <div>
-                                <button id="orderBtn" class="order-btn modal-btn">Order</button>
+                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
+
                             </div>
                         </div>
                     </div>
@@ -187,7 +181,7 @@
                                 <p>Price: NGN 1,000</p>
                             </div>
                             <div>
-                                <button id="orderBtn" class="order-btn modal-btn">Order</button>
+                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -201,7 +195,9 @@
                                 <p>Price: NGN 1,000</p>
                             </div>
                             <div>
-                                <button id="orderBtn" class="order-btn modal-btn">Order</button>
+
+                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
+
                             </div>
                         </div>
                     </div>
@@ -217,7 +213,8 @@
                                 <p>Price: NGN 1,000</p>
                             </div>
                             <div>
-                                <button id="orderBtn" class="order-btn modal-btn">Order</button>
+                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
+
                             </div>
                         </div>
                     </div>
@@ -245,7 +242,8 @@
                                 <p>Price: NGN 1,000</p>
                             </div>
                             <div>
-                                <button id="orderBtn" class="order-btn modal-btn">Order</button>
+                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
+
                             </div>
                         </div>
                     </div>
@@ -261,5 +259,6 @@
         </div>
 </body>
 <script type="text/javascript" src="../js/default.js"></script>
+<script type="text/javascript" src="../js/modal.js"></script>
 
 </html>

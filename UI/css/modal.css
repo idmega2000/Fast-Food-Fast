@@ -1,8 +1,9 @@
+/*Idea from w3schools*/
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 150px; /* Location of the box */
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 150px; 
     left: 0;
     right: 0;
     top: 0;
@@ -10,7 +11,7 @@
     height: auto; 
     margin-left: auto;
     margin-right: auto;
-    overflow: auto; /* Enable scroll if needed */    
+    overflow: auto;    
    
 }
 
@@ -22,13 +23,11 @@
     padding: 0;
     border: 1px solid #888;
     width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
     border-radius: 6px;
-
 }
 
 /* Add Animation */
@@ -50,27 +49,28 @@
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
 }
 
 .modal-header {
-    padding: 2px 16px;
-    background: rgb(160, 3, 24);
+    padding: 2px 10px;
+    background: #ee6e73;
     color: white;
-   
+}
+.modal-header h3{
+    color: #000;
 }
 
 .modal-body {padding: 2px 16px;}
 
 .modal-footer {
-    padding: 2px 8px;
-    background: rgb(160, 3, 24);
-    color: white;
-   
+    padding: 0px 8px;
+    background: #ee6e73;
+    color: black;
+    padding: 1px;
 }
 .modal-footer h3{
     font-family: Snell Roundhand, cursive;
@@ -89,12 +89,12 @@
 }
 
 .order-modal-btn{
-    width: 280px;
+    width: 250px;
     height: 40px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     border-radius: 4px;
-    background: rgb(160, 3, 24);
+    background: #ee6e73;
     font-size: 20px;
     color: #e3e3e3;
     cursor: pointer;
