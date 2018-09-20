@@ -12,7 +12,7 @@
 
     .login-body-wrapper{
         position: absolute;
-        top: 150px;
+        top: 190px;
         right: 0;
         left: 0;
         bottom: 0;
@@ -28,7 +28,7 @@
         color: rgb(38, 67, 107);
     }
     .signup-body-wrapper{
-        top: 100px;
+        top: 150px;
     }
 
 
@@ -58,6 +58,21 @@
     .input-div {
         margin-top: 15px;
     }
+
+    .admin-input{
+        width: 250px;
+        border-radius: 4px;
+        height: 30px;
+        margin-top: 3px;
+        padding-left: 2px;
+    }
+    .admin-input-sel{
+        width: 252px;
+        border-radius: 4px;
+        height: 30px;
+        margin-top: 3px;
+    }
+
     .signin-btn{
         width: 280px;
         height: 40px;
@@ -244,6 +259,7 @@
         margin:auto; 
         width:200px;
         display:block;
+        text-align: center;
     }
     .choose-img-btn{
         width: 80px;
