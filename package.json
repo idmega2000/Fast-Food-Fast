@@ -7,7 +7,7 @@
     "start": "babel-node app",
     "start:dev": "nodemon --exec \"babel-node app\"",
 
-    "test": "nyc mocha --compilers js:babel-core/register ./server/test/fast-food-order.spec.js --exit || exit 0",
+    "test": "nyc mocha --compilers js:babel-core/register ./server/test/index.spec.js --exit || exit 0",
     "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "report-coverage": "cat ./coverage/lcov.info | coveralls"
 
