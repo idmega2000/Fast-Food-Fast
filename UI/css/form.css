@@ -1,3 +1,4 @@
+
     /* sign in page */
     .all-login-body{
         margin:0;
@@ -9,6 +10,7 @@
         background-size: cover;
         min-height: 640px;
     }
+
 
     .login-body-wrapper{
         position: absolute;
@@ -85,7 +87,6 @@
         cursor: pointer;
         border: none;
     }
-
     .other-link a {
         font-size: 15px;
         font-weight: bold;
@@ -149,6 +150,7 @@
     .table-title{
         background: #ee6e73 !important;
         color: white;
+
     }
     .order-table th, .order-table tr , .order-table td {
         text-align: center;
