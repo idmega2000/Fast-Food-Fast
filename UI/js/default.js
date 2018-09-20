@@ -11,9 +11,11 @@ if (navbarSlider) {
     navbarSlider.addEventListener('click', drawNav);
 }
 
+
 if (rejectBtn) {
     for (var i = rejectBtn.length; i--;) {
         rejectBtn[i].addEventListener('click', setModal, false);
+
     }
 
 }
@@ -26,5 +28,4 @@ const moveDownwards = () => {
 if (scrollButton) {
     scrollButton.onclick = moveDownwards;
 }
-
 
