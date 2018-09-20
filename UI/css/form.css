@@ -1,0 +1,341 @@
+    /* sign in page */
+    .all-login-body{
+        margin:0;
+        width: 100%;
+        height: auto;   
+        background-image: url("../img/img5.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        min-height: 640px;
+    }
+
+    .login-body-wrapper{
+        position: absolute;
+        top: 190px;
+        right: 0;
+        left: 0;
+        bottom: 0;
+    }
+    .login-wrapper{
+        width: 280px;
+        margin: auto;
+        padding: 20px;
+        font-weight: bold;
+        border-radius: 7px;
+        background: rgba(255,255,255,0.3);
+        box-shadow: 0 0 4px #aaa;
+        color: rgb(38, 67, 107);
+    }
+    .signup-body-wrapper{
+        top: 150px;
+    }
+
+
+    .login-form-title{
+        font-size: 20px;
+        text-align: center;
+        margin: 16px 0px;
+        margin-top: 0px;
+        font-weight: bold;
+        font-size: 35px;
+        letter-spacing: 0.7px;
+        color: rgb(160, 3, 24);
+    }
+    .completed-checkbox{
+        width:23px;
+        height:23px;
+        cursor: pointer;
+    }
+
+    .user-input{
+        width: 250px;
+        border-radius: 4px;
+        height: 30px;
+        margin-top: 3px;
+        padding-left: 28px;
+    }
+    .input-div {
+        margin-top: 15px;
+    }
+
+    .admin-input{
+        width: 250px;
+        border-radius: 4px;
+        height: 30px;
+        margin-top: 3px;
+        padding-left: 2px;
+    }
+    .admin-input-sel{
+        width: 252px;
+        border-radius: 4px;
+        height: 30px;
+        margin-top: 3px;
+    }
+
+    .signin-btn{
+        width: 280px;
+        height: 40px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        background: rgb(160, 3, 24);
+        font-size: 20px;
+        color: #e3e3e3;
+        cursor: pointer;
+        border: none;
+    }
+
+    .other-link a {
+        font-size: 15px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .search-wrapper{
+        height: 140px;
+        width: 100%;
+        background-image: url("../img/delicious-buffet-foodss.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .search-input{
+        margin-top: 40px;
+        width: 380px;
+        border-radius: 8px;
+        height: 33px;
+        padding-left: 10px;
+        outline: none;
+    }
+    .search-body{
+        text-align: center;
+        margin-left: auto;
+        margin-bottom: auto;
+    }
+
+    /* font awesome */
+    #filterSearch {
+        position: relative;
+        z-index: 1;
+        left: -25px;
+        top: 1px;
+        color: rgb(80, 70, 70);
+        width: 0;
+    }
+
+    #filterUserInput {
+        position: relative;
+        z-index: 1;
+        left: 10px;
+        top: -25px;
+        color: rgba(80, 70, 70, 0.5);
+        width: 0;
+    }
+
+    /* css for tables*/
+
+    .order-table{
+        border-collapse: collapse;
+        margin-top: 30px;
+        font-weight: bold;
+    }
+    .order-table tr {
+        height: 50px;   
+    }
+    .order-table tr:nth-child(odd) {
+        background-color: rgb(231, 206, 206);
+    }
+    .table-title{
+        background: #ee6e73 !important;
+        color: white;
+    }
+    .order-table th, .order-table tr , .order-table td {
+        text-align: center;
+        padding: 25px;
+    }
+    .centerdivh{
+        text-align: center;
+    }
+    td p{
+        display: inline;
+        padding: 10px;
+    }
+
+    /* admin orders table.... adapted from user order history*/
+    .accept-btn{
+        background: #039be5;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+    }
+    .reject-btn{
+        background: rgb(226, 0, 30);
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+    }
+    /* pagination css*/
+    /* idea gotten from w3school https://www.w3schools.com/howto/howto_css_pagination.asp*/
+    .pagination a {
+        color: black;
+        float: left;
+        margin-bottom: 30px;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+    }
+
+    .pagination a.active {
+        background-color: #ee6e73;
+        color: white;
+    }
+
+    /* Add a grey background color on mouse-over */
+    .pagination a:hover:not(.active) {
+        background-color: #ddd;
+    }
+
+    /* end of pagination*/
+    .food-btn-div{
+        padding-bottom: 10px;
+        border: none;
+    }
+    .ad-ev-btn{
+        color: white;
+        border-radius: 5px;
+        width: 80px;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+    }
+
+    .edit-btn{
+        color: white;
+        background-color: #039be5;
+        border: none;
+        border-radius: 3px;
+        margin-right: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .delete-btn{
+        background: #ee6e73;
+        border: none;
+        border-radius: 3px;
+        margin-left: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /*create new food page form*/
+    .create-cont-wrapper{
+        width: 70%;
+        background: rgba(226, 211, 213, 0.9);
+        height: 400px;
+        margin: 50px;
+    }
+    .left-ad{
+        float: left;
+        margin: 50px;
+
+    }
+    .right-ad{
+        float: left;
+        margin: 13px;
+        margin-top: 70px;
+    }
+    .upload-img-box{
+        border: 1px solid brown;
+        border-radius: 5px;
+        width: 200px;
+        height: 150px;
+        min-height: 100px;
+        min-width: 140px;
+    }
+    .uploaded-image{
+        margin:auto; 
+        width:200px;
+        display:block;
+        text-align: center;
+    }
+    .choose-img-btn{
+        width: 80px;
+        margin-top: 30px;
+    }
+    .create-food-btn{
+        width: 170px;
+        height: 40px;
+        border-radius: 6px;
+        background: #ee6e73;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .create-food-btn-div{
+        clear: both;
+        border: none;
+    }
+
+    @media screen and (min-width: 600px) and (max-width: 900px) {
+        .search-input{
+            width: 290px;
+        }
+            .order-table th, .order-table tr , .order-table td {
+            text-align: center;
+            padding: 16px;
+        }
+        .left-ad{
+            float: none;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .right-ad{
+            float: none;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .create-cont-wrapper{
+            width: 80%;
+            height: 600px;
+            margin: 50px;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+
+        .search-input{
+            width: 220px;
+        }
+        .order-table th, .order-table tr , .order-table td {
+            text-align: center;
+            padding: 7px;
+        }
+        .user-input-small{
+            width: 200px;
+        }
+        .left-ad{
+            float: none;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .right-ad{
+            float: none;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .create-cont-wrapper{
+            width: 80%;
+            height: 650px;
+            margin: 50px;
+        }
+        .order-table th, .order-table tr , .order-table td {
+            text-align: center;
+            padding: 3px;
+            font-size: 12px;
+        }
+
+    }
