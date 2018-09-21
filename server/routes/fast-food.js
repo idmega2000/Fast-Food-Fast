@@ -23,4 +23,8 @@ router.post('/api/v1/orders',
   foodExist, PostOrderValidator,
   fastFood.postAFoodOrder);
 
+router.put('/api/v1/orders/:id',
+  orderIdValidator, orderExist,
+  fastFood.putOderStatus);
+
 export default router;

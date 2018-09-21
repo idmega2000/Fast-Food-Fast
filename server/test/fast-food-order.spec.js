@@ -44,6 +44,9 @@ const wrongFoodId = {
   orderFoodName: 'Beans and Bread',
   orderFoodPrice: 'NGN 1200',
 };
+const newEdit = {
+  orderFoodStatus: 'accept'
+};
 
 describe('Get all Orders', () => {
   describe('when Admin request for All fast food order', () => {
@@ -184,6 +187,24 @@ describe('Post Orders', () => {
           assert.equal(res.body.order.orderFoodName, 'Beans and Bread');
           assert.equal(res.body.order.orderFoodPrice, 'NGN 1200');
           assert.equal(res.body.order.orderFoodStatus, 'new');
+          done();
+        });
+    });
+  });
+});
+
+describe('Put Orders', () => {
+  describe('when Admin Edit order status', () => {
+    it('the content edited', (done) => {
+      request.put(`${path}/hhnpsytbid`)
+        .send(newEdit)
+        .end((req, res) => {
+          assert.equal(res.status, 200);
+          assert.equal(res.body.order.foodId, 'jhdkjdkdj');
+          assert.equal(res.body.order.orderFoodId, 'hhnpsytbid');
+          assert.equal(res.body.order.orderFoodName, 'Meetpie and chicken');
+          assert.equal(res.body.order.orderFoodPrice, 'NGN 800');
+          assert.equal(res.body.order.orderFoodStatus, 'accept');
           done();
         });
     });
