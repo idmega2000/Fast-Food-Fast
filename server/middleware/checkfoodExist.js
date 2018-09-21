@@ -1,6 +1,6 @@
-import fastFoodData from '../models/fast-food-data';
+import fastFoodData from '../models/fastFoodData';
 
-const foodExist = (req, res, next) => {
+const checkfoodExist = (req, res, next) => {
   const data = req.body.foodId;
 
   const singleFastFood = fastFoodData.foods.find(item => item.foodId === data);
@@ -10,4 +10,4 @@ const foodExist = (req, res, next) => {
   return next();
 };
 
-export default foodExist;
+export default checkfoodExist;

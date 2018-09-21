@@ -1,6 +1,6 @@
-import fastFoodData from '../models/fast-food-data';
+import fastFoodData from '../models/fastFoodData';
 
-const orderExist = (req, res, next) => {
+const checkorderExist = (req, res, next) => {
   const data = req.params.id;
 
   const singleFastFood = fastFoodData.foodOrders
@@ -11,4 +11,4 @@ const orderExist = (req, res, next) => {
   return next();
 };
 
-export default orderExist;
+export default checkorderExist;
