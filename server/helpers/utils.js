@@ -1,5 +1,4 @@
 
-
 const getId = () => {
   const idNum = 10;
   let textOutput = '';
