@@ -27,12 +27,8 @@ class FastFood {
      */
   getAFoodOrder(req, res) {
     const data = req.params.id;
-    const singleFastFood = fastFoodData.foodOrders.find(item => item.fastFoodId === data);
-    if (singleFastFood) {
+    const singleFastFood = fastFoodData.foodOrders.find(item => item.orderFoodId === data);
       return res.status(200).json({ order: singleFastFood });
-    }
-
-    return res.status(404).json({ error: 'Order does not Exits' });
   }
 
   /**

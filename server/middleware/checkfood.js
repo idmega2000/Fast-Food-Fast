@@ -1,9 +1,9 @@
 import fastFoodData from '../models/fast-food-data';
 
 const foodExist = (req, res, next) => {
-  const data = req.body.fastFoodId;
+  const data = req.body.fastFoodId || req.params.id;
 
-  const singleFastFood = fastFoodData.foodOrders.find(item => item.fastFoodId === data);
+  const singleFastFood = fastFoodData.foods.find(item => item.foodId === data);
   if (!singleFastFood) {
     return res.status(404).json({ error: 'Order does not Exits' });
   }
