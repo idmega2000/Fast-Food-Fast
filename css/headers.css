@@ -18,11 +18,22 @@ body{
 	max-height: 50px;
 	border-bottom: 2px solid rgb(216, 123, 123);
 }	
+.nav-list{
+	display: flex;
+   flex-direction: row;
+}
 
 .nav-list a{
 	color:#ffffff;
 	text-decoration: none;
 	font-size: 20px;
+}
+.shopping-cart{
+	display: flex;
+	margin-right: 20px;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
 }
 #headercontainer a{
 	text-decoration: none;
