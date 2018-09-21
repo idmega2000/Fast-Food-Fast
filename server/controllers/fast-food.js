@@ -54,6 +54,20 @@ class FastFood {
     fastFoodData.foodOrders.push(newInput);
     return res.status(201).json({ order: newInput });
   }
+
+  /**
+     * This function gets A fastfood
+     * @param {object} req - the request file.
+     * @param {object} res - The response file.
+     * @returns {object} Returns the posted order information.
+     */
+  putOderStatus(req, res) {
+    const data = req.params.id;
+    const foodOrder = fastFoodData
+      .foodOrders.find(item => item.orderFoodId === data);
+    foodOrder.orderFoodStatus = req.body.orderFoodStatus;
+    return res.status(200).json({ order: foodOrder });
+  }
 }
 
 export default FastFood;
