@@ -57,21 +57,23 @@
         </section>
         <div class="main-body centerdivh">
             <div id="myModal" class="modal">
+
                 <!-- Modal content -->
                 <div class="modal-content">
                     <div class="modal-header">
                         <span class="close">&times;</span>
                         <h3>Rice and Jollof</h3>
-                        <h3>Price NGN 1000</h3>
                     </div>
                     <div class="modal-body">
-                        <h4>Are you sure u want to Decline this food Request?</h4>
+                        <h4>Are you sure u want to Delete this food?</h4>
                         <div class="form-btn">
-                            <button class="del-ques-btn modal-btn" type="submit">Yes</button>
+                            <button id="delAOrder" class="del-ques-btn" type="submit">Yes</button>
                             <button class="del-ques-btn modal-btn" type="submit">No</button>
                         </div>
                     </div>
                     <div class="modal-footer">
+
+
                         <h3>Fast-Foof-Fast</h3>
                     </div>
                 </div>
@@ -103,10 +105,10 @@
                         <td>28, ishoko street, lagos</td>
                         <td>
                             <button class="accept-btn">&#x2714;</button>
-                            <button class="reject-btn">&#x2718;</button>
+                            <button class="reject-btn modal-btn">&#x2718;</button>
                         </td>
                         <td>
-                            <input class="completed-checkbox" type="checkbox">
+                            <input class="completed-checkbox" type="checkbox" disabled>
                             <br>
                         </td>
                     </tr>
@@ -118,10 +120,10 @@
                         <td>28, ishoko street, lagos</td>
                         <td>
                             <button class="accept-btn">&#x2714;</button>
-                            <button class="reject-btn">&#x2718;</button>
+                            <button class="reject-btn ">&#x2718;</button>
                         </td>
                         <td>
-                            <input class="completed-checkbox" type="checkbox">
+                            <input class="completed-checkbox" type="checkbox" disabled>
 
                             <br>
                         </td>
@@ -138,7 +140,7 @@
                             <button class="reject-btn">&#x2718;</button>
                         </td>
                         <td>
-                            <input class="completed-checkbox" type="checkbox">
+                            <input class="completed-checkbox" type="checkbox" disabled>
                             <br>
                         </td>
                     </tr>
@@ -153,7 +155,7 @@
                             <button class="reject-btn">&#x2718;</button>
                         </td>
                         <td>
-                            <input class="completed-checkbox" type="checkbox">
+                            <input class="completed-checkbox" type="checkbox" disabled>
 
                             <br>
                         </td>
@@ -169,7 +171,7 @@
                             <button class="reject-btn">&#x2718;</button>
                         </td>
                         <td>
-                            <input class="completed-checkbox" type="checkbox">
+                            <input class="completed-checkbox" type="checkbox" disabled>
                             <br>
                         </td>
                     </tr>
@@ -198,5 +200,6 @@
         </div>
 </body>
 <script type="text/javascript" src="../../js/default.js"></script>
+<script type="text/javascript" src="../../js/utils.js"></script>
 
 </html>

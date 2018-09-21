@@ -44,11 +44,6 @@
         letter-spacing: 0.7px;
         color: rgb(160, 3, 24);
     }
-    .completed-checkbox{
-        width:23px;
-        height:23px;
-        cursor: pointer;
-    }
 
     .user-input{
         width: 250px;
@@ -84,8 +79,9 @@
         background: rgb(160, 3, 24);
         font-size: 20px;
         color: #e3e3e3;
-        cursor: pointer;
         border: none;
+        outline: none;
+        cursor: pointer;
     }
     .other-link a {
         font-size: 15px;
@@ -167,14 +163,16 @@
     /* admin orders table.... adapted from user order history*/
     .accept-btn{
         background: #039be5;
-        cursor: pointer;
         border: none;
+        outline: none;
+        cursor: pointer;
         border-radius: 4px;
     }
     .reject-btn{
         background: rgb(226, 0, 30);
-        cursor: pointer;
         border: none;
+        outline: none;
+        cursor: pointer;
         border-radius: 4px;
     }
     /* pagination css*/
@@ -202,20 +200,25 @@
     .food-btn-div{
         padding-bottom: 10px;
         border: none;
+        outline: none;
+        cursor: pointer;
     }
     .ad-ev-btn{
         color: white;
         border-radius: 5px;
         width: 80px;
         font-weight: bold;
-        cursor: pointer;
         border: none;
+        outline: none;
+        cursor: pointer;
     }
 
     .edit-btn{
         color: white;
         background-color: #039be5;
         border: none;
+        outline: none;
+        cursor: pointer;
         border-radius: 3px;
         margin-right: 6px;
         display: flex;
@@ -225,6 +228,8 @@
     .delete-btn{
         background: #ee6e73;
         border: none;
+        outline: none;
+        cursor: pointer;
         border-radius: 3px;
         margin-left: 6px;
         display: flex;
@@ -266,6 +271,9 @@
     .choose-img-btn{
         width: 80px;
         margin-top: 30px;
+        border: none;
+        outline: none;
+        cursor: pointer;
     }
     .create-food-btn{
         width: 170px;
@@ -274,11 +282,99 @@
         background: #ee6e73;
         color: white;
         border: none;
+        outline: none;
         cursor: pointer;
     }
     .create-food-btn-div{
         clear: both;
         border: none;
+    }
+
+    .del-cart-btn{
+        border: none;
+        border-radius: 5px;
+        width: 60px;
+        height: 33px;
+        background: #ee6e73;
+        font-weight: 700;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+    .place-order-div{
+        margin-top: 50px;
+    }
+
+    #placeOrderBtn{
+        width: 120px;
+        height: 40px;
+        background: #ee6e73;
+        outline: none;
+        border-radius: 6px;
+        font-weight: 800;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .comp-order-input{
+        width: 430px;
+        height: 32px;
+        border-radius: 5px;
+        outline: none;
+        padding-left: 5px;
+        
+    }
+    .comp-order-text-area{
+        width: 430px;
+        height: 50px;
+        border-radius: 5px;
+        outline: none;
+        padding-left: 5px;
+    }
+    .comp-booking-btn{
+        width: 100px;
+        height: 34px;
+        background: #ee6e73;
+        outline: none;
+        border-radius: 6px;
+        font-weight: 800;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .comp-tab-cont{
+        margin: 20px;
+        padding: 10px;
+        height: 90px;
+    }
+    #compOrdDiv{
+        display: none;
+        border: 2px solid #365768;
+        width: 60%;
+        margin-top: 70px;
+    }
+    .disp-comp-ord{
+        display: block;
+    }
+    .comp-table.tr{
+        margin-top: 50px;
+    }
+    .disabled-hover {
+        cursor: not-allowed;
+        background: none;
+      }
+    .disabled-hover:hover{
+        background: rgba(10, 10, 10 ,0)
+    }
+    .completed-checkbox{
+        width:23px;
+        height:23px;
+        cursor: not-allowed;
+    }
+    .is-accepted{
+        cursor: pointer;
     }
 
     @media screen and (min-width: 600px) and (max-width: 900px) {
@@ -304,6 +400,26 @@
             height: 600px;
             margin: 50px;
         }
+        .del-cart-btn{
+            font-size: 12px;
+            width: 40px;
+            height: 23px;
+            font-weight: 700;
+            border: none;
+            outline: none;
+        }
+        .comp-order-input{
+            width: 200px;
+            height: 32px;
+            
+        }
+        .comp-order-text-area{
+            width: 200px;
+            height: 45px;
+        }
+        #compOrdDiv{
+            width: 70%;
+         }
 
     }
 
@@ -339,5 +455,29 @@
             padding: 3px;
             font-size: 12px;
         }
+        .del-cart-btn{
+            font-size: 10px !important;
+            width: 40px;
+            height: 23px;
+            font-weight: 700;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+        .comp-order-input{
+            width: 160px;
+            height: 27px;
+            
+        }
+        .comp-order-text-area{
+            width: 160px;
+            height: 42px;
+        }
+        #compOrdDiv{
+            width: 90%;
+         }
+         td{
+             font-size: 13px;
+         }
 
     }
