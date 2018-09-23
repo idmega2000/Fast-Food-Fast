@@ -1,4 +1,4 @@
-const postOrderValidator = (req, res, next) => {
+const placeOrderValidator = (req, res, next) => {
   const textInput = req.body;
   const orderName = textInput.orderFoodName;
   const orderPrice = textInput.orderFoodPrice;
@@ -18,4 +18,4 @@ const postOrderValidator = (req, res, next) => {
   return next();
 };
 
-export default postOrderValidator;
+export default placeOrderValidator;
