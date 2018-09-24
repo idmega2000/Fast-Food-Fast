@@ -1,12 +1,12 @@
 
-import fastFoodData from '../models/fast-food-data';
+import fastFoodData from '../models/fastFoodData';
 import getId from '../helpers/utils';
 
 /* eslint-disable class-methods-use-this */
 /**
  * Represents a Fast Food.
  */
-class FastFood {
+class Orders {
   /**
      * This function gets all fastfood
      * @param {object} req - the request object.
@@ -70,4 +70,4 @@ class FastFood {
   }
 }
 
-export default FastFood;
+export default Orders;
