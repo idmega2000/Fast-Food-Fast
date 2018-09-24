@@ -4,34 +4,39 @@ const fastFoodData = {
       userId: 'hdoentnsgel',
       userName: 'Idris Kelani',
       userPhone: '08080808080',
-      userEmail: 'idmhejlsjl@gmail.com'
+      userEmail: 'idmhejlsjl@gmail.com',
+      userAddress: '23 oshe house Lagos Nigeria'
     },
     {
       userId: 'noencytns',
       userName: 'tobi shola',
       userPhone: '07074757594',
-      userEmail: 'idmhejlsjl@gmail.com'
+      userEmail: 'idmhejlsjl@gmail.com',
+      userAddress: '23 oshe house Lagos Nigeria'
 
     },
     {
       userId: 'cytbwbep',
       userName: 'shade Alake',
       userPhone: '084573839454',
-      userEmail: 'aledeote@gmail.com'
+      userEmail: 'aledeote@gmail.com',
+      userAddress: '23 oshe house Lagos Nigeria'
 
     },
     {
       userId: 'vdeblshees',
       userName: 'shade Alake',
       userPhone: '084573839454',
-      userEmail: 'aledeote@gmail.com'
+      userEmail: 'aledeote@gmail.com',
+      userAddress: '23 oshe house Lagos Nigeria'
 
     },
     {
       userId: 'voehnksoe',
       userName: 'shade Alake',
       userPhone: '084573839454',
-      userEmail: 'aledeote@gmail.com'
+      userEmail: 'aledeote@gmail.com',
+      userAddress: '23 oshe house Lagos Nigeria'
 
     },
 
@@ -39,51 +44,104 @@ const fastFoodData = {
 
   foodOrders: [
     {
-      userId: 'hdoentnsgel',
-      foodId: 'hdhdidnid',
-      orderFoodId: 'qukdyktyno',
-      orderFoodName: 'Rice and chicken',
-      orderFoodPrice: 'NGN 1000',
-      orderFoodOrderDate: '20/09/2018',
-      orderFoodStatus: 'default'
+      userId: 'voehnksoe',
+      orderId: 'grildprhr',
+      orderInfo: [
+        {
+          foodId: 'hdhdidnid', quantity: 1
+        },
+        {
+          foodId: 'jhdkjdkdj', quantity: 2
+        },
+        {
+          foodId: 'ghsjhdijnd', quantity: 4
+        }
+      ],
+      orderAdress: '5b ishanwo street, ikotun lagos',
+      orderDateTime: '20/09/2018',
+      orderStatus: 'default'
     },
 
-    {
-      userId: 'noencytns',
-      foodId: 'ghsjhdijnd',
-      orderFoodId: 'rloahtnnlrv',
-      orderFoodName: 'Fries and chicken',
-      orderFoodPrice: 'NGN 500',
-      orderFoodOrderDate: '24/07/2018',
-      orderFoodStatus: 'accepted'
-    },
-
-    {
-      userId: 'cytbwbep',
-      foodId: 'hkhjdhids',
-      orderFoodId: 'jkjdokdjkk',
-      orderFoodName: 'Salad and tea',
-      orderFoodPrice: 'NGN 1100',
-      orderFoodOrderDate: '16/05/2018',
-      orderFoodStatus: 'declined'
-    },
     {
       userId: 'vdeblshees',
-      foodId: 'hjihdijdhi',
-      orderFoodId: 'mekndiebed',
-      orderFoodName: 'Beans and Bread',
-      orderFoodPrice: 'NGN 1200',
-      orderFoodOrderDate: '7/06/2018',
-      orderFoodStatus: 'default'
+      orderId: 'hijfhijrhrk',
+      orderInfo: [
+        {
+          foodId: 'hdhdidnid', quantity: 1
+        },
+        {
+          foodId: 'jhdkjdkdj', quantity: 2
+        },
+        {
+          foodId: 'ghsjhdijnd', quantity: 4
+        }
+      ],
+      orderAdress: '5b ishanwo street, ikotun lagos',
+      orderDateTime: '20/09/2018',
+      orderStatus: 'default'
     },
     {
-      userId: 'voehnksoe',
-      foodId: 'jhdkjdkdj',
-      orderFoodId: 'hhnpsytbid',
-      orderFoodName: 'Meetpie and chicken',
-      orderFoodPrice: 'NGN 800',
-      orderFoodOrderDate: '08/07/2018',
-      orderFoodStatus: 'default'
+      userId: 'hdoentnsgel',
+      orderId: 'nlkmndklnkl',
+      orderInfo: [
+        {
+          foodId: 'ghsjhdijnd', quantity: 4
+        }
+      ],
+      orderAdress: '5b ishanwo street, ikotun lagos',
+      orderDateTime: '20/09/2018',
+      orderStatus: 'default'
+    },
+    {
+      userId: 'cytbwbep',
+      orderId: 'qukdyktyno',
+      orderInfo: [
+        {
+          foodId: 'hdhdidnid', quantity: 1,
+        },
+        {
+          foodId: 'jhdkjdkdj', quantity: 2,
+        }
+      ],
+      orderAdress: '5b ishanwo street, ikotun lagos',
+      orderDateTime: '20/09/2018',
+      orderStatus: 'default'
+    },
+    {
+      userId: 'noencytns',
+      orderId: 'rloahtnnlrv',
+      orderInfo: [
+        {
+          foodId: 'hdhdidnid', quantity: 1
+        },
+        {
+          foodId: 'jhdkjdkdj', quantity: 2
+        },
+        {
+          foodId: 'ghsjhdijnd', quantity: 4
+        }
+      ],
+      orderAdress: '5b ishanwo street, ikotun lagos',
+      orderDateTime: '20/09/2018',
+      orderStatus: 'default'
+    },
+    {
+      userId: 'noencytns',
+      orderId: 'okdhjokjskj',
+      orderInfo: [
+        {
+          foodId: 'jhdkjdkdj', quantity: 1
+        },
+        {
+          foodId: 'hjihdijdhi', quantity: 7
+        },
+        {
+          foodId: 'ghsjhdijnd', quantity: 4
+        }
+      ],
+      orderAdress: '5b ishanwo street, ikotun lagos',
+      orderDateTime: '20/09/2018',
+      orderStatus: 'default'
     }
 
   ],

@@ -57,10 +57,10 @@ access Api endpoint [here](https://fast-food-fast-idris.herokuapp.com/)
 
 <tr>
 <td>GET</td>
-<td>/api/v1/orders</td>
+<td>/api/v1/orders/:id</td>
 <td>Fetch a specific order</td>
-<td>none</td>
-<td>/api/v1/orders/hhnpsytbid   , id can only be random alphanumeric</td>
+<td> id can only be random alphanumeric</td>
+<td>/api/v1/orders/hhnpsytbid  </td>
 </tr>
 
 <tr>
@@ -69,34 +69,25 @@ access Api endpoint [here](https://fast-food-fast-idris.herokuapp.com/)
 <td>
 
     userId: <string>,
-    foodId: <string>,
-    orderFoodId: <string>,
-    orderFoodName: <string>,
-    orderFoodPrice: <string>,
-    orderFoodStatus: <string>,
+    orderInfo: <array>,
+    orderAddress: <string>,
 
 </td>
 <td>
-
     userId: 'voehnksoe',
-    foodId: 'jhdkjdkdj',
-    orderFoodId: 'hhnpsytbid',
-    orderFoodName: 'Meetpie and chicken',
-    orderFoodPrice: 'NGN 800',
-    orderFoodStatus: 'default'
+    orderInfo[]: {foodId: grildprhr, quantity: 3}
+    orderAddress: '5b ishanwo street, ikotun lagos'
 
 </td></tr>
 <tr>
 <td>Put</td>
-<td>/api/v1/orders</td>
-<td>Post a new Order</td>
+<td>/api/v1/orders/:id</td>
+<td>Update status of an Order</td>
 <td>
-
-    orderFoodStatus: <string>
-
+    orderStatus: <string>, can only be 'accepted', 'declined', or 'processing'
 </td>
 <td>
-    orderFoodStatus: 'default'
+    orderStatus: 'accepted'
 </td></tr>
 
 

@@ -2,29 +2,30 @@
 import express from 'express';
 import Orders from '../controllers/Orders';
 
-import orderIdValidator from '../helpers/orderIdValidator';
+import checkUserExist from '../middleware/checkUserExist';
+import checkOrderExist from '../middleware/checkOrderExist';
 
-
-import checkfoodExist from '../middleware/checkfoodExist';
-import checkorderExist from '../middleware/checkorderExist';
-import PostOrderValidator from '../helpers/placeOrderValidator';
+import OrdersValidator from '../helpers/OrdersValidator';
 
 const ordersRouter = express.Router();
 const orders = new Orders();
+const ordersValidator = new OrdersValidator();
 
 
-ordersRouter.get('/api/v1/orders', orders.getAllFoodOrders);
+ordersRouter.get('/api/v1/orders', orders.getAllOrders);
 
 ordersRouter.get('/api/v1/orders/:id',
-  orderIdValidator, checkorderExist,
-  orders.getAFoodOrder);
+  ordersValidator.orderIdValidator,
+  checkOrderExist, orders.getAnOrder);
 
 ordersRouter.post('/api/v1/orders',
-  checkfoodExist, PostOrderValidator,
-  orders.postAFoodOrder);
+  ordersValidator.placeOrderValidator,
+  checkUserExist,
+  orders.postAnOrder);
 
 ordersRouter.put('/api/v1/orders/:id',
-  orderIdValidator, checkorderExist,
-  orders.putOderStatus);
+  ordersValidator.orderIdValidator, checkOrderExist,
+  ordersValidator.statusValidator,
+  orders.updateOderStatus);
 
 export default ordersRouter;

@@ -1,4 +1,7 @@
-
+/**
+     * This function generates a random alphanumeric string of 10
+     * @returns {string} Returns alphanumeric string of length 10
+     */
 const getId = () => {
   const idNum = 10;
   let textOutput = '';
