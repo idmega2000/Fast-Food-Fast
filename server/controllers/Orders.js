@@ -4,69 +4,83 @@ import getId from '../helpers/utils';
 
 /* eslint-disable class-methods-use-this */
 /**
- * Represents a Fast Food.
+
+ * Represents Order.
  */
 class Orders {
   /**
-     * This function gets all fastfood
+     * This function gets all orders
      * @param {object} req - the request object.
      * @param {object} res - The response object.
      * @returns {object} Returns all orders information.
      */
-  getAllFoodOrders(req, res) {
+
+  getAllOrders(req, res) {
     if (!Object.keys(fastFoodData.foodOrders).length) {
-      return res.status(200).json({ orders: [] });
+      return res.status(200).json({ message: ' No orders yet', orders: [] });
     }
-    return res.status(200).json({ orders: fastFoodData.foodOrders });
+    return res.status(200).json({
+      message: 'Orders fetched successfully',
+      orders: fastFoodData.foodOrders
+    });
   }
 
   /**
-     * This function gets A fastfood
+     * This function gets an orders
      * @param {object} req - the request file.
      * @param {object} res - The response file.
      * @returns {object} Returns the selected order information.
      */
-  getAFoodOrder(req, res) {
+  getAnOrder(req, res) {
     const data = req.params.id;
     const singleFastFood = fastFoodData
       .foodOrders.find(item => item
-        .orderFoodId === data);
-    return res.status(200).json({ order: singleFastFood });
+        .orderId === data);
+    return res.status(200).json({
+      message: 'Order fetched successfully',
+      order: singleFastFood
+    });
   }
 
   /**
-     * This function gets A fastfood
+     * This function place an order
      * @param {object} req - the request file.
      * @param {object} res - The response file.
      * @returns {object} Returns the posted order information.
      */
-  postAFoodOrder(req, res) {
+  postAnOrder(req, res) {
     const newInput = {
-      userId: getId(),
+      userId: req.body.userId,
       foodId: req.body.foodId,
-      orderFoodId: getId(),
-      orderFoodName: req.body.orderFoodName,
-      orderFoodPrice: req.body.orderFoodPrice,
-      orderFoodOrderDate: new Date(),
-      orderFoodStatus: 'new'
+      orderId: getId(),
+      orderInfo: req.body.orderInfo,
+      orderAddress: req.body.orderAddress,
+      orderOrderDate: new Date(),
+      orderStatus: 'new'
     };
 
     fastFoodData.foodOrders.push(newInput);
-    return res.status(201).json({ order: newInput });
+    return res.status(201).json({
+      message: 'Order placed successfully',
+      order: newInput
+    });
   }
 
   /**
-     * This function gets A fastfood
+     * This function update the status of an order
      * @param {object} req - the request file.
      * @param {object} res - The response file.
      * @returns {object} Returns the posted order information.
      */
-  putOderStatus(req, res) {
+  updateOderStatus(req, res) {
     const data = req.params.id;
     const foodOrder = fastFoodData
-      .foodOrders.find(item => item.orderFoodId === data);
-    foodOrder.orderFoodStatus = req.body.orderFoodStatus;
-    return res.status(200).json({ order: foodOrder });
+      .foodOrders.find(item => item.orderId === data);
+    foodOrder.orderStatus = req.body.orderStatus;
+    return res.status(200).json({
+      message: 'Order status updated successfully',
+      order: foodOrder
+    });
   }
 }
 

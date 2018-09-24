@@ -7,141 +7,166 @@ const request = supertest(app);
 const path = '/api/v1/orders';
 
 const newOrder = {
-  userId: 'vdeblshees',
-  foodId: 'hjihdijdhi',
-  orderFoodId: genId(),
-  orderFoodName: 'Beans and Bread',
-  orderFoodPrice: 'NGN 1200',
+  userId: 'noencytns',
+  orderId: genId(),
+  orderInfo: [
+    {
+      foodId: 'ghsjhdijnd', quantity: 4
+    }
+  ],
+  orderAddress: '5b ishanwo street, ikotun lagos',
+  orderDateTime: '20/09/2018',
+  orderStatus: 'new'
 };
 
-const emptyFoodName = {
-  userId: 'vdeblshees',
-  foodId: 'hjihdijdhi',
-  orderFoodId: genId(),
-  orderFoodName: '',
-  orderFoodPrice: 'NGN 1200',
+const newOrderWrongUser = {
+  userId: 'hkfkjhfgg',
+  orderId: genId(),
+  orderInfo: [
+    {
+      foodId: 'ghsjhdijnd', quantity: 4
+    }
+  ],
+  orderAddress: '5b ishanwo street, ikotun lagos',
+  orderDateTime: '20/09/2018',
+  orderStatus: 'new'
 };
 
 const whiteSpaceName = {
-  userId: 'vdeblshees',
-  foodId: 'hjihdijdhi',
-  orderFoodId: genId(),
-  orderFoodName: '  ',
-  orderFoodPrice: 'NGN 1200',
-};
-const shortName = {
-  userId: 'vdeblshees',
-  foodId: 'hjihdijdhi',
-  orderFoodId: genId(),
-  orderFoodName: 'h',
-  orderFoodPrice: 'NGN 1200',
+  userId: 'noencytns',
+  orderId: 'rloaghtnnlrv',
+  orderInfo: [
+    { foodId: 'hdhdidnid', quantity: 1 }
+  ],
+  orderAddress: ' ',
+  orderDateTime: '20/09/2018',
+  orderStatus: 'default'
 };
 
-const wrongFoodId = {
-  userId: 'vdeblshees',
-  foodId: 'hjihdigfjdhi',
-  orderFoodId: genId(),
-  orderFoodName: 'Beans and Bread',
-  orderFoodPrice: 'NGN 1200',
+const noAddress = {
+  userId: 'noencytns',
+  orderId: 'rloaghtnnlrv',
+  orderInfo: [
+    { foodId: 'hdhdidnid', quantity: 1 }
+  ],
+  orderAddress: '',
+  orderDateTime: '20/09/2018',
+  orderStatus: 'default'
 };
+const shortAddress = {
+  userId: 'noencytns',
+  orderId: 'rloaghtnnlrv',
+  orderInfo: [
+    {
+      foodId: 'hdhdidnid', quantity: 1
+    }
+  ],
+  orderAddress: 'fjfkk',
+  orderDateTime: '20/09/2018',
+  orderStatus: 'default'
+};
+
+const orderInfoString = {
+  userId: 'noencytns',
+  orderId: 'rloaghtnnlrv',
+  orderInfo: 'jkldjdkj',
+  orderAddress: 'jmlfmlfmlfml',
+  orderDateTime: '20/09/2018',
+  orderStatus: 'default'
+};
+
 const newEdit = {
-  orderFoodStatus: 'accept'
+  orderStatus: 'accepted'
 };
+
+const wrongEdit = {
+  orderStatus: 'ahdokljd'
+};
+
+const wrongEditFormat = [
+  'orderStatus', 'accepted'
+];
 
 describe('Get all Orders', () => {
-  describe('when Admin request for All fast food order', () => {
-    it('should return fast food orders', (done) => {
+  it('when admin request all orders should return fast food orders',
+    (done) => {
       request.get(path).end((req, res) => {
         assert.equal(res.status, 200);
-        assert.equal(res.body.orders[0].userId, 'hdoentnsgel');
-        assert.equal(res.body.orders[0].orderFoodId, 'qukdyktyno');
-        assert.equal(res.body.orders[0].orderFoodName, 'Rice and chicken');
-        assert.equal(res.body.orders[0].orderFoodPrice, 'NGN 1000');
-        assert.equal(res.body.orders[0].orderFoodOrderDate, '20/09/2018');
-        assert.equal(res.body.orders[0].orderFoodStatus, 'default');
+        assert.equal(res.body.orders[0].userId, 'voehnksoe');
+        assert.equal(res.body.orders[0].orderId, 'grildprhr');
+        assert.equal(res.body.orders[0].orderDateTime, '20/09/2018');
+        assert.equal(res.body.orders[0].orderStatus, 'default');
         done();
       });
     });
-  });
 });
 
 describe('Get an Order', () => {
-  describe('when Admin request for A fast food order', () => {
-    it('should return the fast food orders', (done) => {
+  it('Admin request for an order, it should return the fast food orders',
+    (done) => {
       request.get(`${path}/rloahtnnlrv`).send().end((req, res) => {
         assert.equal(res.status, 200);
         assert.equal(res.body.order.userId, 'noencytns');
-        assert.equal(res.body.order.orderFoodId, 'rloahtnnlrv');
-        assert.equal(res.body.order.orderFoodName, 'Fries and chicken');
-        assert.equal(res.body.order.orderFoodPrice, 'NGN 500');
-        assert.equal(res.body.order.orderFoodOrderDate, '24/07/2018');
-        assert.equal(res.body.order.orderFoodStatus, 'accepted');
+        assert.equal(res.body.order.orderId, 'rloahtnnlrv');
+        assert.equal(res.body.order.orderDateTime, '20/09/2018');
+        assert.equal(res.body.order.orderStatus, 'default');
         done();
       });
     });
+
+  it('should return error for a food that does not exist',
+    (done) => {
+      request.get(`${path}/randomstring`).send().end((req, res) => {
+        assert.equal(res.status, 404);
+        assert.equal(res.body.error, 'Order does not Exist');
+        done();
+      });
+    });
+
+
+  it('should return error for request with id of int',
+    (done) => {
+      request.get(`${path}/111`).send().end((req, res) => {
+        assert.equal(res.status, 400);
+        assert.equal(res.body.error, 'Invalid Request');
+        done();
+      });
+    });
+
+  it('should return error when admin give bad format', (done) => {
+    request.get(`${path}/[]`).send().end((req, res) => {
+      assert.equal(res.status, 400);
+      assert.equal(res.body.error, 'Invalid Request');
+      done();
+    });
   });
-
-  describe('when Admin request for A fast food order that does not exist',
-    () => {
-      it('should return error', (done) => {
-        request.get(`${path}/randomstring`).send().end((req, res) => {
-          assert.equal(res.status, 404);
-          assert.equal(res.body.error, 'Order does not Exit');
-          done();
-        });
-      });
-    });
-
-  describe('when Admin request with int id',
-    () => {
-      it('should return error', (done) => {
-        request.get(`${path}/111`).send().end((req, res) => {
-          assert.equal(res.status, 400);
-          assert.equal(res.body.error, 'Invalid Request');
-          done();
-        });
-      });
-    });
-  describe('when Admin request with with a bad format',
-    () => {
-      it('should return error', (done) => {
-        request.get(`${path}/[]`).send().end((req, res) => {
-          assert.equal(res.status, 400);
-          assert.equal(res.body.error, 'Invalid Request');
-          done();
-        });
-      });
-    });
 });
 
 describe('Post Orders', () => {
-  describe('when User input bad format input', () => {
-    it('should return error', (done) => {
+  it('should return error when user send bad format input',
+    (done) => {
       request.post(path)
         .send([])
         .end((req, res) => {
           assert.equal(res.status, 400);
-          assert.equal(res.body.error, 'Please Enter valid input');
+          assert.equal(res.body.error, 'Please Enter valid data');
           done();
         });
     });
+
+
+  it('should return error when user send incomplete field', (done) => {
+    request.post(path)
+      .send(noAddress)
+      .end((req, res) => {
+        assert.equal(res.status, 400);
+        assert.equal(res.body.error, 'All fields are required');
+        done();
+      });
   });
 
-
-  describe('when User post data without whole field', () => {
-    it('should return fast food orders', (done) => {
-      request.post(path)
-        .send(emptyFoodName)
-        .end((req, res) => {
-          assert.equal(res.status, 400);
-          assert.equal(res.body.error, 'All field are required');
-          done();
-        });
-    });
-  });
-
-  describe('when user post whitspace', () => {
-    it('should return error', (done) => {
+  it('should return error wen user enter just white spaces',
+    (done) => {
       request.post(path)
         .send(whiteSpaceName)
         .end((req, res) => {
@@ -150,32 +175,38 @@ describe('Post Orders', () => {
           done();
         });
     });
+
+  it('should return error when user send data less than three', (done) => {
+    request.post(path)
+      .send(shortAddress)
+      .end((req, res) => {
+        assert.equal(res.status, 400);
+        assert.equal(res.body.error, 'Input must be eight char and above');
+        done();
+      });
   });
 
-  describe('when user send data with input less than 3', () => {
-    it('should return error', (done) => {
+  it('should return error when user input wrong user', (done) => {
+    request.post(path)
+      .send(newOrderWrongUser)
+      .end((req, res) => {
+        assert.equal(res.status, 404);
+        assert.equal(res.body.error, 'User does not Exist');
+        done();
+      });
+  });
+
+  it('should return error when user send wrong order information format',
+    (done) => {
       request.post(path)
-        .send(shortName)
+        .send(orderInfoString)
         .end((req, res) => {
           assert.equal(res.status, 400);
-          assert.equal(res.body.error, 'Input must be two char and above');
+          assert.equal(res.body.error, 'Order information must be array');
           done();
         });
     });
-  });
 
-
-  describe('when user send a vilid data', () => {
-    it('should return the fast food orders', (done) => {
-      request.post(path)
-        .send(wrongFoodId)
-        .end((req, res) => {
-          assert.equal(res.status, 404);
-          assert.equal(res.body.error, 'Food does not Exits');
-          done();
-        });
-    });
-  });
 
   describe('when user send a vilid data', () => {
     it('should return the fast food orders', (done) => {
@@ -183,10 +214,10 @@ describe('Post Orders', () => {
         .send(newOrder)
         .end((req, res) => {
           assert.equal(res.status, 201);
-          assert.equal(res.body.order.foodId, 'hjihdijdhi');
-          assert.equal(res.body.order.orderFoodName, 'Beans and Bread');
-          assert.equal(res.body.order.orderFoodPrice, 'NGN 1200');
-          assert.equal(res.body.order.orderFoodStatus, 'new');
+          assert.equal(res.body.order.userId, 'noencytns');
+          assert.equal(res.body.order.orderAddress,
+            '5b ishanwo street, ikotun lagos');
+          assert.equal(res.body.order.orderStatus, 'new');
           done();
         });
     });
@@ -194,19 +225,35 @@ describe('Post Orders', () => {
 });
 
 describe('Put Orders', () => {
-  describe('when Admin Edit order status', () => {
-    it('the content edited', (done) => {
-      request.put(`${path}/hhnpsytbid`)
-        .send(newEdit)
-        .end((req, res) => {
-          assert.equal(res.status, 200);
-          assert.equal(res.body.order.foodId, 'jhdkjdkdj');
-          assert.equal(res.body.order.orderFoodId, 'hhnpsytbid');
-          assert.equal(res.body.order.orderFoodName, 'Meetpie and chicken');
-          assert.equal(res.body.order.orderFoodPrice, 'NGN 800');
-          assert.equal(res.body.order.orderFoodStatus, 'accept');
-          done();
-        });
-    });
+  it(' should return the content edited', (done) => {
+    request.put(`${path}/rloahtnnlrv`)
+      .send(newEdit)
+      .end((req, res) => {
+        assert.equal(res.status, 200);
+        assert.equal(res.body.order.userId, 'noencytns');
+        assert.equal(res.body.order.orderId, 'rloahtnnlrv');
+        assert.equal(res.body.order.orderStatus, 'accepted');
+        done();
+      });
+  });
+
+  it('should return error for wrong input for update', (done) => {
+    request.put(`${path}/rloahtnnlrv`)
+      .send(wrongEdit)
+      .end((req, res) => {
+        assert.equal(res.status, 400);
+        assert.equal(res.body.error, 'Invalid status Input');
+        done();
+      });
+  });
+
+  it('should return error when admin enter wrong input format', (done) => {
+    request.put(`${path}/rloahtnnlrv`)
+      .send(wrongEditFormat)
+      .end((req, res) => {
+        assert.equal(res.status, 400);
+        assert.equal(res.body.error, 'status input must be a string');
+        done();
+      });
   });
 });
