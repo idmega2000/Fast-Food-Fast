@@ -12,18 +12,18 @@ const orders = new Orders();
 const ordersValidator = new OrdersValidator();
 
 
-ordersRouter.get('/api/v1/orders', orders.getAllOrders);
+ordersRouter.get('/', orders.getAllOrders);
 
-ordersRouter.get('/api/v1/orders/:id',
+ordersRouter.get('/:id',
   ordersValidator.orderIdValidator,
   checkOrderExist, orders.getAnOrder);
 
-ordersRouter.post('/api/v1/orders',
+ordersRouter.post('/',
   ordersValidator.placeOrderValidator,
   checkUserExist,
   orders.postAnOrder);
 
-ordersRouter.put('/api/v1/orders/:id',
+ordersRouter.put('/:id',
   ordersValidator.orderIdValidator, checkOrderExist,
   ordersValidator.statusValidator,
   orders.updateOderStatus);

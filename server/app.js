@@ -1,8 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import ordersRouter from './routes/ordersRouter';
 import DbConnect from './models/DbConnect';
+import allRouter from './routes/allRouters';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,6 +32,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(ordersRouter);
+app.use(allRouter);
 app.listen(PORT, () => console.log(`Listening on Port ${PORT}`));
 export default app;

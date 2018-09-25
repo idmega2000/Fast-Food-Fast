@@ -8,10 +8,10 @@ const createTable = `
 
 CREATE TABLE IF NOT EXISTS users 
 (user_id SERIAL PRIMARY KEY NOT NULL, 
-    user_name VARCHAR NOT NULL, 
+    user_email VARCHAR NOT NULL UNIQUE, 
     user_password VARCHAR NOT NULL,
     user_role VARCHAR NOT NULL DEFAULT 'user',
-    user_email VARCHAR UNIQUE, 
+    user_name VARCHAR UNIQUE, 
     user_address VARCHAR, 
     user_phone VARCHAR UNIQUE, 
     user_image VARCHAR);
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS orders(
     meal_id int REFERENCES meals(meal_id),
     order_phone VARCHAR,
     order_address VARCHAR,
-    order_data JSON NOT NULL,
+    order_data jsonb NOT NULL,
     order_added_date TIMESTAMP NOT NULL DEFAULT NOW(),
     order_status VARCHAR DEFAULT 'new',
     order_accepted_time TIMESTAMP DEFAULT NULL,
@@ -42,10 +42,8 @@ let connectionString = '';
 
 if (process.env.NODE_ENV === 'test') {
   connectionString = process.env.TEST_DB_URL;
-  console.log('this is test');
 } else {
   connectionString = process.env.DATABASE_URL || process.env.LOCAL_DB_URL;
-  console.log('this is not test');
 }
 /**
  * Represents the connection of the app to postgreSql database.
