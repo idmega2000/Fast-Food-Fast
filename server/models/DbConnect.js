@@ -1,11 +1,10 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
+import events from 'events';
 
 dotenv.config();
 
 const createTable = `
-
-
 
 CREATE TABLE IF NOT EXISTS users 
 (user_id SERIAL PRIMARY KEY NOT NULL, 
@@ -38,13 +37,15 @@ CREATE TABLE IF NOT EXISTS orders(
     order_decline_time TIMESTAMP DEFAULT NULL,
     order_completed_time TIMESTAMP DEFAULT NULL
 );`;
-
+export const tableCreatedEmitter = new events.EventEmitter();
 let connectionString = '';
 
 if (process.env.NODE_ENV === 'test') {
   connectionString = process.env.TEST_DB_URL;
+  console.log('this is test');
 } else {
   connectionString = process.env.DATABASE_URL || process.env.LOCAL_DB_URL;
+  console.log('this is not test');
 }
 /**
  * Represents the connection of the app to postgreSql database.
@@ -68,6 +69,7 @@ class DbConnect {
     this.pool.query(createTable)
       .then(() => {
         console.log('Table Created successfully');
+        tableCreatedEmitter.emit('databaseStarted');
       })
       .catch((error) => {
         console.log(error);
@@ -83,7 +85,7 @@ class DbConnect {
     this.pool.connect()
       .then(() => {
         if (process.env.NODE_ENV === 'test') {
-          this.appDelete();
+          this.deleteTables();
         } else {
           this.createAllTables();
         }
