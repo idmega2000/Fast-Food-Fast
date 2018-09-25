@@ -4,7 +4,6 @@ import getId from '../helpers/utils';
 
 /* eslint-disable class-methods-use-this */
 /**
-
  * Represents Order.
  */
 class Orders {
@@ -14,7 +13,6 @@ class Orders {
      * @param {object} res - The response object.
      * @returns {object} Returns all orders information.
      */
-
   getAllOrders(req, res) {
     if (!Object.keys(fastFoodData.foodOrders).length) {
       return res.status(200).json({ message: ' No orders yet', orders: [] });
