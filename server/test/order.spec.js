@@ -1,6 +1,6 @@
 import supertest from 'supertest';
 import assert from 'assert';
-import app from '../../app';
+import app from '../app';
 import genId from '../helpers/utils';
 
 const request = supertest(app);
