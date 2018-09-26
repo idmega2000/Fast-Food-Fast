@@ -13,7 +13,7 @@ const token = jwt.sign({
 }, process.env.JWT_KEY);
 
 const newMeal = {
-  menuName: 'Dodo and Beans ',
+  menuName: 'Dodo and Beans',
   menuPrice: '1000',
   menuCategory: 'intercontenental',
   menuImage: 'www.andelaimagesforbootcamp.com'
@@ -218,6 +218,25 @@ describe('Add menu Api Test', () => {
         .end((err, res) => {
           assert.equal(res.statusCode, 201);
           assert.equal(res.body.message, 'Menu Created Successfully');
+          done();
+        });
+    });
+});
+
+describe('Get Available menu Api Test', () => {
+  it('should return success when authenticated user access to get all menu',
+    (done) => {
+      request.get(`${path}/`)
+        .send()
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 200);
+          assert.equal(res.body.menu[0].menu_name, 'Dodo and Beans');
+          assert.equal(res.body.menu[0].menu_price, '1000');
+          assert.equal(res.body.menu[0].menu_category, 'intercontenental');
+          assert.equal(res.body.menu[0].menu_image,
+            'www.andelaimagesforbootcamp.com');
           done();
         });
     });

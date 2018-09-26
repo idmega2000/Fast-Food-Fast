@@ -190,7 +190,7 @@ describe('Post Orders', () => {
     request.post(path)
       .send(newOrderWrongUser)
       .end((req, res) => {
-        assert.equal(res.status, 404);
+        assert.equal(res.status, 401);
         assert.equal(res.body.error, 'User does not Exist');
         done();
       });

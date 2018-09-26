@@ -8,16 +8,35 @@ const menuModel = new MenuModel();
  */
 class Menu {
   /**
-     * This function gets all orders
+     * This function control the adding of menu
      * @param {object} req - the request object.
      * @param {object} res - The response object.
-     * @returns {object} Returns all orders information.
+     * @returns {object} Returns the posted order information.
      */
   addMenu(req, res) {
     menuModel.postMenu(req.body)
       .then(result => res.status(201)
-        .json({ message: 'Menu Created Successfully', diary: result.rows[0] }))
+        .json({ message: 'Menu Created Successfully', menu: result.rows[0] }))
       .catch(() => res.status(500).json({ error: 'Create Menu Failed' }));
+  }
+
+  /**
+     * This function gets all available menu
+     * @param {object} req - the request object.
+     * @param {object} res - The response object.
+     * @returns {object} Returns all orders information.
+     */
+  getAvailableMenu(req, res) {
+    menuModel.getAllMenu(req.db_user_id)
+      .then((result) => {
+        if (result.rowCount === 0) {
+          return res.status(200)
+            .json({ message: ' No menu Available', menu: [] });
+        }
+        return res.status(200)
+          .json({ message: 'All Menu Selected', menu: result.rows });
+      })
+      .catch(() => res.status(500).json({ status: 'error', error: 'Failed' }));
   }
 }
 

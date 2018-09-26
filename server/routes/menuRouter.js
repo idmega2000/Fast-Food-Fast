@@ -13,4 +13,7 @@ menuRouter.post('/', checkAuthorization.verifyAdminToken,
   menuValidator.addMenuValidator,
   menu.addMenu);
 
+menuRouter.get('/', checkAuthorization.verifyToken,
+  menu.getAvailableMenu);
+
 export default menuRouter;
