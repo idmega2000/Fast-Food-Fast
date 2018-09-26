@@ -64,7 +64,7 @@ const emptyPassword = {
 
 
 describe('All Authentication Tests', () => {
-  it('should return error when given an empty email',
+  it('should return error when given empty useremail',
     (done) => {
       request.post(`${path}/signup`)
         .send(worongInputType)
@@ -76,7 +76,7 @@ describe('All Authentication Tests', () => {
         });
     });
 
-  it('should return error when given an empty Email',
+  it('should return error when given empty userEmail',
     (done) => {
       request.post(`${path}/signup`)
         .send(emptyUserEmail)
@@ -88,7 +88,7 @@ describe('All Authentication Tests', () => {
         });
     });
 
-  it('should return error when given an empty password',
+  it('should return error when given empty password',
     (done) => {
       request.post(`${path}/signup`)
         .send(emptyPassword)
@@ -100,7 +100,7 @@ describe('All Authentication Tests', () => {
         });
     });
 
-  it('should return error when given a short Email',
+  it('should return error when given a short userEmail',
     (done) => {
       request.post(`${path}/signup`)
         .send(shortUserEmail)
@@ -139,7 +139,7 @@ describe('All Authentication Tests', () => {
         });
     });
 
-  it('should return error when  given wrong Email input',
+  it('should return error when  given wrong userEmail input',
     (done) => {
       request.post(`${path}/signup`)
         .send(emailHaveWrongInput)
@@ -164,7 +164,7 @@ describe('All Authentication Tests', () => {
         });
     });
 
-  it('should return error when given too long Email',
+  it('should return error when given too long useremail',
     (done) => {
       request.post(`${path}/signup`)
         .send(emailHavelongInput)
@@ -219,7 +219,7 @@ describe('All Authentication Tests', () => {
   });
 });
 
-describe('Signup Api Test', () => {
+describe('Login Api Test', () => {
   it('should return success when given login details',
     (done) => {
       request.post(`${path}/login`)
