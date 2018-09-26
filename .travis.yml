@@ -2,10 +2,16 @@ language: node_js
 node_js:
   - "node"
 cache: bundler
+services:
+  - postgresql
+addons:
+  postgresql: "9.6"
+before_script:
+  - psql -c 'create database fast_food_fast_test;' -U postgres
 befores_script:
   - npm i -D coveralls
 script:
   - npm test
 after_success:
   - npm run coverage
-  - npm run report-coverage
+  - npm run report-coverage 
