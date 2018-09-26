@@ -219,7 +219,7 @@ describe('All Authentication Tests', () => {
   });
 });
 
-describe('Signup Api Test', () => {
+describe('Login Api Test', () => {
   it('should return success when given login details',
     (done) => {
       request.post(`${path}/login`)

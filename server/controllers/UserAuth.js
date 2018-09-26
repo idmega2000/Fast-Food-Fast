@@ -37,15 +37,17 @@ class UserAuth {
       .then((result) => {
         if (result.rowCount === 0) {
           return res.status(404).json({ error: 'User does not exist!' });
-        } if (bcrypt.compareSync(req.body.userPassword, result.rows[0].user_password)) {
+        } if (bcrypt.compareSync(req.body.userPassword,
+          result.rows[0].user_password)) {
           const token = jwt.sign({
             userId: result.rows[0].user_id,
-            userEmail: result.rows[0].user_email
+            userEmail: result.rows[0].user_email,
+            userRole: result.rows[0].user_role
           }, process.env.JWT_KEY);
           return res.status(200).json({ message: 'Login Successful', token });
-        } 
-          return res.status(400).json({status: 'status', error: 'invalid password' });
-        
+        }
+        return res.status(400)
+          .json({ status: 'status', error: 'invalid password' });
       })
       .catch((err) => {
         console.log(err);

@@ -28,5 +28,4 @@ ordersRouter.put('/:id',
   ordersValidator.statusValidator,
   orders.updateOderStatus);
 
-
 export default ordersRouter;

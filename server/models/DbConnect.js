@@ -1,6 +1,7 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 import events from 'events';
+import bcrypt from 'bcrypt';
 
 dotenv.config();
 
@@ -15,19 +16,23 @@ CREATE TABLE IF NOT EXISTS users
     user_address VARCHAR, 
     user_phone VARCHAR UNIQUE, 
     user_image VARCHAR);
+    
+CREATE TABLE IF NOT EXISTS menu
+    (menu_id SERIAL PRIMARY KEY NOT NULL,
+    menu_name VARCHAR,
+    menu_price INTEGER,
+    menu_image VARCHAR,
+    menu_category VARCHAR,
+    menu_added_date TIMESTAMP NOT NULL DEFAULT NOW(),
+    menu_edited_date TIMESTAMP,
+    menu_deleted_date TIMESTAMP
 
-CREATE TABLE IF NOT EXISTS meals
-    (meal_id SERIAL PRIMARY KEY NOT NULL,
-    meal_price VARCHAR,
-    meal_image VARCHAR,
-    meal_category VARCHAR,
-    meal_added_date TIMESTAMP NOT NULL DEFAULT NOW()
   ); 
     
 CREATE TABLE IF NOT EXISTS orders(
     order_id SERIAL PRIMARY KEY NOT NULL,
     user_id int REFERENCES users(user_id),
-    meal_id int REFERENCES meals(meal_id),
+    menu_id int REFERENCES menu(menu_id),
     order_phone VARCHAR,
     order_address VARCHAR,
     order_data jsonb NOT NULL,
@@ -66,8 +71,16 @@ class DbConnect {
   createAllTables() {
     this.pool.query(createTable)
       .then(() => {
-        console.log('Table Created successfully');
         tableCreatedEmitter.emit('databaseStarted');
+        const userEmail = 'admin2000@gmail.com';
+        const hashPassword = bcrypt.hashSync('adminpassword', 10);
+        const userRole = 'admin';
+        const sql = `INSERT INTO 
+        users(user_email, user_password, user_role) 
+        VALUES ($1, $2, $3) ON CONFLICT DO NOTHING`;
+        const params = [userEmail, hashPassword, userRole];
+        this.pool.query(sql, params);
+        console.log('Table Created and admin present');
       })
       .catch((error) => {
         console.log(error);
@@ -100,7 +113,7 @@ class DbConnect {
      */
   deleteTables() {
     const deleteAllTables = `DROP TABLE IF EXISTS orders;
-     DROP TABLE IF EXISTS meals;
+     DROP TABLE IF EXISTS menu;
       DROP TABLE IF EXISTS users`;
 
     this.pool.query(deleteAllTables)
