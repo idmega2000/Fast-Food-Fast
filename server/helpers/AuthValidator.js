@@ -10,13 +10,13 @@ const alphaOnly = (/^[a-zA-Z0-9]*$/);
  */
 class AuthValidator {
   /**
-     * This function validate the order that is placed to the admin
+     * This function validate the authentication input by user
      * @param {object} req - the request object.
      * @param {object} res - The response object.
      * @param {func} next - The response object.
      * @returns {object} Returns error or move to next middleware if no error
      */
-  signUpValidator(req, res, next) {
+  authInputValidator(req, res, next) {
     const textInput = req.body;
     const whitespace = (/([\s]+)/g);
     const email = textInput.userEmail;

@@ -9,8 +9,12 @@ const authValidator = new AuthValidator();
 const userAuth = new UserAuth();
 
 authRouter.post('/signup',
-  authValidator.signUpValidator,
+  authValidator.authInputValidator,
   checkSignUpUserExist,
   userAuth.registerUser);
+
+authRouter.post('/login',
+  authValidator.authInputValidator,
+  userAuth.loginUsers);
 
 export default authRouter;
