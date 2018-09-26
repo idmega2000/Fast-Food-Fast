@@ -11,7 +11,7 @@ const checkUserExist = (req, res, next) => {
   const singleFastFood = fastFoodData.userInformation
     .find(item => item.userId === data);
   if (!singleFastFood) {
-    return res.status(404).json({ error: 'User does not Exist' });
+    return res.status(401).json({ error: 'User does not Exist' });
   }
   return next();
 };
