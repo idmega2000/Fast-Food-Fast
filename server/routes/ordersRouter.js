@@ -15,4 +15,6 @@ ordersRouter.post('/', checkAuthorization.verifyToken,
   ordersValidator.placeOrderValidator, checkFoodExist,
   orders.postAnOrder);
 
+  ordersRouter.get('/', checkAuthorization.verifyAdminToken, orders.getAllOrders);
+
 export default ordersRouter;

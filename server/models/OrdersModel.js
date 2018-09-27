@@ -23,5 +23,16 @@ class OrdersModel extends DbConnect {
     const params = [ordererUserId, orderedMenuItems, address, ordererPhone];
     return this.pool.query(sql, params);
   }
+
+  /**
+       * This function get order data from the database
+       * @param {object} data - the req.body object .
+       * @param {string} userId - the userid saved in the token
+       * @returns {Promise} Returns the queried data .
+       */
+  getAllOrders() {
+    const sql = 'SELECT * FROM orders ORDER BY order_id DESC';
+    return this.pool.query(sql);
+  }
 }
 export default OrdersModel;

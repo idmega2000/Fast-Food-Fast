@@ -20,6 +20,25 @@ class Orders {
         .json({ message: 'Order Placed Successfully', order: result.rows }))
       .catch(() => res.status(500).json({ error: 'Failed to place Order' }));
   }
+
+  /**
+     * This function get all orders
+     * @param {object} req - the request file.
+     * @param {object} res - The response file.
+     * @returns {object} Returns the posted order information.
+     */
+  getAllOrders(req, res) {
+    ordersModel.getAllOrders(req.body)
+      .then((result) => {
+        if (result.rowCount === 0) {
+          return res.status(200)
+            .json({ message: ' No Orders Available', order: [] });
+        }
+        return res.status(200)
+          .json({ message: 'All Order Selected', order: result.rows });
+      })
+      .catch(() => res.status(500).json({ status: 'error', error: 'Failed' }));
+  }
 }
 
 export default Orders;
