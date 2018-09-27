@@ -32,10 +32,9 @@ CREATE TABLE IF NOT EXISTS menu
 CREATE TABLE IF NOT EXISTS orders(
     order_id SERIAL PRIMARY KEY NOT NULL,
     user_id int REFERENCES users(user_id),
-    menu_id int REFERENCES menu(menu_id),
     order_phone VARCHAR,
     order_address VARCHAR,
-    order_data jsonb NOT NULL,
+    order_menu jsonb NOT NULL,
     order_added_date TIMESTAMP NOT NULL DEFAULT NOW(),
     order_status VARCHAR DEFAULT 'new',
     order_accepted_time TIMESTAMP DEFAULT NULL,

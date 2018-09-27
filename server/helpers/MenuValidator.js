@@ -13,6 +13,7 @@ class MenuValidator {
      */
   addMenuValidator(req, res, next) {
     const textInput = req.body;
+    console.log(req.body);
     const whitespace = (/([\s]+)/g);
     const alphnumaOnly = (/^[a-zA-Z0-9 ]*$/);
     const name = textInput.menuName;

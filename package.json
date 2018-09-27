@@ -4,9 +4,9 @@
   "description": "fast-food-fast is a food delivery service app for restaurant",
   "main": "app.js",
   "scripts": {
-    "start": "babel-node app",
+    "start": "babel-node server/app",
     "start:dev": "cross-env NODE_ENV=development nodemon --exec \"babel-node server/app\"",
-    "test": "cross-env NODE_ENV=test nyc mocha --compilers js:babel-core/register ./server/test/index.spec.js --timeout 10000 --exit || exit 0",
+    "test": "cross-env NODE_ENV=test nyc mocha --compilers js:babel-core/register ./server/test/index.spec.js --timeout 15000 --exit || exit 0",
     "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "report-coverage": "cat ./coverage/lcov.info | coveralls"
   },

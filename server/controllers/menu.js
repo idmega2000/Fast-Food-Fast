@@ -16,7 +16,7 @@ class Menu {
   addMenu(req, res) {
     menuModel.postMenu(req.body)
       .then(result => res.status(201)
-        .json({ message: 'Menu Created Successfully', menu: result.rows[0] }))
+        .json({ message: 'Menu Added Successfully', menu: result.rows[0] }))
       .catch(() => res.status(500).json({ error: 'Create Menu Failed' }));
   }
 

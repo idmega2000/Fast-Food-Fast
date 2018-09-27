@@ -19,7 +19,9 @@ class UserAuth {
     authModel.userSignup(req.body)
       .then((result) => {
         const token = jwt.sign({
-          userName: result.rows[0].user_name
+          userId: result.rows[0].user_id,
+          userEmail: result.rows[0].user_email,
+          userRole: result.rows[0].user_role
         }, process.env.JWT_KEY);
         return res.status(201)
           .json({ message: 'Registration Successful', token });

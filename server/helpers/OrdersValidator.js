@@ -54,15 +54,17 @@ class OrdersValidator {
      * @returns {object} Returns status code and error messages
      */
   placeOrderValidator(req, res, next) {
+    const nigNumber = (/^[0]\d{10}$/);
     const textInput = req.body;
     const address = textInput.orderAddress;
-    const info = textInput.orderInfo;
+    const info = textInput.menuData;
+    const phone = textInput.orderPhone;
 
     if (Object.keys(textInput).length === 0) {
       return res.status(400)
         .json({ error: 'Please Enter valid data' });
     }
-    if (!info || !address) {
+    if (!info || !address || !phone) {
       return res.status(400)
         .json({ error: 'All fields are required' });
     }
@@ -79,6 +81,30 @@ class OrdersValidator {
     }
     if (info.length === 0) {
       return res.status(400).json({ error: 'order cannot be empty' });
+    }
+    if (!phone.match(nigNumber)) {
+      return res.status(400).json({ error: 'please Enter a valid Number' });
+    }
+    for (let i = 0; i < info.length; i += 1) {
+      const aFoodId = Number(info[i].foodId);
+      const aQuantity = Number(info[i].quantity);
+      if (!Number.isInteger(aFoodId)) {
+        return res.status(400)
+          .json({ status: 'error', error: 'Invalid Food Id' });
+      }
+      if (!Number.isInteger(aQuantity)) {
+        return res.status(400)
+          .json({ status: 'error', error: 'Invalid Quantity' });
+      }
+
+      if (aFoodId < 1) {
+        return res.status(400)
+          .json({ status: 'error', error: 'Invalid Food Id' });
+      }
+      if (aQuantity < 1) {
+        return res.status(400)
+          .json({ status: 'error', error: 'Invalid Quantity' });
+      }
     }
     return next();
   }

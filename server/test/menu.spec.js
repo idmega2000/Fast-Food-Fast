@@ -217,7 +217,7 @@ describe('Add menu Api Test', () => {
         .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 201);
-          assert.equal(res.body.message, 'Menu Created Successfully');
+          assert.equal(res.body.message, 'Menu Added Successfully');
           done();
         });
     });
