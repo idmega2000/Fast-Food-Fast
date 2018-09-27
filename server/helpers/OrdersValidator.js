@@ -15,11 +15,15 @@ class OrdersValidator {
   statusValidator(req, res, next) {
     const status = req.body.orderStatus;
     if (typeof status !== 'string') {
-      return res.status(400).json({ error: 'status input must be a string' });
+      return res.status(400)
+        .json({
+          status: 'error',
+          error: 'status input must be a string'
+        });
     }
-    if (status.toLowerCase() === 'completed'
-      || status.toLowerCase() === 'accepted'
-      || status.toLowerCase() === 'declined') {
+    if (status.toLowerCase() === 'processing'
+      || status.toLowerCase() === 'cancelled'
+      || status.toLowerCase() === 'complete') {
       return next();
     }
     return res.status(400).json({ error: 'Invalid status Input' });
@@ -54,7 +58,6 @@ class OrdersValidator {
           error: 'Order Id should be greater than one'
         });
     }
- 
     next();
   }
 

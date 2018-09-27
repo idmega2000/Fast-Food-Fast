@@ -120,7 +120,7 @@ class Orders {
      * @returns {object} Returns the order information.
      */
   putAnOrderStatus(req, res) {
-    ordersModel.updateAnOrderStatus(req.params.id)
+    ordersModel.updateAnOrderStatus(req.params.id, req.body.orderStatus)
       .then((result) => {
         if (result.rowCount > 0) {
           return res.status(200)
