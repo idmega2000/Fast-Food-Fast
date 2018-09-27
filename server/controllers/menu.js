@@ -16,8 +16,14 @@ class Menu {
   addMenu(req, res) {
     menuModel.postMenu(req.body)
       .then(result => res.status(201)
-        .json({ message: 'Menu Added Successfully', menu: result.rows[0] }))
-      .catch(() => res.status(500).json({ error: 'Create Menu Failed' }));
+        .json({
+          message: 'Menu Added Successfully',
+          menu: result.rows[0]
+        }))
+      .catch(() => res.status(500)
+        .json({
+          error: 'Create Menu Failed'
+        }));
   }
 
   /**
@@ -31,12 +37,22 @@ class Menu {
       .then((result) => {
         if (result.rowCount === 0) {
           return res.status(200)
-            .json({ message: ' No menu Available', menu: [] });
+            .json({
+              message: ' No menu Available',
+              menu: []
+            });
         }
         return res.status(200)
-          .json({ message: 'All Menu Selected', menu: result.rows });
+          .json({
+            message: 'All Menu Selected',
+            menu: result.rows
+          });
       })
-      .catch(() => res.status(500).json({ status: 'error', error: 'Failed' }));
+      .catch(() => res.status(500)
+        .json({
+          status: 'error',
+          error: 'Failed'
+        }));
   }
 }
 

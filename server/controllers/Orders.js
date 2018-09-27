@@ -17,8 +17,12 @@ class Orders {
   postAnOrder(req, res) {
     ordersModel.placeOrder(req.body, req.verUserId)
       .then(result => res.status(201)
-        .json({ message: 'Order Placed Successfully', order: result.rows }))
-      .catch(() => res.status(500).json({ error: 'Failed to place Order' }));
+        .json({
+          message: 'Order Placed Successfully',
+          order: result.rows
+        }))
+      .catch(() => res.status(500)
+        .json({ error: 'Failed to place Order' }));
   }
 
   /**
@@ -32,12 +36,51 @@ class Orders {
       .then((result) => {
         if (result.rowCount === 0) {
           return res.status(200)
-            .json({ message: ' No Orders Available', order: [] });
+            .json({
+              message: ' No Orders Available',
+              order: []
+            });
         }
         return res.status(200)
-          .json({ message: 'All Order Selected', order: result.rows });
+          .json({
+            message: 'All Order Selected',
+            order: result.rows
+          });
       })
-      .catch(() => res.status(500).json({ status: 'error', error: 'Failed' }));
+      .catch(() => res.status(500)
+        .json({
+          status: 'error',
+          error: 'Failed'
+        }));
+  }
+
+  /**
+     * This function get all orders
+     * @param {object} req - the request file.
+     * @param {object} res - The response file.
+     * @returns {object} Returns an order information.
+     */
+  getASpecificOrders(req, res) {
+    ordersModel.getASpecificOrders(req.params.id)
+      .then((result) => {
+        if (result.rowCount === 0) {
+          return res.status(404)
+            .json({
+              message: ' Order does not exist',
+              order: []
+            });
+        }
+        return res.status(200)
+          .json({
+            message: 'Order Selected Successfully',
+            order: result.rows
+          });
+      })
+      .catch(() => res.status(500)
+        .json({
+          status: 'error',
+          error: 'Failed to load Order'
+        }));
   }
 }
 

@@ -33,15 +33,27 @@ class OrdersValidator {
      * @returns {object} Returns status code and error messages
      */
   orderIdValidator(req, res, next) {
-    const inputTypes = (/^[a-z0-9]+$/);
+    const inputTypes = (/^[0-9]+$/);
     const input = req.params.id;
     const result = Number(input);
 
-    if (Number.isInteger(result)) {
-      return res.status(400).json({ error: 'Invalid Request' });
+    if (!Number.isInteger(result)) {
+      return res.status(400)
+        .json({
+          error: 'Input Id can only be Integer'
+        });
+    }
+    if (result < 1) {
+      return res.status(400)
+        .json({
+          error: 'Input Id should be greater than one'
+        });
     }
     if (!input.match(inputTypes)) {
-      return res.status(400).json({ error: 'Invalid Request' });
+      return res.status(400)
+        .json({
+          error: 'Invalid input Id'
+        });
     }
     next();
   }
@@ -62,48 +74,72 @@ class OrdersValidator {
 
     if (Object.keys(textInput).length === 0) {
       return res.status(400)
-        .json({ error: 'Please Enter valid data' });
+        .json({
+          error: 'Please Enter valid data'
+        });
     }
     if (!info || !address || !phone) {
       return res.status(400)
-        .json({ error: 'All fields are required' });
+        .json({
+          error: 'All fields are required'
+        });
     }
     if (address.trim().length === 0) {
       return res.status(400)
-        .json({ error: 'whitespace not allowed' });
+        .json({
+          error: 'whitespace not allowed'
+        });
     }
     if (address.length < 8) {
       return res.status(400)
         .json({ error: 'Input must be eight char and above' });
     }
     if (!Array.isArray(info)) {
-      return res.status(400).json({ error: 'Order information must be array' });
+      return res.status(400).json({
+        error: 'Order information must be array'
+      });
     }
     if (info.length === 0) {
-      return res.status(400).json({ error: 'order cannot be empty' });
+      return res.status(400).json({
+        error: 'order cannot be empty'
+      });
     }
     if (!phone.match(nigNumber)) {
-      return res.status(400).json({ error: 'please Enter a valid Number' });
+      return res.status(400).json({
+        error: 'please Enter a valid Number'
+      });
     }
     for (let i = 0; i < info.length; i += 1) {
       const aFoodId = Number(info[i].foodId);
       const aQuantity = Number(info[i].quantity);
       if (!Number.isInteger(aFoodId)) {
         return res.status(400)
-          .json({ status: 'error', error: 'Invalid Food Id' });
+          .json({
+            status: 'error',
+            error: 'Invalid Food Id'
+          });
       }
       if (!Number.isInteger(aQuantity)) {
         return res.status(400)
-          .json({ status: 'error', error: 'Invalid Quantity' });
+          .json({
+            status: 'error',
+            error: 'Invalid Quantity'
+          });
       }
 
       if (aFoodId < 1) {
         return res.status(400)
-          .json({ status: 'error', error: 'Invalid Food Id' });
+          .json({
+            status: 'error',
+            error: 'Invalid Food Id'
+          });
       }
       if (aQuantity < 1) {
         return res.status(400)
-          .json({ status: 'error', error: 'Invalid Quantity' });
+          .json({
+            status: 'error',
+            error: 'Invalid Quantity'
+          });
       }
     }
     return next();

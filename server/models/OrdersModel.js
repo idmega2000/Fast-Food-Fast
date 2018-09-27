@@ -25,14 +25,23 @@ class OrdersModel extends DbConnect {
   }
 
   /**
-       * This function get order data from the database
-       * @param {object} data - the req.body object .
-       * @param {string} userId - the userid saved in the token
+       * This function get all order data from the database
        * @returns {Promise} Returns the queried data .
        */
   getAllOrders() {
     const sql = 'SELECT * FROM orders ORDER BY order_id DESC';
     return this.pool.query(sql);
+  }
+
+  /**
+       * This function get an order data from the database
+       * @param {object} data - the req.params object .
+       * @returns {Promise} Returns the queried data .
+       */
+  getASpecificOrders(data) {
+    const sql = 'SELECT * FROM orders WHERE order_id = $1';
+    const param = [data];
+    return this.pool.query(sql, param);
   }
 }
 export default OrdersModel;

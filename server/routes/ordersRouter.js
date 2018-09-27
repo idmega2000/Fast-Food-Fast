@@ -15,6 +15,12 @@ ordersRouter.post('/', checkAuthorization.verifyToken,
   ordersValidator.placeOrderValidator, checkFoodExist,
   orders.postAnOrder);
 
-  ordersRouter.get('/', checkAuthorization.verifyAdminToken, orders.getAllOrders);
+ordersRouter.get('/',
+  checkAuthorization.verifyAdminToken,
+  orders.getAllOrders);
+ordersRouter.get('/:id',
+  checkAuthorization.verifyAdminToken,
+  ordersValidator.orderIdValidator,
+  orders.getASpecificOrders);
 
 export default ordersRouter;
