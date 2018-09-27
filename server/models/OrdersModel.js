@@ -7,20 +7,21 @@ import DbConnect from './DbConnect';
 class OrdersModel extends DbConnect {
   /**
        * This function add order data into the database
-       * @param {object} data - the req.body object .
-       * @param {string} userId - the userid saved in the token
+       * @param {string} req - the userid saved in the token
        * @returns {Promise} Returns the queried data .
        */
-  placeOrder(data, userId) {
+  placeOrder(req) {
+    const data = req.body;
+    const menuDetails = data.menuData;
+    const ordererUserId = req.verUserId;
     const address = data.orderAddress;
-    const orderedMenuItems = JSON.stringify(data.menuData);
+    const orderedMenuItems = JSON.stringify(menuDetails);
     const ordererPhone = data.orderPhone;
-    const ordererUserId = userId;
 
     const sql = `INSERT INTO 
-        orders(user_id, order_menu, order_address, order_phone) 
-        VALUES ($1, $2, $3, $4) RETURNING *`;
-    const params = [ordererUserId, orderedMenuItems, address, ordererPhone];
+    orders(user_id, order_phone, order_address, order_menu) 
+    VALUES ($1, $2, $3, $4) RETURNING *`;
+    const params = [ordererUserId, ordererPhone, address, orderedMenuItems];
     return this.pool.query(sql, params);
   }
 

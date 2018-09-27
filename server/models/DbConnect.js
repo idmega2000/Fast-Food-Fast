@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS menu
     
 CREATE TABLE IF NOT EXISTS orders(
     order_id SERIAL PRIMARY KEY NOT NULL,
-    user_id int REFERENCES users(user_id),
+    user_id INTEGER NOT NULL,
     order_phone VARCHAR,
     order_address VARCHAR,
     order_menu jsonb NOT NULL,
