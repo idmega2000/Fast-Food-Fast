@@ -16,7 +16,7 @@ const token = jwt.sign({
 
 const newOrder = {
   orderPhone: '08045676746',
-  orderInfo: [
+  menuDatafo: [
     {
       foodId: 'ghsjhdijnd', quantity: 4
     }
@@ -28,7 +28,7 @@ const newOrder = {
 
 const newOrderWrongUser = {
   orderPhone: '08045676746',
-  orderInfo: [
+  menuDatafo: [
     {
       foodId: 'ghsjhdijnd', quantity: 4
     }
@@ -40,7 +40,7 @@ const newOrderWrongUser = {
 
 const whiteSpaceName = {
   orderPhone: '08045676746',
-  orderInfo: [
+  menuDatafo: [
     { foodId: 'hdhdidnid', quantity: 1 }
   ],
   orderAddress: ' ',
@@ -48,25 +48,29 @@ const whiteSpaceName = {
 
 const noAddress = {
   orderPhone: '08045676746',
-  orderInfo: [
+  menuDatafo: [
     { foodId: 'hdhdidnid', quantity: 1 }
   ],
   orderAddress: ''
 };
 const shortAddress = {
   orderPhone: '08045676746',
-  orderInfo: [
+  menuDatafo: [
     {
-      foodId: 'hdhdidnid', quantity: 1
+      foodId: 'hdhdidnid', quantity: '1'
     }
   ],
   orderAddress: 'fjfkk'
 };
 
-const orderInfoString = {
-  orderInfo: 'jkldjdkj',
-  orderPhone: '08045676746',
-  orderAddress: '200 abakaliki junction'
+const orderShortPhoneNumber = {
+  orderPhone: '080676746',
+  orderAddress: '200 abakaliki junction',
+  menuData: [
+    {
+      foodId: 'hdhdidnid', quantity: 1
+    }
+  ],
 };
 
 const newEdit = {
@@ -106,4 +110,16 @@ describe('Post Orders', () => {
         done();
       });
   });
+
+  it('should return error when user send bad format input',
+    (done) => {
+      request.post(path)
+        .set('Authorization', `Bearer ${token}`)
+        .send(orderShortPhoneNumber)
+        .end((req, res) => {
+          assert.equal(res.status, 400);
+          assert.equal(res.body.error, 'please Enter a valid Number');
+          done();
+        });
+    });
 });

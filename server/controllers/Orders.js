@@ -82,6 +82,35 @@ class Orders {
           error: 'Failed to load Order'
         }));
   }
+
+  /**
+     * This function get the order history of a user
+     * @param {object} req - the request file.
+     * @param {object} res - The response file.
+     * @returns {object} Returns the order information.
+     */
+  userGetAOrderHistory(req, res) {
+    ordersModel.userGetAOrderHistory(req.params.id)
+      .then((result) => {
+        if (result.rowCount === 0) {
+          return res.status(404)
+            .json({
+              message: ' No Order History',
+              order: []
+            });
+        }
+        return res.status(200)
+          .json({
+            message: 'Order History Successful',
+            order: result.rows
+          });
+      })
+      .catch(() => res.status(500)
+        .json({
+          status: 'error',
+          error: 'Failed to load Order'
+        }));
+  }
 }
 
 export default Orders;
