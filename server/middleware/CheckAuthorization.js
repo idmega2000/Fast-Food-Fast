@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 /* eslint-disable class-methods-use-this */
 /**
- * Represent check autorization for users and admin
+ * Represent check authorization for users and admin
  */
 class CheckAuthorization {
   /**
@@ -49,7 +49,6 @@ class CheckAuthorization {
             res.sendStatus(403);
           } else {
             if (decoded.userRole !== 'admin') {
-              console.log(decoded);
               return res.status(401)
                 .json({
                   status: 'Failed',

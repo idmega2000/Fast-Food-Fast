@@ -15,22 +15,26 @@ class Orders {
      * @returns {object} Returns the posted order information.
      */
   postAnOrder(req, res) {
-    ordersModel.placeOrder(req.body, req.verUserId)
-      .then(result => res.status(201)
-        .json({
-          message: 'Order Placed Successfully',
-          order: result.rows
-        }))
+    ordersModel.placeOrder(req)
+      .then((result) => {
+        if (result.rowCount > 0) {
+          return res.status(200)
+            .json({
+              message: 'Order Placed Successfully',
+              order: result.rows
+            });
+        }
+      })
       .catch(() => res.status(500)
         .json({ error: 'Failed to place Order' }));
   }
 
   /**
-     * This function get all orders
-     * @param {object} req - the request file.
-     * @param {object} res - The response file.
-     * @returns {object} Returns the posted order information.
-     */
+   * This function get all orders
+   * @param {object} req - the request file.
+   * @param {object} res - The response file.
+   * @returns {object} Returns the posted order information.
+   */
   getAllOrders(req, res) {
     ordersModel.getAllOrders(req.body)
       .then((result) => {
@@ -55,11 +59,11 @@ class Orders {
   }
 
   /**
-     * This function get all orders
-     * @param {object} req - the request file.
-     * @param {object} res - The response file.
-     * @returns {object} Returns an order information.
-     */
+   * This function get all orders
+   * @param {object} req - the request file.
+   * @param {object} res - The response file.
+   * @returns {object} Returns an order information.
+   */
   getASpecificOrders(req, res) {
     ordersModel.getASpecificOrders(req.params.id)
       .then((result) => {
@@ -84,11 +88,11 @@ class Orders {
   }
 
   /**
-     * This function get the order history of a user
-     * @param {object} req - the request file.
-     * @param {object} res - The response file.
-     * @returns {object} Returns the order information.
-     */
+   * This function get the order history of a user
+   * @param {object} req - the request file.
+   * @param {object} res - The response file.
+   * @returns {object} Returns the order information.
+   */
   userGetAOrderHistory(req, res) {
     ordersModel.userGetAOrderHistory(req.params.id)
       .then((result) => {
@@ -114,11 +118,11 @@ class Orders {
 
 
   /**
-     * This function get the order history of a user
-     * @param {object} req - the request file.
-     * @param {object} res - The response file.
-     * @returns {object} Returns the order information.
-     */
+   * This function get the order history of a user
+   * @param {object} req - the request file.
+   * @param {object} res - The response file.
+   * @returns {object} Returns the order information.
+   */
   putAnOrderStatus(req, res) {
     ordersModel.updateAnOrderStatus(req.params.id, req.body.orderStatus)
       .then((result) => {

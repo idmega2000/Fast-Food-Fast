@@ -5,6 +5,7 @@ import DbConnect from './models/DbConnect';
 import allRouter from './routes/allRouters';
 
 const app = express();
+
 const PORT = process.env.PORT || 3000;
 const dbConnect = new DbConnect();
 dbConnect.connectApp();
