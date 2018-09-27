@@ -37,4 +37,15 @@ ordersRouter
     checkOrderExist,
     orders.getASpecificOrders);
 
+ordersRouter
+  .put('/:id',
+    checkAuthorization
+      .verifyAdminToken,
+    ordersValidator
+      .orderIdValidator,
+    ordersValidator
+      .statusValidator,
+    checkOrderExist,
+    orders.putAnOrderStatus);
+
 export default ordersRouter;

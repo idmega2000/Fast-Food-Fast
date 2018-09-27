@@ -56,5 +56,18 @@ class OrdersModel extends DbConnect {
     const param = [data];
     return this.pool.query(sql, param);
   }
+
+  /**
+       * This function update the status of an order
+       * @param {object} data - the req.params object .
+       * @returns {Promise} Returns the queried data .
+       */
+  updateAnOrderStatus(data) {
+    const sql = `UPDATE orders SET 
+        order_status = $1
+        WHERE order_id = $1 RETURNING*`;
+    const param = [data];
+    return this.pool.query(sql, param);
+  }
 }
 export default OrdersModel;

@@ -17,7 +17,7 @@ class OrdersValidator {
     if (typeof status !== 'string') {
       return res.status(400).json({ error: 'status input must be a string' });
     }
-    if (status.toLowerCase() === 'processing'
+    if (status.toLowerCase() === 'completed'
       || status.toLowerCase() === 'accepted'
       || status.toLowerCase() === 'declined') {
       return next();
@@ -33,28 +33,28 @@ class OrdersValidator {
      * @returns {object} Returns status code and error messages
      */
   orderIdValidator(req, res, next) {
-    const inputTypes = (/^[0-9]+$/);
+    const inputTypes = (/^[0-9]*$/);
     const input = req.params.id;
     const result = Number(input);
-
-    if (!Number.isInteger(result)) {
-      return res.status(400)
-        .json({
-          error: 'Input Id can only be Integer'
-        });
-    }
-    if (result < 1) {
-      return res.status(400)
-        .json({
-          error: 'Input Id should be greater than one'
-        });
-    }
     if (!input.match(inputTypes)) {
       return res.status(400)
         .json({
           error: 'Invalid input Id'
         });
     }
+    if (!Number.isInteger(result)) {
+      return res.status(400)
+        .json({
+          error: 'Order Id can only be Integer'
+        });
+    }
+    if (result < 1) {
+      return res.status(400)
+        .json({
+          error: 'Order Id should be greater than one'
+        });
+    }
+ 
     next();
   }
 
