@@ -19,7 +19,11 @@ const checkFoodExist = (req, res, next) => {
     dbModels.pool.query(sql, param)
       .then((result) => {
         if (result.rowCount === 0) {
-          return res.status(422).json({ status: 'error', error: 'Invalid Food' });
+          return res.status(422)
+            .json({
+              status: 'error',
+              error: 'Invalid Food'
+            });
         }
       });
   }

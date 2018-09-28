@@ -13,7 +13,6 @@ class MenuValidator {
      */
   addMenuValidator(req, res, next) {
     const textInput = req.body;
-    console.log(req.body);
     const whitespace = (/([\s]+)/g);
     const alphnumaOnly = (/^[a-zA-Z0-9 ]*$/);
     const name = textInput.menuName;
@@ -88,10 +87,6 @@ class MenuValidator {
 
     if (IntPrice < 1) {
       return res.status(400).json({ error: 'Invalid Request' });
-    }
-    if (IntPrice > 10000) {
-      return res.status(400)
-        .json({ error: 'Price should not be more than 10000' });
     }
     if (image) {
       if (typeof image !== 'string' || typeof price !== 'string') {

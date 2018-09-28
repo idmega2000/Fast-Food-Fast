@@ -25,7 +25,7 @@ class UserAuth {
         }, process.env.JWT_KEY);
         return res.status(201)
           .json({ message: 'Registration Successful', token });
-      }).catch(err => res.status(400).json(console.log(err)));
+      }).catch(err => res.status(500).json(console.log(err)));
   }
 
   /**
@@ -38,7 +38,11 @@ class UserAuth {
     authModel.userSignIn(req.body)
       .then((result) => {
         if (result.rowCount === 0) {
-          return res.status(404).json({ error: 'User does not exist!' });
+          return res.status(401)
+            .json({
+              status: 'Failed',
+              error: 'User does not exist!'
+            });
         } if (bcrypt.compareSync(req.body.userPassword,
           result.rows[0].user_password)) {
           const token = jwt.sign({
@@ -46,10 +50,17 @@ class UserAuth {
             userEmail: result.rows[0].user_email,
             userRole: result.rows[0].user_role
           }, process.env.JWT_KEY);
-          return res.status(200).json({ message: 'Login Successful', token });
+          return res.status(200)
+            .json({
+              message: 'Login Successful',
+              token
+            });
         }
-        return res.status(400)
-          .json({ status: 'status', error: 'invalid password' });
+        return res.status(401)
+          .json({
+            status: 'Failed',
+            error: 'invalid password'
+          });
       })
       .catch((err) => {
         console.log(err);

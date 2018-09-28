@@ -49,7 +49,7 @@ class CheckAuthorization {
             res.sendStatus(403);
           } else {
             if (decoded.userRole !== 'admin') {
-              return res.status(401)
+              return res.status(403)
                 .json({
                   status: 'Failed',
                   error: 'You need Admin Privilege to access this Endpoint'
@@ -63,7 +63,11 @@ class CheckAuthorization {
         });
       }
     } else {
-      return res.status(401).json({ status: 'Failed', error: 'Unauthorized' });
+      return res.status(401)
+        .json({
+          status: 'Failed',
+          error: 'Unauthorized'
+        });
     }
   }
 }
