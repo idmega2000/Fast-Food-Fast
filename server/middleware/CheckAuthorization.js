@@ -18,17 +18,29 @@ class CheckAuthorization {
       if (bearerToken) {
         jwt.verify(bearerToken, process.env.JWT_KEY, (err, decoded) => {
           if (err) {
-            res.sendStatus(403);
+            res.status(401)
+              .json({
+                status: 'The token you provided is invalid',
+              });
           } else {
             req.verUserId = decoded.userId;
-            req.verUserEmail = decoded.userEmail;
             req.verUserRole = decoded.userRole;
             next();
           }
         });
+      } else {
+        return res.status(401)
+          .json({
+            status: 'error',
+            error: 'The token you provided is invalid'
+          });
       }
     } else {
-      return res.status(401).json({ status: 'Failed', error: 'Unauthorized' });
+      return res.status(401)
+        .json({
+          status: 'Failed',
+          error: 'No token provided'
+        });
     }
   }
 
@@ -46,7 +58,10 @@ class CheckAuthorization {
       if (bearerToken) {
         jwt.verify(bearerToken, process.env.JWT_KEY, (err, decoded) => {
           if (err) {
-            res.sendStatus(403);
+            res.sendStatus(401)
+              .json({
+                status: 'The token you provided is invalid',
+              });
           } else {
             if (decoded.userRole !== 'admin') {
               return res.status(403)
@@ -56,17 +71,22 @@ class CheckAuthorization {
                 });
             }
             req.verUserId = decoded.userId;
-            req.verUserEmail = decoded.userEmail;
             req.verUserRole = decoded.userRole;
             next();
           }
         });
+      } else {
+        return res.status(401)
+          .json({
+            status: 'error',
+            error: 'The token you provided is invalid'
+          });
       }
     } else {
       return res.status(401)
         .json({
           status: 'Failed',
-          error: 'Unauthorized'
+          error: 'No token provided'
         });
     }
   }

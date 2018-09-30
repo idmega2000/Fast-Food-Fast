@@ -1,10 +1,10 @@
 
 import express from 'express';
 import Orders from '../controllers/Orders';
-import checkFoodExist from '../middleware/checkFoodExist';
 import CheckAuthorization from '../middleware/CheckAuthorization';
 import OrdersValidator from '../helpers/OrdersValidator';
 import checkOrderExist from '../middleware/checkOrderExist';
+import organiseOrderMenuData from '../middleware/organiseOrderMenuData';
 
 
 const checkAuthorization = new CheckAuthorization();
@@ -18,7 +18,7 @@ ordersRouter
       .verifyToken,
     ordersValidator
       .placeOrderValidator,
-    checkFoodExist,
+    organiseOrderMenuData,
     orders.postAnOrder);
 
 ordersRouter

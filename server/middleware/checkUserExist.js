@@ -11,19 +11,29 @@ const dbConnect = new DbConnect();
      */
 const checkUserExist = (req, res, next) => {
   const data = req.params.id;
-  const sql = 'SELECT * FROM users WHERE user_id = $1';
-  const param = [data];
-  dbConnect.pool.query(sql, param)
-    .then((result) => {
-      if (result.rowCount === 0) {
-        return res.status(422)
-          .json({
-            status: 'Failed',
-            error: 'User Id does not exist'
-          });
-      }
-      next();
-    });
+  const decodedUserId = req.verUserId.toString();
+  const decodeRole = req.verUserRole;
+  if (data === decodedUserId || decodeRole === 'admin') {
+    const sql = 'SELECT * FROM users WHERE user_id = $1';
+    const param = [data];
+    dbConnect.pool.query(sql, param)
+      .then((result) => {
+        if (result.rowCount === 0) {
+          return res.status(422)
+            .json({
+              status: 'Failed',
+              error: 'User Id does not exist'
+            });
+        }
+        next();
+      });
+  } else {
+    return res.status(403)
+      .json({
+        status: 'Failed',
+        error: 'You can only access your account data'
+      });
+  }
 };
 
 export default checkUserExist;

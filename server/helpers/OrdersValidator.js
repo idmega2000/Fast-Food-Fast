@@ -113,9 +113,9 @@ class OrdersValidator {
       });
     }
     for (let i = 0; i < info.length; i += 1) {
-      const aFoodId = Number(info[i].foodId);
+      const amenuId = Number(info[i].menuId);
       const aQuantity = Number(info[i].quantity);
-      if (!Number.isInteger(aFoodId)) {
+      if (!Number.isInteger(amenuId)) {
         return res.status(400)
           .json({
             status: 'error',
@@ -130,7 +130,7 @@ class OrdersValidator {
           });
       }
 
-      if (aFoodId < 1) {
+      if (amenuId < 1) {
         return res.status(400)
           .json({
             status: 'error',
