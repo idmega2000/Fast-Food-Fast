@@ -15,10 +15,11 @@ class Orders {
      * @returns {object} Returns the posted order information.
      */
   postAnOrder(req, res) {
+ 
     ordersModel.placeOrder(req)
       .then((result) => {
         if (result.rowCount > 0) {
-          return res.status(200)
+          return res.status(201)
             .json({
               message: 'Order Placed Successfully',
               order: result.rows

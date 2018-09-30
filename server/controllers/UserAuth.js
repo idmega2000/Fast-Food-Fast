@@ -20,12 +20,12 @@ class UserAuth {
       .then((result) => {
         const token = jwt.sign({
           userId: result.rows[0].user_id,
-          userEmail: result.rows[0].user_email,
           userRole: result.rows[0].user_role
         }, process.env.JWT_KEY);
         return res.status(201)
           .json({ message: 'Registration Successful', token });
-      }).catch(err => res.status(500).json(console.log(err)));
+      }).catch(() => res.status(500)
+        .json({ error: 'Registration failed' }));
   }
 
   /**
@@ -47,7 +47,6 @@ class UserAuth {
           result.rows[0].user_password)) {
           const token = jwt.sign({
             userId: result.rows[0].user_id,
-            userEmail: result.rows[0].user_email,
             userRole: result.rows[0].user_role
           }, process.env.JWT_KEY);
           return res.status(200)
@@ -62,8 +61,8 @@ class UserAuth {
             error: 'invalid password'
           });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        res.status(500).json({ error: 'Login Fail' });
       });
   }
 }

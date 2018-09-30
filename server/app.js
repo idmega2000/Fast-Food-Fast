@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import DbConnect from './models/DbConnect';
-import allRouter from './routes/allRouters';
+import allRouters from './routes/allRouters';
 
 const app = express();
 
@@ -34,6 +34,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(allRouter);
-app.listen(PORT, () => console.log(`Listening on Port ${PORT}`));
+app.use(allRouters);
+app.listen(PORT);
 export default app;

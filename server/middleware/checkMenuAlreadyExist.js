@@ -14,7 +14,9 @@ const dbModels = new DbConnect();
 const checkMenuAlreadyExist = (req, res, next) => {
   const foodName = req.body.menuName;
   const foodPrice = req.body.menuPrice;
-  const sql = 'SELECT * FROM menu WHERE LOWER(menu_name) = LOWER($1) AND menu_price = $2;';
+  const sql = `SELECT * FROM menu WHERE 
+          LOWER(menu_name) = LOWER($1) 
+          AND menu_price = $2;`;
   const param = [foodName, foodPrice];
   dbModels.pool.query(sql, param)
     .then((result) => {
