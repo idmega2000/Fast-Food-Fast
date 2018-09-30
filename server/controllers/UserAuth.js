@@ -25,7 +25,8 @@ class UserAuth {
         }, process.env.JWT_KEY);
         return res.status(201)
           .json({ message: 'Registration Successful', token });
-      }).catch(err => res.status(500).json(console.log(err)));
+      }).catch(() => res.status(500)
+        .json({ error: 'Registration failed' }));
   }
 
   /**
@@ -62,8 +63,8 @@ class UserAuth {
             error: 'invalid password'
           });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        res.status(500).json({ error: 'Login Fail' });
       });
   }
 }

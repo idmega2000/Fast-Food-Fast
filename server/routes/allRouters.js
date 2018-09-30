@@ -4,22 +4,22 @@ import ordersRouter from './ordersRouter';
 import menuRouter from './menuRouter';
 import usersRouter from './usersRouter';
 
-const allRouter = express.Router();
+const allRouters = express.Router();
 
-allRouter
+allRouters
   .use('/api/v1/menu',
     menuRouter);
 
-allRouter
+allRouters
   .use('/api/v1/auth',
     authRouter);
 
-allRouter
+allRouters
   .use('/api/v1/orders',
     ordersRouter);
 
-allRouter
+allRouters
   .use('/api/v1/users',
     usersRouter);
 
-export default allRouter;
+export default allRouters;
