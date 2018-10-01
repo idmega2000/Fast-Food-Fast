@@ -8,7 +8,6 @@ const path = '/api/v1/menu';
 
 const token = jwt.sign({
   userId: '1',
-  userEmail: 'anemail@gmail.com',
   userRole: 'admin'
 }, process.env.JWT_KEY);
 
@@ -25,10 +24,16 @@ const emptyMenuName = {
   menuCategory: 'intercontenental',
   menuImage: 'www.andelaimagesforbootcamp.com'
 };
-const highMenuPrice = {
-  menuName: 'beans and yam',
+const smallNameInput = {
+  menuName: 'ba',
   menuPrice: '100000',
   menuCategory: 'intercontenental',
+  menuImage: 'www.andelaimagesforbootcamp.com'
+};
+const smallCategoryInput = {
+  menuName: 'banura',
+  menuPrice: '100000',
+  menuCategory: 'th',
   menuImage: 'www.andelaimagesforbootcamp.com'
 };
 
@@ -82,8 +87,36 @@ const imageWhiteSpace = {
   menuCategory: 'rice and beans',
   menuImage: 'www.andelaim agesforbootcamp.com'
 };
+const imageWrongFormat = {
+  menuName: 'andela food',
+  menuPrice: '1000',
+  menuCategory: 'rice and beans',
+  menuImage: []
+};
+
+const badPrice = {
+  menuName: 'andela food',
+  menuPrice: '0.1',
+  menuCategory: 'rice and beans',
+  menuImage: 'www.andelaim agesforbootcamp.com'
+};
 
 
+describe('Get Available menu Api Test ', () => {
+  it(`should return success when authenticated user access to 
+    get all menu and an empty array when no message is available`,
+  (done) => {
+    request.get(`${path}/`)
+      .send()
+      .set('Authorization', `Bearer ${token}`)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        assert.equal(res.statusCode, 200);
+        assert.equal(res.body.message, 'No menu Available');
+        done();
+      });
+  });
+});
 describe('Add menu Api Test', () => {
   it('should return error when given empty Menu Name',
     (done) => {
@@ -97,15 +130,42 @@ describe('Add menu Api Test', () => {
           done();
         });
     });
-  it('should return error when given an high menu price',
+  it('should return error when given a wrong Image format',
     (done) => {
       request.post(`${path}/`)
-        .send(highMenuPrice)
+        .send(imageWrongFormat)
         .set('Authorization', `Bearer ${token}`)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 400);
-          assert.equal(res.body.error, 'Price should not be more than 10000');
+          assert.equal(res.body.error, 'Image Link should be a String');
+          done();
+        });
+    });
+  it('should return error when given short image name',
+    (done) => {
+      request.post(`${path}/`)
+        .send(smallNameInput)
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 400);
+          assert.equal(res.body.error,
+            'menu Name should be three character and above');
+          done();
+        });
+    });
+
+  it('should return error when given chategory less than 3',
+    (done) => {
+      request.post(`${path}/`)
+        .send(smallCategoryInput)
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 400);
+          assert.equal(res.body.error,
+            'Menu Category can only be three character and above');
           done();
         });
     });
@@ -118,6 +178,18 @@ describe('Add menu Api Test', () => {
         .end((err, res) => {
           assert.equal(res.statusCode, 400);
           assert.equal(res.body.error, 'Invalid input type');
+          done();
+        });
+    });
+  it('should return error when given a price lee than 1',
+    (done) => {
+      request.post(`${path}/`)
+        .send(badPrice)
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 400);
+          assert.equal(res.body.error, 'Price should be NGN 1 amd above');
           done();
         });
     });
@@ -181,7 +253,7 @@ describe('Add menu Api Test', () => {
         .end((err, res) => {
           assert.equal(res.statusCode, 400);
           assert.equal(res.body.error,
-            'Please Make sure all Input are Entered Properly');
+            'Please Make sure all Input only contain Alphanumeric characters');
           done();
         });
     });
@@ -205,7 +277,7 @@ describe('Add menu Api Test', () => {
         .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 400);
-          assert.equal(res.body.error, 'Invalid Price Type');
+          assert.equal(res.body.error, 'Price can only be integer');
           done();
         });
     });
@@ -218,6 +290,25 @@ describe('Add menu Api Test', () => {
         .end((err, res) => {
           assert.equal(res.statusCode, 201);
           assert.equal(res.body.message, 'Menu Added Successfully');
+          assert.equal(res.body.menu.menu_name, 'Dodo and Beans');
+          assert.equal(res.body.menu.menu_price, '1000');
+          assert.equal(res.body.menu.menu_category, 'intercontenental');
+          assert.equal(res.body.menu.menu_image,
+            'www.andelaimagesforbootcamp.com');
+          done();
+        });
+    });
+
+  it('should return conflict error when given a menu that already exist ',
+    (done) => {
+      request.post(`${path}/`)
+        .send(newMeal)
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 409);
+          assert.equal(res.body.error,
+            'A Menu with this name and price already Exist');
           done();
         });
     });

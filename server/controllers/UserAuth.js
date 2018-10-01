@@ -20,7 +20,8 @@ class UserAuth {
       .then((result) => {
         const token = jwt.sign({
           userId: result.rows[0].user_id,
-          userRole: result.rows[0].user_role
+          userRole: result.rows[0].user_role,
+          userEmail: result.rows[0].user_email
         }, process.env.JWT_KEY);
         return res.status(201)
           .json({ message: 'Registration Successful', token });
@@ -47,7 +48,8 @@ class UserAuth {
           result.rows[0].user_password)) {
           const token = jwt.sign({
             userId: result.rows[0].user_id,
-            userRole: result.rows[0].user_role
+            userRole: result.rows[0].user_role,
+            userEmail: result.rows[0].user_email
           }, process.env.JWT_KEY);
           return res.status(200)
             .json({
@@ -58,7 +60,7 @@ class UserAuth {
         return res.status(401)
           .json({
             status: 'Failed',
-            error: 'invalid password'
+            error: 'The Password is invalid'
           });
       })
       .catch(() => {

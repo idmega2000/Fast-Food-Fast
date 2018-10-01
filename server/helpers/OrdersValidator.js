@@ -14,11 +14,18 @@ class OrdersValidator {
      */
   statusValidator(req, res, next) {
     const status = req.body.orderStatus;
+    if (!status) {
+      return res.status(400)
+        .json({
+          status: 'error',
+          error: 'status input is required'
+        });
+    }
     if (typeof status !== 'string') {
       return res.status(400)
         .json({
           status: 'error',
-          error: 'status input must be a string'
+          error: 'Order status input can only be a string'
         });
     }
     if (status.toLowerCase() === 'processing'
@@ -26,7 +33,10 @@ class OrdersValidator {
       || status.toLowerCase() === 'complete') {
       return next();
     }
-    return res.status(400).json({ error: 'Invalid status Input' });
+    return res.status(400).json({
+      status: 'error',
+      error: 'Order Status can only be processing, cancelled or complete'
+    });
   }
 
   /**
@@ -39,26 +49,14 @@ class OrdersValidator {
   orderIdValidator(req, res, next) {
     const inputTypes = (/^[0-9]*$/);
     const input = req.params.id;
-    const result = Number(input);
     if (!input.match(inputTypes)) {
       return res.status(400)
         .json({
-          error: 'Invalid input Id'
+          status: 'Failed',
+          error: 'orderId can only be Integer'
         });
     }
-    if (!Number.isInteger(result)) {
-      return res.status(400)
-        .json({
-          error: 'Order Id can only be Integer'
-        });
-    }
-    if (result < 1) {
-      return res.status(400)
-        .json({
-          error: 'Order Id should be greater than one'
-        });
-    }
-    next();
+    return next();
   }
 
   /**
@@ -72,7 +70,7 @@ class OrdersValidator {
     const nigNumber = (/^[0]\d{10}$/);
     const textInput = req.body;
     const address = textInput.orderAddress;
-    const info = textInput.menuData;
+    const info = textInput.MenuCart;
     const phone = textInput.orderPhone;
 
     if (Object.keys(textInput).length === 0) {
@@ -81,30 +79,39 @@ class OrdersValidator {
           error: 'Please Enter valid data'
         });
     }
-    if (!info || !address || !phone) {
+    if (!phone) {
       return res.status(400)
         .json({
-          error: 'All fields are required'
+          error: 'Phone field is required'
+        });
+    }
+    if (!address) {
+      return res.status(400)
+        .json({
+          error: 'Address field is required'
+        });
+    }
+    if (!info) {
+      return res.status(400)
+        .json({
+          error: 'Menu Cart is required'
         });
     }
     if (address.trim().length === 0) {
       return res.status(400)
         .json({
-          error: 'whitespace not allowed'
+          error: 'Address should not be white space only'
         });
     }
-    if (address.length < 8) {
-      return res.status(400)
-        .json({ error: 'Input must be eight char and above' });
-    }
+
     if (!Array.isArray(info)) {
       return res.status(400).json({
-        error: 'Order information must be array'
+        error: 'Menu Cart must be array'
       });
     }
     if (info.length === 0) {
       return res.status(400).json({
-        error: 'order cannot be empty'
+        error: 'Menu Cart cannot be empty'
       });
     }
     if (!phone.match(nigNumber)) {
@@ -113,35 +120,50 @@ class OrdersValidator {
       });
     }
     for (let i = 0; i < info.length; i += 1) {
-      const amenuId = Number(info[i].menuId);
-      const aQuantity = Number(info[i].quantity);
-      if (!Number.isInteger(amenuId)) {
+      const oMenuId = info[i].menuId;
+      const oQuantity = info[i].quantity;
+      const aMenuId = Number(oMenuId);
+      const aQuantity = Number(oQuantity);
+      if (!oMenuId) {
         return res.status(400)
           .json({
             status: 'error',
-            error: 'Invalid Food Id'
+            error: 'Menu Id is required'
           });
       }
-      if (!Number.isInteger(aQuantity)) {
+      if (!oQuantity) {
         return res.status(400)
           .json({
             status: 'error',
-            error: 'Invalid Quantity'
+            error: 'Quantity is required'
           });
       }
-
-      if (amenuId < 1) {
+      if (aMenuId < 1) {
         return res.status(400)
           .json({
             status: 'error',
-            error: 'Invalid Food Id'
+            error: 'Menu Id should be integer char greater than one'
           });
       }
       if (aQuantity < 1) {
         return res.status(400)
           .json({
             status: 'error',
-            error: 'Invalid Quantity'
+            error: 'Quality should integer char greater than one'
+          });
+      }
+      if (!Number.isInteger(aMenuId)) {
+        return res.status(400)
+          .json({
+            status: 'error',
+            error: 'Menu Id can only be integer'
+          });
+      }
+      if (!Number.isInteger(aQuantity)) {
+        return res.status(400)
+          .json({
+            status: 'error',
+            error: 'Quantity can only be integer'
           });
       }
     }

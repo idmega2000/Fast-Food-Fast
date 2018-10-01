@@ -15,14 +15,13 @@ class Orders {
      * @returns {object} Returns the posted order information.
      */
   postAnOrder(req, res) {
- 
     ordersModel.placeOrder(req)
       .then((result) => {
         if (result.rowCount > 0) {
           return res.status(201)
             .json({
               message: 'Order Placed Successfully',
-              order: result.rows
+              order: result.rows[0]
             });
         }
       })
@@ -42,7 +41,7 @@ class Orders {
         if (result.rowCount === 0) {
           return res.status(200)
             .json({
-              message: ' No Orders Available',
+              message: 'No Orders Available',
               order: []
             });
         }
@@ -71,14 +70,14 @@ class Orders {
         if (result.rowCount === 0) {
           return res.status(404)
             .json({
-              message: ' Order does not exist',
+              error: 'Order does not exist',
               order: []
             });
         }
         return res.status(200)
           .json({
             message: 'Order Selected Successfully',
-            order: result.rows
+            order: result.rows[0]
           });
       })
       .catch(() => res.status(500)
@@ -98,9 +97,9 @@ class Orders {
     ordersModel.userGetAOrderHistory(req.params.id)
       .then((result) => {
         if (result.rowCount === 0) {
-          return res.status(404)
+          return res.status(200)
             .json({
-              message: ' No Order History',
+              message: 'No Order History Available for this User',
               order: []
             });
         }
@@ -125,13 +124,14 @@ class Orders {
    * @returns {object} Returns the order information.
    */
   putAnOrderStatus(req, res) {
-    ordersModel.updateAnOrderStatus(req.params.id, req.body.orderStatus)
+    ordersModel.updateAnOrderStatus(req.params.id,
+      req.body.orderStatus.toLowerCase())
       .then((result) => {
         if (result.rowCount > 0) {
           return res.status(200)
             .json({
               message: 'Order Status Updated Successfully',
-              order: result.rows
+              order: result.rows[0]
             });
         }
       })

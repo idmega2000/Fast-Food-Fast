@@ -56,7 +56,7 @@ const organiseEachMenu = (
           next,
         );
       }
-      return res.status(400)
+      return res.status(422)
         .json({
           status: 'failed',
           error: (`Menu Id ${aMenuId} is not a valid menu Id`)
@@ -73,7 +73,7 @@ const organiseEachMenu = (
      * @returns {object} Returns status code and error messages if error
      */
 const organiseOrderedMenuList = (req, res, next) => {
-  const menuItmes = req.body.menuData;
+  const menuItmes = req.body.MenuCart;
   const count = 0;
   const newARrayData = [];
   const menuTPrice = 0;

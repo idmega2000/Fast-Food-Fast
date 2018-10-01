@@ -20,11 +20,13 @@ class CheckAuthorization {
           if (err) {
             res.status(401)
               .json({
-                status: 'The token you provided is invalid',
+                status: 'Failed',
+                error: 'The token you provided is invalid'
               });
           } else {
             req.verUserId = decoded.userId;
             req.verUserRole = decoded.userRole;
+            req.verUserEmail = decoded.userEmail;
             next();
           }
         });
@@ -32,7 +34,7 @@ class CheckAuthorization {
         return res.status(401)
           .json({
             status: 'error',
-            error: 'The token you provided is invalid'
+            error: 'Please Organise your token in the specified format'
           });
       }
     } else {
@@ -58,9 +60,10 @@ class CheckAuthorization {
       if (bearerToken) {
         jwt.verify(bearerToken, process.env.JWT_KEY, (err, decoded) => {
           if (err) {
-            res.sendStatus(401)
+            res.status(401)
               .json({
-                status: 'The token you provided is invalid',
+                status: 'Failed',
+                error: 'The token you provided is invalid'
               });
           } else {
             if (decoded.userRole !== 'admin') {
@@ -72,6 +75,7 @@ class CheckAuthorization {
             }
             req.verUserId = decoded.userId;
             req.verUserRole = decoded.userRole;
+            req.verUserEmail = decoded.userEmail;
             next();
           }
         });
@@ -79,7 +83,7 @@ class CheckAuthorization {
         return res.status(401)
           .json({
             status: 'error',
-            error: 'The token you provided is invalid'
+            error: 'Please Organise your token in the specified format'
           });
       }
     } else {

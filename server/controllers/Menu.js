@@ -38,7 +38,7 @@ class Menu {
         if (result.rowCount === 0) {
           return res.status(200)
             .json({
-              message: ' No menu Available',
+              message: 'No menu Available',
               menu: []
             });
         }

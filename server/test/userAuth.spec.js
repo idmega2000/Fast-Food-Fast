@@ -61,9 +61,17 @@ const emptyPassword = {
   userEmail: 'idrisaa@gmail.com',
   userPassword: ''
 };
+const loginWrongUser = {
+  userEmail: 'idrisa@gmail.com',
+  userPassword: 'anielata'
+};
+const existingUserWrongPass = {
+  userEmail: 'idrisaa@gmail.com',
+  userPassword: 'andelaja'
+};
 
 
-describe('All Authentication Tests', () => {
+describe('All Tes Authentication', () => {
   it('should return error when given empty useremail',
     (done) => {
       request.post(`${path}/signup`)
@@ -220,6 +228,30 @@ describe('All Authentication Tests', () => {
 });
 
 describe('Login Api Test', () => {
+  it('should return error when given a user that does not exist',
+    (done) => {
+      request.post(`${path}/login`)
+        .send(loginWrongUser)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 401);
+          assert.equal(res.body.error, 'User does not exist!');
+          done();
+        });
+    });
+
+  it('should return error when given a good user and wrong password',
+    (done) => {
+      request.post(`${path}/login`)
+        .send(existingUserWrongPass)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 401);
+          assert.equal(res.body.error, 'The Password is invalid');
+          done();
+        });
+    });
+
   it('should return success when given login details',
     (done) => {
       request.post(`${path}/login`)

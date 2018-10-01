@@ -36,7 +36,7 @@ class MenuValidator {
     }
     if ((name.match(/^\s*$/)) || (price.match(/^\s*$/)) || (category.match(/^\s*$/))) {
       return res.status(400).json({
-        error: 'Please Make sure all Input are Entered Properly'
+        error: 'Please Make sure all Input only contain Alphanumeric characters'
       });
     }
 
@@ -81,17 +81,25 @@ class MenuValidator {
       });
     }
 
+    if (IntPrice < 1) {
+      return res.status(400).json({
+        status: 'Failed',
+        error: 'Price should be NGN 1 amd above'
+      });
+    }
     if (!Number.isInteger(IntPrice)) {
-      return res.status(400).json({ error: 'Invalid Price Type' });
+      return res.status(400)
+        .json({
+          status: 'Failed',
+          error: 'Price can only be integer'
+        });
     }
 
-    if (IntPrice < 1) {
-      return res.status(400).json({ error: 'Invalid Request' });
-    }
     if (image) {
-      if (typeof image !== 'string' || typeof price !== 'string') {
+      if (typeof image !== 'string') {
         return res.status(400).json({
-          error: 'Invalid Image input'
+          status: 'Failed',
+          error: 'Image Link should be a String'
         });
       }
 
@@ -100,13 +108,6 @@ class MenuValidator {
           .json({
             status: 'Failed',
             error: 'White Space is not allowed in Images'
-          });
-      }
-      if (image.length > 500) {
-        return res.status(400)
-          .json({
-            status: 'Failed',
-            error: 'Image link should not be more than 500 char'
           });
       }
     }

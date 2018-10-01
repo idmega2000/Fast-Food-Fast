@@ -34,7 +34,6 @@ ordersRouter
       .verifyAdminToken,
     ordersValidator
       .orderIdValidator,
-    checkOrderExist,
     orders.getASpecificOrders);
 
 ordersRouter
@@ -42,9 +41,9 @@ ordersRouter
     checkAuthorization
       .verifyAdminToken,
     ordersValidator
-      .orderIdValidator,
-    ordersValidator
       .statusValidator,
+    ordersValidator
+      .orderIdValidator,
     checkOrderExist,
     orders.putAnOrderStatus);
 
