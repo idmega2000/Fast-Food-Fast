@@ -137,7 +137,7 @@ describe('check user user exist ', () => {
           done();
         });
     });
-    it('should return error when given a user id that does not exist',
+  it('should return error when given a user id that does not exist',
     (done) => {
       request.get(`${getAPath}/10/orders`)
         .send()

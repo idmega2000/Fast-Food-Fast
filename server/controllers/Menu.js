@@ -17,6 +17,7 @@ class Menu {
     menuModel.postMenu(req.body)
       .then(result => res.status(201)
         .json({
+          status: 'success',
           message: 'Menu Added Successfully',
           menu: result.rows[0]
         }))
@@ -38,12 +39,14 @@ class Menu {
         if (result.rowCount === 0) {
           return res.status(200)
             .json({
+              status: 'success',
               message: 'No menu Available',
               menu: []
             });
         }
         return res.status(200)
           .json({
+            status: 'success',
             message: 'All Menu Selected',
             menu: result.rows
           });

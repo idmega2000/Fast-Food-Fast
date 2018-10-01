@@ -6,6 +6,7 @@ import app from '../app';
 
 const request = supertest(app);
 const path = '/api/v1/orders';
+const statuspath = '/api/v1/status';
 
 
 const token = jwt.sign({
@@ -521,6 +522,45 @@ describe('Put status of an Order Api Test', () => {
           assert.equal(res.statusCode, 400);
           assert.equal(res.body.error,
             'Order status input can only be a string');
+          done();
+        });
+    });
+});
+
+describe('Get Order status history of a particular status', () => {
+  it('should return error when user give status that is not allowed',
+    (done) => {
+      request.get(`${statuspath}/andela`)
+        .set('Authorization', `Bearer ${tokenAdmin}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 400);
+          assert.equal(res.body.error,
+            'Order Status can only be new, processing, cancelled or complete');
+          done();
+        });
+    });
+  it('should return success when user enter a good status',
+    (done) => {
+      request.get(`${statuspath}/cancelled`)
+        .set('Authorization', `Bearer ${tokenAdmin}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 200);
+          assert.equal(res.body.message, 'No Order History Available');
+          done();
+        });
+    });
+  it('should return success when admin edit status or order with good data',
+    (done) => {
+      request.get(`${statuspath}/processing`)
+        .send()
+        .set('Authorization', `Bearer ${tokenAdmin}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 200);
+          assert.equal(res.body.message,
+            'processing History successfully selected');
           done();
         });
     });

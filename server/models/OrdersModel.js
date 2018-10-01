@@ -84,5 +84,19 @@ class OrdersModel extends DbConnect {
     const param = [data, idParam];
     return this.pool.query(sql, param);
   }
+
+  /**
+       * This function get the order history for a particular status
+       * @param {object} idParam - the req.param.id object .
+       * @param {object} data - the req.body.userStatus object .
+       * @returns {Promise} Returns the queried data .
+       */
+  getASpecificHistory(idParam) {
+    const sql = `SELECT * FROM orders 
+      WHERE order_status = $1 
+      ORDER BY order_id DESC`;
+    const param = [idParam];
+    return this.pool.query(sql, param);
+  }
 }
 export default OrdersModel;

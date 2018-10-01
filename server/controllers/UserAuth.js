@@ -24,9 +24,16 @@ class UserAuth {
           userEmail: result.rows[0].user_email
         }, process.env.JWT_KEY);
         return res.status(201)
-          .json({ message: 'Registration Successful', token });
+          .json({
+            status: 'success',
+            message: 'Registration Successful',
+            token
+          });
       }).catch(() => res.status(500)
-        .json({ error: 'Registration failed' }));
+        .json({
+          status: 'Failed',
+          error: 'Registration failed'
+        }));
   }
 
   /**
@@ -53,6 +60,7 @@ class UserAuth {
           }, process.env.JWT_KEY);
           return res.status(200)
             .json({
+              status: 'success',
               message: 'Login Successful',
               token
             });
@@ -64,7 +72,10 @@ class UserAuth {
           });
       })
       .catch(() => {
-        res.status(500).json({ error: 'Login Fail' });
+        res.status(500).json({
+          status: 'Failed',
+          error: 'Login Fail'
+        });
       });
   }
 }
