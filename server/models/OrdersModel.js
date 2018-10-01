@@ -2,7 +2,7 @@
 import DbConnect from './DbConnect';
 
 /**
- * Represents the meal/menu model.
+ * Represents the orders model.
  */
 class OrdersModel extends DbConnect {
   /**
@@ -59,19 +59,6 @@ class OrdersModel extends DbConnect {
   }
 
   /**
-       * This function get all order by a user
-       * @param {object} data - the req.params object .
-       * @returns {Promise} Returns the queried data .
-       */
-  userGetAOrderHistory(data) {
-    const sql = `SELECT * FROM orders 
-      WHERE user_id = $1 
-      ORDER BY order_id DESC`;
-    const param = [data];
-    return this.pool.query(sql, param);
-  }
-
-  /**
        * This function update the status of an order
        * @param {object} idParam - the req.param.id object .
        * @param {object} data - the req.body.userStatus object .
@@ -82,6 +69,20 @@ class OrdersModel extends DbConnect {
         order_status = $1
         WHERE order_id = $2 RETURNING*`;
     const param = [data, idParam];
+    return this.pool.query(sql, param);
+  }
+
+  /**
+       * This function get the order history for a particular status
+       * @param {object} idParam - the req.param.id object .
+       * @param {object} data - the req.body.userStatus object .
+       * @returns {Promise} Returns the queried data .
+       */
+  getASpecificHistory(idParam) {
+    const sql = `SELECT * FROM orders 
+      WHERE order_status = $1 
+      ORDER BY order_id DESC`;
+    const param = [idParam];
     return this.pool.query(sql, param);
   }
 }

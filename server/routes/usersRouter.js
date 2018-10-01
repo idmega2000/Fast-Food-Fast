@@ -1,5 +1,5 @@
 import express from 'express';
-import Orders from '../controllers/Orders';
+import Users from '../controllers/Users';
 import CheckAuthorization from '../middleware/CheckAuthorization';
 import OrdersValidator from '../helpers/OrdersValidator';
 import checkUserExist from '../middleware/checkUserExist';
@@ -7,7 +7,7 @@ import checkUserExist from '../middleware/checkUserExist';
 
 const checkAuthorization = new CheckAuthorization();
 const usersRouter = express.Router();
-const orders = new Orders();
+const users = new Users();
 const ordersValidator = new OrdersValidator();
 
 
@@ -15,6 +15,6 @@ usersRouter.get('/:id/orders',
   checkAuthorization.verifyToken,
   ordersValidator.orderIdValidator,
   checkUserExist,
-  orders.userGetAOrderHistory);
+  users.userGetAOrderHistory);
 
 export default usersRouter;

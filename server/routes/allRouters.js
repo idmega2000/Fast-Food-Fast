@@ -3,6 +3,7 @@ import authRouter from './authRouter';
 import ordersRouter from './ordersRouter';
 import menuRouter from './menuRouter';
 import usersRouter from './usersRouter';
+import statusRouter from './statusRouter';
 
 const allRouters = express.Router();
 
@@ -21,5 +22,10 @@ allRouters
 allRouters
   .use('/api/v1/users',
     usersRouter);
+
+allRouters
+  .use('/api/v1/status',
+    statusRouter);
+
 
 export default allRouters;

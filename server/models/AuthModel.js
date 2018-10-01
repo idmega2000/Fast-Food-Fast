@@ -21,7 +21,7 @@ class AuthModel extends DbConnect {
   }
 
   /**
-     * This function add user data into the database
+     * This function login a user into the database
      * @param {object} data - the req.body object .
      * @returns {Promise} Returns token and status.
      */

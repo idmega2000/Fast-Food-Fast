@@ -20,13 +20,17 @@ class Orders {
         if (result.rowCount > 0) {
           return res.status(201)
             .json({
+              status: 'success',
               message: 'Order Placed Successfully',
               order: result.rows[0]
             });
         }
       })
       .catch(() => res.status(500)
-        .json({ error: 'Failed to place Order' }));
+        .json({
+          status: 'Failed',
+          error: 'Failed to place Order'
+        }));
   }
 
   /**
@@ -41,25 +45,27 @@ class Orders {
         if (result.rowCount === 0) {
           return res.status(200)
             .json({
+              status: 'success',
               message: 'No Orders Available',
               order: []
             });
         }
         return res.status(200)
           .json({
+            status: 'success',
             message: 'All Order Selected',
             order: result.rows
           });
       })
       .catch(() => res.status(500)
         .json({
-          status: 'error',
+          status: 'Failed',
           error: 'Failed'
         }));
   }
 
   /**
-   * This function get all orders
+   * This function get a specific order
    * @param {object} req - the request file.
    * @param {object} res - The response file.
    * @returns {object} Returns an order information.
@@ -70,55 +76,28 @@ class Orders {
         if (result.rowCount === 0) {
           return res.status(404)
             .json({
+              status: 'Failed',
               error: 'Order does not exist',
               order: []
             });
         }
         return res.status(200)
           .json({
+            status: 'success',
             message: 'Order Selected Successfully',
             order: result.rows[0]
           });
       })
       .catch(() => res.status(500)
         .json({
-          status: 'error',
-          error: 'Failed to load Order'
-        }));
-  }
-
-  /**
-   * This function get the order history of a user
-   * @param {object} req - the request file.
-   * @param {object} res - The response file.
-   * @returns {object} Returns the order information.
-   */
-  userGetAOrderHistory(req, res) {
-    ordersModel.userGetAOrderHistory(req.params.id)
-      .then((result) => {
-        if (result.rowCount === 0) {
-          return res.status(200)
-            .json({
-              message: 'No Order History Available for this User',
-              order: []
-            });
-        }
-        return res.status(200)
-          .json({
-            message: 'Order History Successful',
-            order: result.rows
-          });
-      })
-      .catch(() => res.status(500)
-        .json({
-          status: 'error',
+          status: 'Failed',
           error: 'Failed to load Order'
         }));
   }
 
 
   /**
-   * This function get the order history of a user
+   * This function edit the order status of an order
    * @param {object} req - the request file.
    * @param {object} res - The response file.
    * @returns {object} Returns the order information.
@@ -130,6 +109,7 @@ class Orders {
         if (result.rowCount > 0) {
           return res.status(200)
             .json({
+              status: 'success',
               message: 'Order Status Updated Successfully',
               order: result.rows[0]
             });
@@ -137,9 +117,41 @@ class Orders {
       })
       .catch(() => res.status(500)
         .json({
-          status: 'error',
+          status: 'Failed',
           error: 'Failed to load Order'
         }));
+  }
+
+  /**
+   * This function get the order history of a particular status
+   * @param {object} req - the request file.
+   * @param {object} res - The response file.
+   * @returns {object} Returns the order information.
+   */
+  getASpecificHistory(req, res) {
+    ordersModel.getASpecificHistory(req.params.statusType.toLowerCase())
+      .then((result) => {
+        if (result.rowCount > 0) {
+          return res.status(200)
+            .json({
+              status: 'success',
+              message: `${req.params.statusType} History successfully selected`,
+              order: result.rows[0]
+            });
+        }
+        return res.status(200)
+          .json({
+            status: 'success',
+            message: 'No Order History Available',
+            order: []
+          });
+      }).catch(() => {
+        res.status(500)
+          .json({
+            status: 'Failed',
+            error: 'Failed to Get order History'
+          });
+      });
   }
 }
 

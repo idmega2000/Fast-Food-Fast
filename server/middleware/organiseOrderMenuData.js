@@ -38,6 +38,7 @@ const organiseEachMenu = (
         newARrayData.push({
           menu_id: menuId,
           quantity: aMenuQuantity,
+          menu_name: menuName,
           a_menu_price: menuPrice,
           all_menu_price: (aMenuQuantity * menuPrice)
         });
@@ -73,7 +74,7 @@ const organiseEachMenu = (
      * @returns {object} Returns status code and error messages if error
      */
 const organiseOrderedMenuList = (req, res, next) => {
-  const menuItmes = req.body.MenuCart;
+  const menuItmes = req.body.menuCart;
   const count = 0;
   const newARrayData = [];
   const menuTPrice = 0;
