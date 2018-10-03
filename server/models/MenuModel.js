@@ -6,7 +6,7 @@ import DbConnect from './DbConnect';
  */
 class MenuModel extends DbConnect {
   /**
-       * This function add user data into the database
+       * This function adds a menu to the database
        * @param {object} data - the req.body object .
        * @returns {Promise} Returns the queried data .
        */
@@ -23,7 +23,7 @@ class MenuModel extends DbConnect {
   }
 
   /**
-       * This function add user data into the database
+       * This function gets all menu from database
        * @returns {Promise} Returns all menu available.
        */
   getAllMenu() {

@@ -23,7 +23,7 @@ const tokenAdmin = jwt.sign({
 
 const newOrder = {
   orderPhone: '08045676746',
-  MenuCart: [
+  menuCart: [
     {
       menuId: 1, quantity: 4
     }
@@ -33,7 +33,7 @@ const newOrder = {
 
 const invalidMenuId = {
   orderPhone: '08045676746',
-  MenuCart: [
+  menuCart: [
     {
       menuId: 10, quantity: 4
     }
@@ -44,7 +44,7 @@ const invalidMenuId = {
 
 const orderShortPhoneNumber = {
   orderPhone: '080676746454',
-  MenuCart: [
+  menuCart: [
     {
       menuId: 1, quantity: 1
     }
@@ -71,14 +71,14 @@ const wronStatusFormat = {
 
 const orderLessQuantity = {
   orderPhone: '08045676746',
-  MenuCart: [
+  menuCart: [
     { menuId: 1, quantity: 0.5 }
   ],
   orderAddress: 'fldnjlfmlfkmf',
 };
 const orderbadQuantity = {
   orderPhone: '08045676746',
-  MenuCart: [
+  menuCart: [
     { menuId: 1, quantity: '1to4' }
   ],
   orderAddress: 'jlkjlkjfokljflk',
@@ -86,7 +86,7 @@ const orderbadQuantity = {
 
 const orderBadMenuId = {
   orderPhone: '08045676746',
-  MenuCart: [
+  menuCart: [
     { menuId: [], quantity: 1 }
   ],
   orderAddress: 'jofkjmlmdflkmfk',
@@ -94,26 +94,26 @@ const orderBadMenuId = {
 
 const orderStringMenuId = {
   orderPhone: '08045676746',
-  MenuCart: [
+  menuCart: [
     { menuId: 'hkjdhkjd', quantity: 1 }
   ],
   orderAddress: 'jofkjmlmdflkmfk',
 };
 const orderEmptyMenuCart = {
   orderPhone: '08045676746',
-  MenuCart: '',
+  menuCart: '',
   orderAddress: 'jofkjmlmdflkmfk',
 };
 const whiteSpaceAddress = {
   orderPhone: '08045676746',
-  MenuCart: [
+  menuCart: [
     { menuId: 1, quantity: 1 }
   ],
   orderAddress: '   ',
 };
 const emptyPhone = {
   orderPhone: '',
-  MenuCart: [
+  menuCart: [
     { menuId: 1, quantity: 1 }
   ],
   orderAddress: '   ',
@@ -121,30 +121,30 @@ const emptyPhone = {
 
 const emptyAddress = {
   orderPhone: '08045676746',
-  MenuCart: [
+  menuCart: [
     { menuId: 1, quantity: 1 }
   ],
   orderAddress: '',
 };
 const emptyArrayMenuCart = {
   orderPhone: '08045676746',
-  MenuCart: [],
+  menuCart: [],
   orderAddress: '30 oshole street',
 };
 
 const notArrayMenuCart = {
   orderPhone: '08045676746',
-  MenuCart: 'this is Andela',
+  menuCart: 'this is Andela',
   orderAddress: '30 oshole street',
 };
 const noMenuId = {
   orderPhone: '08045676746',
-  MenuCart: [{ yam: 1, shot: 1 }],
+  menuCart: [{ yam: 1, shot: 1 }],
   orderAddress: '30 oshole street',
 };
 const noQuantity = {
   orderPhone: '08045676746',
-  MenuCart: [{ menuId: 1, shot: 1 }],
+  menuCart: [{ menuId: 1, shot: 1 }],
   orderAddress: '30 oshole street',
 };
 

@@ -92,7 +92,7 @@ class OrdersValidator {
     const nigNumber = (/^[0]\d{10}$/);
     const textInput = req.body;
     const address = textInput.orderAddress;
-    const info = textInput.MenuCart;
+    const info = textInput.menuCart;
     const phone = textInput.orderPhone;
 
     if (Object.keys(textInput).length === 0) {

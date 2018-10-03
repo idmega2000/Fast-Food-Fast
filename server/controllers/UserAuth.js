@@ -10,7 +10,7 @@ const authModel = new AuthModel();
  */
 class UserAuth {
   /**
-     * This function register a new user
+     * This function login new user
      * @param {object} req - the request object.
      * @param {object} res - The response object.
      * @returns {object} Returns success message and jwt token.
