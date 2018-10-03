@@ -2,19 +2,21 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import DbConnect from './models/DbConnect';
-import allRouter from './routes/allRouters';
+import allRouters from './routes/allRouters';
 
 const app = express();
+
 const PORT = process.env.PORT || 3000;
 const dbConnect = new DbConnect();
 dbConnect.connectApp();
 
 app.use(morgan('dev'));
 
-app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: false
 }));
+app.use(bodyParser.json());
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
@@ -32,6 +34,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(allRouter);
-app.listen(PORT, () => console.log(`Listening on Port ${PORT}`));
+app.use(allRouters);
+app.listen(PORT);
 export default app;

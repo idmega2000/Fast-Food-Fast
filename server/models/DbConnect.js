@@ -1,13 +1,13 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 import events from 'events';
+import bcrypt from 'bcrypt';
 
 dotenv.config();
-
 const createTable = `
 
 CREATE TABLE IF NOT EXISTS users 
-(user_id SERIAL PRIMARY KEY NOT NULL, 
+(user_id SERIAL PRIMARY KEY, 
     user_email VARCHAR NOT NULL UNIQUE, 
     user_password VARCHAR NOT NULL,
     user_role VARCHAR NOT NULL DEFAULT 'user',
@@ -15,27 +15,29 @@ CREATE TABLE IF NOT EXISTS users
     user_address VARCHAR, 
     user_phone VARCHAR UNIQUE, 
     user_image VARCHAR);
+    
+CREATE TABLE IF NOT EXISTS menu
+    (menu_id SERIAL PRIMARY KEY,
+    menu_name VARCHAR,
+    menu_price INTEGER,
+    menu_image VARCHAR,
+    menu_category VARCHAR,
+    menu_added_date TIMESTAMP NOT NULL DEFAULT NOW(),
+    menu_edited_date TIMESTAMP,
+    menu_deleted_date TIMESTAMP
 
-CREATE TABLE IF NOT EXISTS meals
-    (meal_id SERIAL PRIMARY KEY NOT NULL,
-    meal_price VARCHAR,
-    meal_image VARCHAR,
-    meal_category VARCHAR,
-    meal_added_date TIMESTAMP NOT NULL DEFAULT NOW()
   ); 
     
 CREATE TABLE IF NOT EXISTS orders(
-    order_id SERIAL PRIMARY KEY NOT NULL,
-    user_id int REFERENCES users(user_id),
-    meal_id int REFERENCES meals(meal_id),
+    order_id SERIAL PRIMARY KEY,
+    user_id int REFERENCES users(user_id) NOT NULL,
+    order_name VARCHAR,
     order_phone VARCHAR,
     order_address VARCHAR,
-    order_data jsonb NOT NULL,
+    order_menu jsonb NOT NULL,
+    order_total_price INT,
     order_added_date TIMESTAMP NOT NULL DEFAULT NOW(),
-    order_status VARCHAR DEFAULT 'new',
-    order_accepted_time TIMESTAMP DEFAULT NULL,
-    order_decline_time TIMESTAMP DEFAULT NULL,
-    order_completed_time TIMESTAMP DEFAULT NULL
+    order_status VARCHAR DEFAULT 'new'
 );`;
 export const tableCreatedEmitter = new events.EventEmitter();
 let connectionString = '';
@@ -66,11 +68,18 @@ class DbConnect {
   createAllTables() {
     this.pool.query(createTable)
       .then(() => {
-        console.log('Table Created successfully');
+        const adminEmail = process.env.ADMIN_USEREMAIL;
+        const password = process.env.ADMIN_PASSWORD;
+        const hashPassword = bcrypt.hashSync(password, 10);
+        const userRole = 'admin';
+        const sql = `INSERT INTO 
+        users(user_email, user_password, user_role) 
+        VALUES ($1, $2, $3) ON CONFLICT DO NOTHING`;
+        const params = [adminEmail, hashPassword, userRole];
         tableCreatedEmitter.emit('databaseStarted');
-      })
-      .catch((error) => {
-        console.log(error);
+        this.pool.query(sql, params).then(() => {
+
+        });
       });
   }
 
@@ -87,9 +96,6 @@ class DbConnect {
         } else {
           this.createAllTables();
         }
-      })
-      .catch((error) => {
-        console.log(`this is the error ${error}`);
       });
   }
 
@@ -100,12 +106,11 @@ class DbConnect {
      */
   deleteTables() {
     const deleteAllTables = `DROP TABLE IF EXISTS orders;
-     DROP TABLE IF EXISTS meals;
+     DROP TABLE IF EXISTS menu;
       DROP TABLE IF EXISTS users`;
 
     this.pool.query(deleteAllTables)
       .then(() => {
-        console.log('Tables Deleted successfully');
         this.createAllTables();
       });
   }

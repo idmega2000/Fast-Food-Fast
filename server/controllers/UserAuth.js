@@ -10,7 +10,7 @@ const authModel = new AuthModel();
  */
 class UserAuth {
   /**
-     * This function register a new user
+     * This function login new user
      * @param {object} req - the request object.
      * @param {object} res - The response object.
      * @returns {object} Returns success message and jwt token.
@@ -19,11 +19,21 @@ class UserAuth {
     authModel.userSignup(req.body)
       .then((result) => {
         const token = jwt.sign({
-          userName: result.rows[0].user_name
+          userId: result.rows[0].user_id,
+          userRole: result.rows[0].user_role,
+          userEmail: result.rows[0].user_email
         }, process.env.JWT_KEY);
         return res.status(201)
-          .json({ message: 'Registration Successful', token });
-      }).catch(err => res.status(400).json(console.log(err)));
+          .json({
+            status: 'success',
+            message: 'Registration Successful',
+            token
+          });
+      }).catch(() => res.status(500)
+        .json({
+          status: 'Failed',
+          error: 'Registration failed'
+        }));
   }
 
   /**
@@ -36,19 +46,36 @@ class UserAuth {
     authModel.userSignIn(req.body)
       .then((result) => {
         if (result.rowCount === 0) {
-          return res.status(404).json({ error: 'User does not exist!' });
-        } if (bcrypt.compareSync(req.body.userPassword, result.rows[0].user_password)) {
+          return res.status(401)
+            .json({
+              status: 'Failed',
+              error: 'User does not exist!'
+            });
+        } if (bcrypt.compareSync(req.body.userPassword,
+          result.rows[0].user_password)) {
           const token = jwt.sign({
             userId: result.rows[0].user_id,
+            userRole: result.rows[0].user_role,
             userEmail: result.rows[0].user_email
           }, process.env.JWT_KEY);
-          return res.status(200).json({ message: 'Login Successful', token });
-        } 
-          return res.status(400).json({status: 'status', error: 'invalid password' });
-        
+          return res.status(200)
+            .json({
+              status: 'success',
+              message: 'Login Successful',
+              token
+            });
+        }
+        return res.status(401)
+          .json({
+            status: 'Failed',
+            error: 'The Password is invalid'
+          });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        res.status(500).json({
+          status: 'Failed',
+          error: 'Login Fail'
+        });
       });
   }
 }
