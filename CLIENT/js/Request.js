@@ -10,6 +10,8 @@ class Request {
      */
   constructor() {
     this.hostUrl = 'https://fast-food-fast-idris.herokuapp.com/api/v1';
+
+    // this.hostUrl = 'http://localhost:3000/api/v1'; // for test
   }
 
   /**
