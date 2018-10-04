@@ -13,13 +13,31 @@ class MenuValidator {
      */
   addMenuValidator(req, res, next) {
     const textInput = req.body;
-    const whitespace = (/([\s]+)/g);
     const alphnumaOnly = (/^[a-zA-Z0-9 ]*$/);
+    const imageData = req.files[0];
     const name = textInput.menuName;
     const price = textInput.menuPrice;
     const category = textInput.menuCategory;
-    const image = textInput.menuImage;
     const IntPrice = Number(price);
+
+
+    if (imageData) {
+      if (imageData.fieldname !== 'menuImage') {
+        return res.status(400)
+          .json({ error: 'Invalid Image input type' });
+      }
+      if (imageData.mimetype === 'image/png'
+      || imageData.mimetype === 'image/jpeg'
+      || imageData.mimetype === 'image/jpg') {
+      } else {
+        return res.status(400)
+          .json({ error: 'Invalid Image type' });
+      }
+      if (imageData.fileSize > (1024 * 1024 * 1)) {
+        return res.status(400)
+          .json({ error: 'File size should not be more than 1mb' });
+      }
+    }
 
 
     if (!name || !price || !category) {
@@ -27,14 +45,9 @@ class MenuValidator {
         error: 'Please fill all field'
       });
     }
-    if (typeof name !== 'string'
-      || typeof price !== 'string'
-      || typeof category !== 'string') {
-      return res.status(400).json({
-        error: 'Invalid input type'
-      });
-    }
-    if ((name.match(/^\s*$/)) || (price.match(/^\s*$/)) || (category.match(/^\s*$/))) {
+    if ((name.match(/^\s*$/))
+      || (price.match(/^\s*$/))
+      || (category.match(/^\s*$/))) {
       return res.status(400).json({
         error: 'Please Make sure all Input only contain Alphanumeric characters'
       });
@@ -93,23 +106,6 @@ class MenuValidator {
           status: 'Failed',
           error: 'Price can only be integer'
         });
-    }
-
-    if (image) {
-      if (typeof image !== 'string') {
-        return res.status(400).json({
-          status: 'Failed',
-          error: 'Image Link should be a String'
-        });
-      }
-
-      if (image.match(whitespace)) {
-        return res.status(400)
-          .json({
-            status: 'Failed',
-            error: 'White Space is not allowed in Images'
-          });
-      }
     }
     next();
   }

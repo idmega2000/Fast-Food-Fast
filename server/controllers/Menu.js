@@ -14,7 +14,7 @@ class Menu {
      * @returns {object} Returns the posted order information.
      */
   addMenu(req, res) {
-    menuModel.postMenu(req.body)
+    menuModel.postMenu(req)
       .then(result => res.status(201)
         .json({
           status: 'success',
