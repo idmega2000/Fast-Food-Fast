@@ -15,77 +15,84 @@ const newMeal = {
   menuName: 'Dodo and Beans',
   menuPrice: '1000',
   menuCategory: 'intercontenental',
-  menuImage: 'www.andelaimagesforbootcamp.com'
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
+};
+
+const newMealBadImage = {
+  menuName: 'Dodo and Beans',
+  menuPrice: '1000',
+  menuCategory: 'intercontenental',
+  menuImage: 'www.andelaimagesforbootcamp.js'
 };
 
 const emptyMenuName = {
   menuName: '',
   menuPrice: '1000',
   menuCategory: 'intercontenental',
-  menuImage: 'www.andelaimagesforbootcamp.com'
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 const smallNameInput = {
   menuName: 'ba',
   menuPrice: '100000',
   menuCategory: 'intercontenental',
-  menuImage: 'www.andelaimagesforbootcamp.com'
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 const smallCategoryInput = {
   menuName: 'banura',
   menuPrice: '100000',
   menuCategory: 'th',
-  menuImage: 'www.andelaimagesforbootcamp.com'
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 
 const wrongMenuFormat = {
   menuName: [],
   menuPrice: '100000',
   menuCategory: 'intercontenental',
-  menuImage: 'www.andelaimagesforbootcamp.com'
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 const wrongCatInput = {
   menuName: 'chicken and chips',
   menuPrice: '100000',
   menuCategory: '-¬',
-  menuImage: 'www.andelaimagesforbootcamp.com'
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 const wrongNameInput = {
   menuName: '.?',
   menuPrice: '100000',
   menuCategory: '-¬',
-  menuImage: 'www.andelaimagesforbootcamp.com'
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 const emptyCategoryWhitespace = {
   menuName: 'chicken and chips',
   menuPrice: '100',
   menuCategory: '    ',
-  menuImage: 'www.andelaimagesforbootcamp.com'
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 const invalidPrice = {
   menuName: 'chicken and chips',
   menuPrice: 'tobi',
   menuCategory: 'touuu',
-  menuImage: 'www.andelaimagesforbootcamp.com'
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 const longCategoryLength = {
   menuName: 'chicken and chips',
   menuPrice: '100000',
   menuCategory: 'thojdokljdolkjdoknmdkndokndlknjsdkmnmdpmndkmndkj',
-  menuImage: 'www.andelaimagesforbootcamp.com'
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 
 const longNameLength = {
   menuName: 'thojdokljdolkjdoknmdkndokndlknjsdkmnmdpmndkmndkj',
   menuPrice: '100000',
   menuCategory: 'rice and beans',
-  menuImage: 'www.andelaimagesforbootcamp.com'
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 
 const imageWhiteSpace = {
   menuName: 'andela food',
   menuPrice: '1000',
   menuCategory: 'rice and beans',
-  menuImage: 'www.andelaim agesforbootcamp.com'
+  menuImage: 'www.andelaim agesforbootcamp.jpg'
 };
 const imageWrongFormat = {
   menuName: 'andela food',
@@ -98,7 +105,7 @@ const badPrice = {
   menuName: 'andela food',
   menuPrice: '0.1',
   menuCategory: 'rice and beans',
-  menuImage: 'www.andelaim agesforbootcamp.com'
+  menuImage: 'www.andelaim agesforbootcamp.jpg'
 };
 
 
@@ -294,11 +301,22 @@ describe('Add menu Api Test', () => {
           assert.equal(res.body.menu.menu_price, '1000');
           assert.equal(res.body.menu.menu_category, 'intercontenental');
           assert.equal(res.body.menu.menu_image,
-            'www.andelaimagesforbootcamp.com');
+            'www.andelaimagesforbootcamp.jpg');
           done();
         });
     });
-
+  it('should return error when given image with bad format ',
+    (done) => {
+      request.post(`${path}/`)
+        .send(newMealBadImage)
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 400);
+          assert.equal(res.body.error, 'Please upload a valid image');
+          done();
+        });
+    });
   it('should return conflict error when given a menu that already exist ',
     (done) => {
       request.post(`${path}/`)
@@ -314,6 +332,7 @@ describe('Add menu Api Test', () => {
     });
 });
 
+
 describe('Get Available menu Api Test', () => {
   it('should return success when authenticated user access to get all menu',
     (done) => {
@@ -327,7 +346,7 @@ describe('Get Available menu Api Test', () => {
           assert.equal(res.body.menu[0].menu_price, '1000');
           assert.equal(res.body.menu[0].menu_category, 'intercontenental');
           assert.equal(res.body.menu[0].menu_image,
-            'www.andelaimagesforbootcamp.com');
+            'www.andelaimagesforbootcamp.jpg');
           done();
         });
     });

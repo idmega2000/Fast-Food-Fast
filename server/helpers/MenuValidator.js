@@ -1,4 +1,3 @@
-
 /* eslint-disable class-methods-use-this */
 /**
  * Represents Order.
@@ -12,6 +11,7 @@ class MenuValidator {
      * @returns {object} Returns error or move to next middleware if no error
      */
   addMenuValidator(req, res, next) {
+    console.log(req.body);
     const textInput = req.body;
     const whitespace = (/([\s]+)/g);
     const alphnumaOnly = (/^[a-zA-Z0-9 ]*$/);
@@ -95,21 +95,32 @@ class MenuValidator {
         });
     }
 
-    if (image) {
-      if (typeof image !== 'string') {
-        return res.status(400).json({
-          status: 'Failed',
-          error: 'Image Link should be a String'
-        });
-      }
+    if (typeof image !== 'string') {
+      return res.status(400).json({
+        status: 'Failed',
+        error: 'Image Link should be a String'
+      });
+    }
 
-      if (image.match(whitespace)) {
-        return res.status(400)
-          .json({
-            status: 'Failed',
-            error: 'White Space is not allowed in Images'
-          });
-      }
+    if (image.match(whitespace)) {
+      return res.status(400)
+        .json({
+          status: 'Failed',
+          error: 'White Space is not allowed in Images'
+        });
+    }
+    const partOfImage = image.split('.');
+    console.log(partOfImage[partOfImage.length - 1]);
+    if (!(partOfImage[partOfImage.length - 1].toLowerCase() === 'jpg'
+    || partOfImage[partOfImage.length - 1].toLowerCase() === 'jpeg'
+    || partOfImage[partOfImage.length - 1].toLowerCase() === 'png'
+    || partOfImage[partOfImage.length - 1].toLowerCase() === 'git')
+    ) {
+      return res.status(400)
+        .json({
+          status: 'Failed',
+          error: 'Please upload a valid image'
+        });
     }
     next();
   }

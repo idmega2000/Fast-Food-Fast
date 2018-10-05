@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 import swaggerUi from 'swagger-ui-express';
 import authRouter from './authRouter';
 import ordersRouter from './ordersRouter';
@@ -7,11 +8,15 @@ import usersRouter from './usersRouter';
 import statusRouter from './statusRouter';
 import swaggerDocument from '../swagger.json';
 
+
 const allRouters = express.Router();
 allRouters.use('/api-docs',
   swaggerUi.serve,
   swaggerUi
     .setup(swaggerDocument));
+allRouters
+  .use(express
+    .static(path.join(__dirname, '../../CLIENT')));
 allRouters
   .use('/api/v1/menu',
     menuRouter);
