@@ -1,6 +1,4 @@
 
-// this.hostUrl = 'https://fast-food-fast-idris.herokuapp.com/api/v1';
-this.hostUrl = 'http://localhost:3000/api/v1'; // for test
 const emailReg = (/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 const alphaOnly = (/^[a-zA-Z0-9]*$/);
 const signupBtn = document.getElementById('signupBtn');
@@ -11,7 +9,7 @@ const loginBtn = document.getElementById('loginBtn');
 /**
  * Represents the class that handles user authentication.
  */
-class UserAuthentication extends AuthRequest{
+class UserAuthentication {
   /**
      * This function validate the user input and register the user
      * @returns {object} Returns error or the signup credentials.
@@ -125,9 +123,8 @@ class UserAuthentication extends AuthRequest{
       userEmail: email,
       userPassword: password
     };
-    console.log(payload);
     loader.style.display = 'flex';
-    this.post(uDrl, payload)
+    this.authPost(uDrl, payload)
       .then((res) => {
         if (res.error) {
           errorHandle.innerHTML = res.error;
@@ -142,13 +139,13 @@ class UserAuthentication extends AuthRequest{
             loader.style.display = 'flex';
             location.href = 'fastfood.html';
           },
-          2000);
+          1000);
         } else {
           setTimeout(() => {
             loader.style.display = 'flex';
             location.href = './admin/all-food.html';
           },
-          2000);
+          1000);
         }
       });
   }
@@ -160,7 +157,7 @@ class UserAuthentication extends AuthRequest{
        * @returns {Promise} Returns the information from the endpoint.
        */
   authPost(uDir, payload) {
-    const url = `${this.hostUrl}${uDir}`;
+    const url = `${hostUrl}${uDir}`;
     return fetch(url, {
       method: 'post',
       headers: {
@@ -170,9 +167,20 @@ class UserAuthentication extends AuthRequest{
       body: JSON.stringify(payload)
     }).then(res => res.json());
   }
+
+  /**
+     * This function checks if login is user or admin
+     * @param {string} error - error
+     * @returns {error} Returns error or the signup credentials.
+     */
+  displayError(error) {
+    errorHandle.innerHTML = error;
+    return false;
+  }
 }
 
 const authentication = new UserAuthentication();
+// authentication.checkToken()
 
 if (signupBtn) {
   signupBtn.onclick = () => {

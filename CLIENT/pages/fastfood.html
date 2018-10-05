@@ -8,6 +8,8 @@
     <meta name="keywords" content="Fast-Food-Fast, order for your food, we deliver food">
     <meta name="author" content="Idris Kelani">
     <title> Fast-Food-Fast</title>
+    <script type="text/javascript" src="../js/jwt-decode.min.js"></script>
+    <script type="text/javascript" src="../js/private.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/headers.css">
@@ -46,7 +48,7 @@
                                     <a href="fastfood.html">Fast Food</a>
                                     <a href="user-order-history.html">Order History</a>
                                     <a href="#">Profile</a>
-                                    <a href="login.html">Logout</a>
+                                    <a class="logout-btn" href="javascript:void(0);" onclick="loggoutUser();">Logout</a>
                                 </div>
                             </li>
                         </ul>
@@ -59,8 +61,12 @@
             <a href="fastfood.html">Fast Food</a>
             <a href="user-order-history.html">Order History</a>
             <a href="#">Profile</a>
-            <a href="login.html">Logout</a>
+            <a id="logoutBtn" class="logout-btn" href="login.html">Logout</a>
         </section>
+        <div id="loaderDiv">
+            <div id="loaderTop"></div>
+            <div class="loader"></div>
+        </div>
         <div class="main-body">
             <div class="search-wrapper container">
                 <div class="search-body">
@@ -111,149 +117,8 @@
                 </div>
 
             </div>
-            <div class="container">
-                <div class="order-meals">
-                    <div class="row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
+            <div class="container main-body-container">
 
-                            </div>
-                            <div>
-                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div>
-                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div>
-                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-meals">
-                    <div class="row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div>
-                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div>
-                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div>
-
-                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-meals">
-                    <div class="row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div>
-                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div>
-                                <button id="orderBtn" class="order-btn modal-btn">Order</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row col-4 order-a-meal check-border">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div>
-                                <button id="orderBtn" class="order-btn modal-btn">Add to Cart</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <footer id="mainfooter" class="login-footer">
@@ -266,5 +131,8 @@
 </body>
 <script type="text/javascript" src="../js/default.js"></script>
 <script type="text/javascript" src="../js/modal.js"></script>
+<script type="text/javascript" src="../js/userMenu.js"></script>
+
+
 
 </html>

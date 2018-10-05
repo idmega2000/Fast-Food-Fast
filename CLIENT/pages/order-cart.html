@@ -8,6 +8,8 @@
     <meta name="keywords" content="Fast-Food-Fast, order for your food, we deliver food">
     <meta name="author" content="Idris Kelani">
     <title> Fast-Food-Fast</title>
+    <script type="text/javascript" src="../js/jwt-decode.min.js"></script>
+    <script type="text/javascript" src="../js/private.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/headers.css">
@@ -44,7 +46,7 @@
                                     <a href="fastfood.html">Fast Food</a>
                                     <a href="user-order-history.html">Order History</a>
                                     <a href="#">Profile</a>
-                                    <a href="login.html">Logout</a>
+                                    <a class="logout-btn" href="login.html" href="javascript:void(0);" onclick="loggoutUser();">Logout</a>
                                 </div>
                             </li>
                         </ul>
@@ -82,7 +84,7 @@
             <a href="fastfood.html">Fast Food</a>
             <a href="user-order-history.html">Order History</a>
             <a href="#">Profile</a>
-            <a href="login.html">Logout</a>
+            <a class="logout-btn" href="login.html" href="javascript:void(0);" onclick="loggoutUser();" >Logout</a>
         </section>
         <div class="main-body centerdivh cart-page">
             <h1>Order Cart</h1>
@@ -93,7 +95,7 @@
                     <tr class="table-title">
                         <th>Date</th>
                         <th>Order Id</th>
-                        <th> Food Name</th>
+                        <th> Categor</th>
                         <th> Plates</th>
                         <th> Price</th>
                         <th> Status</th>
@@ -275,8 +277,6 @@
                     </table>
                     <button id="delAOrder" class="comp-booking-btn">complete</button>
                     <button id="canBookBtn" class="comp-booking-btn">cancel</button>
-             
-
             </div>
         </div>
         <!--table ends-->
@@ -290,5 +290,6 @@
 </body>
 <script type="text/javascript" src="../js/default.js"></script>
 <script type="text/javascript" src="../js/modal.js"></script>
+<script type="text/javascript" src="../js/private.js"></script>
 
 </html>

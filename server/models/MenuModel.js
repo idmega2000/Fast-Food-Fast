@@ -14,7 +14,7 @@ class MenuModel extends DbConnect {
     const name = data.menuName;
     const price = data.menuPrice;
     const category = data.menuCategory;
-    const image = data.menuImage;
+    const image = data.menuImage || 'https://res.cloudinary.com/dr4yibvoq/image/upload/v1539037405/defaultimage.png';
     const sql = `INSERT INTO 
         menu(menu_name, menu_price, menu_category, menu_image) 
         VALUES ($1, $2, $3, $4) RETURNING *`;
