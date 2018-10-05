@@ -14,7 +14,7 @@ class Orders {
      * @param {object} res - The response file.
      * @returns {object} Returns the posted order information.
      */
-  postAnOrder(req, res) {
+  addOrder(req, res) {
     ordersModel.placeOrder(req)
       .then((result) => {
         if (result.rowCount > 0) {
@@ -70,7 +70,7 @@ class Orders {
    * @param {object} res - The response file.
    * @returns {object} Returns an order information.
    */
-  getASpecificOrders(req, res) {
+  getOrder(req, res) {
     ordersModel.getASpecificOrders(req.params.id)
       .then((result) => {
         if (result.rowCount === 0) {
@@ -102,7 +102,7 @@ class Orders {
    * @param {object} res - The response file.
    * @returns {object} Returns the order information.
    */
-  putAnOrderStatus(req, res) {
+  updateOrderStatus(req, res) {
     ordersModel.updateAnOrderStatus(req.params.id,
       req.body.orderStatus.toLowerCase())
       .then((result) => {
@@ -128,7 +128,7 @@ class Orders {
    * @param {object} res - The response file.
    * @returns {object} Returns the order information.
    */
-  getASpecificHistory(req, res) {
+  getOrderHistory(req, res) {
     ordersModel.getASpecificHistory(req.params.statusType.toLowerCase())
       .then((result) => {
         if (result.rowCount > 0) {

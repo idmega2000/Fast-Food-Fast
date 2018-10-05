@@ -19,7 +19,7 @@ ordersRouter
     ordersValidator
       .placeOrderValidator,
     organiseOrderMenuData,
-    orders.postAnOrder);
+    orders.addOrder);
 
 ordersRouter
   .get('/',
@@ -34,7 +34,7 @@ ordersRouter
       .verifyAdminToken,
     ordersValidator
       .orderIdValidator,
-    orders.getASpecificOrders);
+    orders.getOrder);
 
 ordersRouter
   .put('/:id',
@@ -45,6 +45,6 @@ ordersRouter
     ordersValidator
       .orderIdValidator,
     checkOrderExist,
-    orders.putAnOrderStatus);
+    orders.updateOrderStatus);
 
 export default ordersRouter;

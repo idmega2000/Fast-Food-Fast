@@ -1,3 +1,6 @@
+
+// this.hostUrl = 'https://fast-food-fast-idris.herokuapp.com/api/v1';
+this.hostUrl = 'http://localhost:3000/api/v1'; // for test
 const emailReg = (/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 const alphaOnly = (/^[a-zA-Z0-9]*$/);
 const signupBtn = document.getElementById('signupBtn');
@@ -8,7 +11,7 @@ const loginBtn = document.getElementById('loginBtn');
 /**
  * Represents the class that handles user authentication.
  */
-class UserAuthentication extends Request {
+class UserAuthentication extends AuthRequest{
   /**
      * This function validate the user input and register the user
      * @returns {object} Returns error or the signup credentials.
@@ -60,7 +63,7 @@ class UserAuthentication extends Request {
       userPassword: password
     };
     loader.style.display = 'flex';
-    this.post(uDrl, payload)
+    this.authPost(uDrl, payload)
       .then((res) => {
         if (res.error) {
           errorHandle.innerHTML = res.error;
@@ -122,6 +125,7 @@ class UserAuthentication extends Request {
       userEmail: email,
       userPassword: password
     };
+    console.log(payload);
     loader.style.display = 'flex';
     this.post(uDrl, payload)
       .then((res) => {
@@ -148,9 +152,28 @@ class UserAuthentication extends Request {
         }
       });
   }
+
+  /**
+       * This function post data to the endpoint
+       * @param {object} uDir - the user directory to access.
+       * @param {object} payload - The response object.
+       * @returns {Promise} Returns the information from the endpoint.
+       */
+  authPost(uDir, payload) {
+    const url = `${this.hostUrl}${uDir}`;
+    return fetch(url, {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }).then(res => res.json());
+  }
 }
 
 const authentication = new UserAuthentication();
+
 if (signupBtn) {
   signupBtn.onclick = () => {
     authentication.authSignup();
@@ -159,7 +182,6 @@ if (signupBtn) {
 
 if (loginBtn) {
   loginBtn.onclick = () => {
-    alert('i am in the click');
     authentication.authLogin();
   };
 }

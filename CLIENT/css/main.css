@@ -449,6 +449,10 @@ footer p,footer a{
     top: 0
 }
 
+.addBodyDiv{
+    min-height: 95vh;
+}
+
 @media screen and (min-width: 600px) and (max-width: 900px) {
 	.brand-act-cov{
 		float:none;

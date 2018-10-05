@@ -16,6 +16,6 @@ statusRouter
       .verifyAdminToken,
     ordersValidator
       .statusHistoryValidator,
-    orders.getASpecificHistory);
+    orders.getOrderHistory);
 
 export default statusRouter;

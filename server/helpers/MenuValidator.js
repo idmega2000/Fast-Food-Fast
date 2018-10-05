@@ -1,4 +1,3 @@
-
 /* eslint-disable class-methods-use-this */
 /**
  * Represents Order.
@@ -12,32 +11,15 @@ class MenuValidator {
      * @returns {object} Returns error or move to next middleware if no error
      */
   addMenuValidator(req, res, next) {
+    console.log(req.body);
     const textInput = req.body;
+    const whitespace = (/([\s]+)/g);
     const alphnumaOnly = (/^[a-zA-Z0-9 ]*$/);
-    const imageData = req.files[0];
     const name = textInput.menuName;
     const price = textInput.menuPrice;
     const category = textInput.menuCategory;
+    const image = textInput.menuImage;
     const IntPrice = Number(price);
-
-
-    if (imageData) {
-      if (imageData.fieldname !== 'menuImage') {
-        return res.status(400)
-          .json({ error: 'Invalid Image input type' });
-      }
-      if (imageData.mimetype === 'image/png'
-      || imageData.mimetype === 'image/jpeg'
-      || imageData.mimetype === 'image/jpg') {
-      } else {
-        return res.status(400)
-          .json({ error: 'Invalid Image type' });
-      }
-      if (imageData.fileSize > (1024 * 1024 * 1)) {
-        return res.status(400)
-          .json({ error: 'File size should not be more than 1mb' });
-      }
-    }
 
 
     if (!name || !price || !category) {
@@ -45,9 +27,14 @@ class MenuValidator {
         error: 'Please fill all field'
       });
     }
-    if ((name.match(/^\s*$/))
-      || (price.match(/^\s*$/))
-      || (category.match(/^\s*$/))) {
+    if (typeof name !== 'string'
+      || typeof price !== 'string'
+      || typeof category !== 'string') {
+      return res.status(400).json({
+        error: 'Invalid input type'
+      });
+    }
+    if ((name.match(/^\s*$/)) || (price.match(/^\s*$/)) || (category.match(/^\s*$/))) {
       return res.status(400).json({
         error: 'Please Make sure all Input only contain Alphanumeric characters'
       });
@@ -105,6 +92,34 @@ class MenuValidator {
         .json({
           status: 'Failed',
           error: 'Price can only be integer'
+        });
+    }
+
+    if (typeof image !== 'string') {
+      return res.status(400).json({
+        status: 'Failed',
+        error: 'Image Link should be a String'
+      });
+    }
+
+    if (image.match(whitespace)) {
+      return res.status(400)
+        .json({
+          status: 'Failed',
+          error: 'White Space is not allowed in Images'
+        });
+    }
+    const partOfImage = image.split('.');
+    console.log(partOfImage[partOfImage.length - 1]);
+    if (!(partOfImage[partOfImage.length - 1].toLowerCase() === 'jpg'
+    || partOfImage[partOfImage.length - 1].toLowerCase() === 'jpeg'
+    || partOfImage[partOfImage.length - 1].toLowerCase() === 'png'
+    || partOfImage[partOfImage.length - 1].toLowerCase() === 'git')
+    ) {
+      return res.status(400)
+        .json({
+          status: 'Failed',
+          error: 'Please upload a valid image'
         });
     }
     next();

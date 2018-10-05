@@ -14,57 +14,98 @@ const token = jwt.sign({
 const newMeal = {
   menuName: 'Dodo and Beans',
   menuPrice: '1000',
-  menuCategory: 'intercontenental'
+  menuCategory: 'intercontenental',
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
+};
+
+const newMealBadImage = {
+  menuName: 'Dodo and Beans',
+  menuPrice: '1000',
+  menuCategory: 'intercontenental',
+  menuImage: 'www.andelaimagesforbootcamp.js'
 };
 
 const emptyMenuName = {
   menuName: '',
   menuPrice: '1000',
-  menuCategory: 'intercontenental'
+  menuCategory: 'intercontenental',
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
+};
+const smallNameInput = {
+  menuName: 'ba',
+  menuPrice: '100000',
+  menuCategory: 'intercontenental',
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 const smallCategoryInput = {
   menuName: 'banura',
   menuPrice: '100000',
-  menuCategory: 'th'
+  menuCategory: 'th',
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 
+const wrongMenuFormat = {
+  menuName: [],
+  menuPrice: '100000',
+  menuCategory: 'intercontenental',
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
+};
 const wrongCatInput = {
   menuName: 'chicken and chips',
   menuPrice: '100000',
-  menuCategory: '-¬'
+  menuCategory: '-¬',
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 const wrongNameInput = {
   menuName: '.?',
   menuPrice: '100000',
-  menuCategory: '-¬'
+  menuCategory: '-¬',
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 const emptyCategoryWhitespace = {
   menuName: 'chicken and chips',
   menuPrice: '100',
-  menuCategory: '    '
+  menuCategory: '    ',
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 const invalidPrice = {
   menuName: 'chicken and chips',
   menuPrice: 'tobi',
-  menuCategory: 'touuu'
+  menuCategory: 'touuu',
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 const longCategoryLength = {
   menuName: 'chicken and chips',
   menuPrice: '100000',
-  menuCategory: 'thojdokljdolkjdoknmdkndokndlknjsdkmnmdpmndkmndkj'
+  menuCategory: 'thojdokljdolkjdoknmdkndokndlknjsdkmnmdpmndkmndkj',
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 
 const longNameLength = {
   menuName: 'thojdokljdolkjdoknmdkndokndlknjsdkmnmdpmndkmndkj',
   menuPrice: '100000',
   menuCategory: 'rice and beans',
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 
+const imageWhiteSpace = {
+  menuName: 'andela food',
+  menuPrice: '1000',
+  menuCategory: 'rice and beans',
+  menuImage: 'www.andelaim agesforbootcamp.jpg'
+};
+const imageWrongFormat = {
+  menuName: 'andela food',
+  menuPrice: '1000',
+  menuCategory: 'rice and beans',
+  menuImage: []
+};
 
 const badPrice = {
   menuName: 'andela food',
   menuPrice: '0.1',
-  menuCategory: 'rice and beans'
+  menuCategory: 'rice and beans',
+  menuImage: 'www.andelaim agesforbootcamp.jpg'
 };
 
 
@@ -73,10 +114,9 @@ describe('Get Available menu Api Test ', () => {
     get all menu and an empty array when no message is available`,
   (done) => {
     request.get(`${path}/`)
-      .set('Accept', 'application/json')
-      .set('Content-Type', 'multipart/form-data')
-      .set('connection', 'keep-alive')
+      .send()
       .set('Authorization', `Bearer ${token}`)
+      .expect('Content-Type', /json/)
       .end((err, res) => {
         assert.equal(res.statusCode, 200);
         assert.equal(res.body.message, 'No menu Available');
@@ -88,11 +128,8 @@ describe('Add menu Api Test', () => {
   it('should return error when given empty Menu Name',
     (done) => {
       request.post(`${path}/`)
+        .send(emptyMenuName)
         .set('Authorization', `Bearer ${token}`)
-        .set('Accept', 'application/json')
-        .set('Content-Type', 'multipart/form-data')
-        .set('connection', 'keep-alive')
-        .field(emptyMenuName)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 400);
@@ -100,15 +137,38 @@ describe('Add menu Api Test', () => {
           done();
         });
     });
+  it('should return error when given a wrong Image format',
+    (done) => {
+      request.post(`${path}/`)
+        .send(imageWrongFormat)
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 400);
+          assert.equal(res.body.error, 'Image Link should be a String');
+          done();
+        });
+    });
+  it('should return error when given short image name',
+    (done) => {
+      request.post(`${path}/`)
+        .send(smallNameInput)
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 400);
+          assert.equal(res.body.error,
+            'menu Name should be three character and above');
+          done();
+        });
+    });
 
   it('should return error when given chategory less than 3',
     (done) => {
       request.post(`${path}/`)
+        .send(smallCategoryInput)
         .set('Authorization', `Bearer ${token}`)
-        .set('Accept', 'application/json')
-        .set('Content-Type', 'multipart/form-data')
-        .set('connection', 'keep-alive')
-        .field(smallCategoryInput)
+        .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 400);
           assert.equal(res.body.error,
@@ -116,14 +176,24 @@ describe('Add menu Api Test', () => {
           done();
         });
     });
+  it('should return error when given wrong menu format',
+    (done) => {
+      request.post(`${path}/`)
+        .send(wrongMenuFormat)
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 400);
+          assert.equal(res.body.error, 'Invalid input type');
+          done();
+        });
+    });
   it('should return error when given a price lee than 1',
     (done) => {
       request.post(`${path}/`)
+        .send(badPrice)
         .set('Authorization', `Bearer ${token}`)
-        .set('Accept', 'application/json')
-        .set('Content-Type', 'multipart/form-data')
-        .set('connection', 'keep-alive')
-        .field(badPrice)
+        .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 400);
           assert.equal(res.body.error, 'Price should be NGN 1 amd above');
@@ -133,11 +203,9 @@ describe('Add menu Api Test', () => {
   it('should return error when given a bad menu category input details',
     (done) => {
       request.post(`${path}/`)
+        .send(wrongCatInput)
         .set('Authorization', `Bearer ${token}`)
-        .set('Accept', 'application/json')
-        .set('Content-Type', 'multipart/form-data')
-        .set('connection', 'keep-alive')
-        .field(wrongCatInput)
+        .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 400);
           assert.equal(res.body.error,
@@ -148,11 +216,9 @@ describe('Add menu Api Test', () => {
   it('should return error when bad menu name format',
     (done) => {
       request.post(`${path}/`)
+        .send(wrongNameInput)
         .set('Authorization', `Bearer ${token}`)
-        .set('Accept', 'application/json')
-        .set('Content-Type', 'multipart/form-data')
-        .set('connection', 'keep-alive')
-        .field(wrongNameInput)
+        .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 400);
           assert.equal(res.body.error,
@@ -163,11 +229,9 @@ describe('Add menu Api Test', () => {
   it('should return error when long category meal input',
     (done) => {
       request.post(`${path}/`)
+        .send(longCategoryLength)
         .set('Authorization', `Bearer ${token}`)
-        .set('Accept', 'application/json')
-        .set('Content-Type', 'multipart/form-data')
-        .set('connection', 'keep-alive')
-        .field(longCategoryLength)
+        .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 400);
           assert.equal(res.body.error,
@@ -178,11 +242,9 @@ describe('Add menu Api Test', () => {
   it('should return error when given long meal name',
     (done) => {
       request.post(`${path}/`)
+        .send(longNameLength)
         .set('Authorization', `Bearer ${token}`)
-        .set('Accept', 'application/json')
-        .set('Content-Type', 'multipart/form-data')
-        .set('connection', 'keep-alive')
-        .field(longNameLength)
+        .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 400);
           assert.equal(res.body.error, 'Menu Name should be less than 40 char');
@@ -192,11 +254,9 @@ describe('Add menu Api Test', () => {
   it('should return error when given empty menu category input',
     (done) => {
       request.post(`${path}/`)
+        .send(emptyCategoryWhitespace)
         .set('Authorization', `Bearer ${token}`)
-        .set('Accept', 'application/json')
-        .set('Content-Type', 'multipart/form-data')
-        .set('connection', 'keep-alive')
-        .field(emptyCategoryWhitespace)
+        .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 400);
           assert.equal(res.body.error,
@@ -204,14 +264,24 @@ describe('Add menu Api Test', () => {
           done();
         });
     });
+  it('should return error when given image with white spaces',
+    (done) => {
+      request.post(`${path}/`)
+        .send(imageWhiteSpace)
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 400);
+          assert.equal(res.body.error, 'White Space is not allowed in Images');
+          done();
+        });
+    });
   it('should return error when given invalid price',
     (done) => {
       request.post(`${path}/`)
+        .send(invalidPrice)
         .set('Authorization', `Bearer ${token}`)
-        .set('Accept', 'application/json')
-        .set('Content-Type', 'multipart/form-data')
-        .set('connection', 'keep-alive')
-        .field(invalidPrice)
+        .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 400);
           assert.equal(res.body.error, 'Price can only be integer');
@@ -221,29 +291,38 @@ describe('Add menu Api Test', () => {
   it('should return success when given valid menu data',
     (done) => {
       request.post(`${path}/`)
+        .send(newMeal)
         .set('Authorization', `Bearer ${token}`)
-        .set('Accept', 'application/json')
-        .set('Content-Type', 'multipart/form-data')
-        .set('connection', 'keep-alive')
-        .field(newMeal)
+        .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 201);
           assert.equal(res.body.message, 'Menu Added Successfully');
           assert.equal(res.body.menu.menu_name, 'Dodo and Beans');
           assert.equal(res.body.menu.menu_price, '1000');
           assert.equal(res.body.menu.menu_category, 'intercontenental');
+          assert.equal(res.body.menu.menu_image,
+            'www.andelaimagesforbootcamp.jpg');
           done();
         });
     });
-
+  it('should return error when given image with bad format ',
+    (done) => {
+      request.post(`${path}/`)
+        .send(newMealBadImage)
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 400);
+          assert.equal(res.body.error, 'Please upload a valid image');
+          done();
+        });
+    });
   it('should return conflict error when given a menu that already exist ',
     (done) => {
       request.post(`${path}/`)
+        .send(newMeal)
         .set('Authorization', `Bearer ${token}`)
-        .set('Accept', 'application/json')
-        .set('Content-Type', 'multipart/form-data')
-        .set('connection', 'keep-alive')
-        .field(newMeal)
+        .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 409);
           assert.equal(res.body.error,
@@ -253,20 +332,21 @@ describe('Add menu Api Test', () => {
     });
 });
 
+
 describe('Get Available menu Api Test', () => {
   it('should return success when authenticated user access to get all menu',
     (done) => {
       request.get(`${path}/`)
+        .send()
         .set('Authorization', `Bearer ${token}`)
-        .set('Accept', 'application/json')
-        .set('Content-Type', 'multipart/form-data')
-        .set('connection', 'keep-alive')
-        .field({})
+        .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 200);
           assert.equal(res.body.menu[0].menu_name, 'Dodo and Beans');
           assert.equal(res.body.menu[0].menu_price, '1000');
           assert.equal(res.body.menu[0].menu_category, 'intercontenental');
+          assert.equal(res.body.menu[0].menu_image,
+            'www.andelaimagesforbootcamp.jpg');
           done();
         });
     });

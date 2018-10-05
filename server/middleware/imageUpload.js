@@ -20,8 +20,8 @@ const imageUpload = (req, res, next) => {
   const fileBuffer = req.files[0].buffer;
   const bitmap = Buffer.from(fileBuffer);
   const fileName = getFileName(req.files[0].originalname);
-  const fileStoreage = folder + fileName;
-  fs.writeFileSync(fileStoreage, bitmap);
+  const fileStorage = folder + fileName;
+  fs.writeFileSync(fileStorage, bitmap);
   req.menuFileName = fileName;
   return next();
 };

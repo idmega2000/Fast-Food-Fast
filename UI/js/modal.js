@@ -63,9 +63,3 @@ window.onclick = (event) => {
 const setRedirect = (input) => {
   window.location.href = input;
 };
-
-/*
-for (let i = 0; i < editBtn.length; i++) {
-    editBtn[i].onclick = setRedirect('edit-fastfood.html');
-}
-*/

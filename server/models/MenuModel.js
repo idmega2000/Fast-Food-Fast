@@ -7,15 +7,14 @@ import DbConnect from './DbConnect';
 class MenuModel extends DbConnect {
   /**
        * This function adds a menu to the database
-       * @param {object} reqData - the req.body object .
+       * @param {object} data - the req.body object .
        * @returns {Promise} Returns the queried data .
        */
-  postMenu(reqData) {
-    const data = reqData.body;
+  postMenu(data) {
     const name = data.menuName;
     const price = data.menuPrice;
     const category = data.menuCategory;
-    const image = reqData.menuFileName;
+    const image = data.menuImage;
     const sql = `INSERT INTO 
         menu(menu_name, menu_price, menu_category, menu_image) 
         VALUES ($1, $2, $3, $4) RETURNING *`;
