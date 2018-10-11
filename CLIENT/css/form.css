@@ -69,7 +69,7 @@
         padding-left: 2px;
     }
     .admin-input-sel{
-        width: 252px;
+        width: 257px;
         border-radius: 4px;
         height: 30px;
         margin-top: 3px;
@@ -98,6 +98,14 @@
         height: 140px;
         width: 100%;
         background-image: url("../img/delicious-buffet-foodss.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .search-wrapper-admin{
+        height: 140px;
+        width: 100%;
+        background-image: url("../../img/delicious-buffet-foodss.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -131,7 +139,7 @@
         z-index: 1;
         left: 10px;
         top: -25px;
-        color: rgba(80, 70, 70, 0.5);
+        color: rgba(34, 31, 31, 0.878);
         width: 0;
     }
 
@@ -245,14 +253,20 @@
     /*create new food page form*/
     .create-cont-wrapper{
         width: 70%;
-        background: rgba(169, 144, 147, 0.9);
-        height: 600px;
+        background:rgba(45, 37, 37, 0.81);
+        height: 500px;
         margin: 50px;
+    }
+    .add-header-text{
+        color: rgb(250, 250, 250);
+        text-align: center;
     }
     .left-ad{
         float: left;
-        margin: 50px;
-
+        margin: 30px;
+        margin-left: 10px;
+        margin-right: 50px;
+        margin-top: 30px;
     }
     .right-ad{
         float: left;
@@ -260,12 +274,12 @@
         margin-top: 70px;
     }
     .upload-img-box{
-        border: 1px solid brown;
+        display: flex;
+        border: 1px solid white;
         border-radius: 5px;
-        width: 200px;
         height: 150px;
         min-height: 100px;
-        min-width: 140px;
+        min-width: 190px;
     }
     .uploaded-image{
         margin:auto; 
@@ -273,16 +287,36 @@
         display:block;
         text-align: center;
     }
+    #uploaded-img-holder{
+        width: inherit;
+        height: inherit;
+    }
+    .upload-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        margin-top: 20px;
+      }
     .choose-img-btn{
-        width: 80px;
-        margin-top: 30px;
-        border: none;
-        outline: none;
         cursor: pointer;
+        outline: none;
+        border: 2px solid gray;
+        color: gray;
+        background-color: white;
+        padding: 8px 15px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        width: 100px;
+    }
+    .add-span{
+        color: white;
     }
     .create-food-btn{
         width: 170px;
         height: 40px;
+        font-weight: 600;
+        font-size: 20px;
         border-radius: 6px;
         background: rgb(226, 0, 30);
         color: white;
@@ -381,17 +415,9 @@
     .is-accepted{
         cursor: pointer;
     }
-    .error-div{
-        margin-left: 30%;
-    }
     .error-hander{
         color: rgb(226, 0, 30);
         text-align: center;  
-        margin-right: auto;
-    }
-    #addHeaderTest{
-        color: rgb(226, 0, 30);
-        text-align: center;
     }
 
     @media screen and (min-width: 600px) and (max-width: 900px) {
@@ -452,10 +478,14 @@
         .user-input-small{
             width: 200px;
         }
+        .admin-input-sel{
+            width: 207px;
+        }
         .left-ad{
             float: none;
             margin-left: auto;
             margin-right: auto;
+            text-align: center;
         }
         .right-ad{
             float: none;

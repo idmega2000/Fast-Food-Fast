@@ -94,34 +94,34 @@ class MenuValidator {
           error: 'Price can only be integer'
         });
     }
-
-    if (typeof image !== 'string') {
-      return res.status(400).json({
-        status: 'Failed',
-        error: 'Image Link should be a String'
-      });
-    }
-
-    if (image.match(whitespace)) {
-      return res.status(400)
-        .json({
+    if (image) {
+      if (typeof image !== 'string') {
+        return res.status(400).json({
           status: 'Failed',
-          error: 'White Space is not allowed in Images'
+          error: 'Image Link should be a String'
         });
+      }
+      if (image.match(whitespace)) {
+        return res.status(400)
+          .json({
+            status: 'Failed',
+            error: 'White Space is not allowed in Images'
+          });
+      }
+      const partOfImage = image.split('.');
+      if (!(partOfImage[partOfImage.length - 1].toLowerCase() === 'jpg'
+      || partOfImage[partOfImage.length - 1].toLowerCase() === 'jpeg'
+      || partOfImage[partOfImage.length - 1].toLowerCase() === 'png'
+      || partOfImage[partOfImage.length - 1].toLowerCase() === 'git')
+      ) {
+        return res.status(400)
+          .json({
+            status: 'Failed',
+            error: 'Please upload a valid image'
+          });
+      }
     }
-    const partOfImage = image.split('.');
-    console.log(partOfImage[partOfImage.length - 1]);
-    if (!(partOfImage[partOfImage.length - 1].toLowerCase() === 'jpg'
-    || partOfImage[partOfImage.length - 1].toLowerCase() === 'jpeg'
-    || partOfImage[partOfImage.length - 1].toLowerCase() === 'png'
-    || partOfImage[partOfImage.length - 1].toLowerCase() === 'git')
-    ) {
-      return res.status(400)
-        .json({
-          status: 'Failed',
-          error: 'Please upload a valid image'
-        });
-    }
+
     next();
   }
 }

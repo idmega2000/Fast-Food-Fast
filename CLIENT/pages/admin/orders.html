@@ -36,10 +36,11 @@
                                     <span style="font-size: 15px;">&#9660;</span>
                                 </a>
                                 <div class="dropdown-content">
-                                    <a href="all-food.html"> All Fast Food</a>
-                                    <a href="orders.html">Orders</a>
-                                    <a href="add-fastfood.html">Create New Food</a>
-                                    <a href="login.html">Logout</a>
+                                    <a href="all-food.html"> All Fast Menu</a>
+                                    <a href="orders.html">Orders History</a>
+                                    <a href="add-fastfood.html">Create Menu</a>
+                                    <a href="../fastfood.html">User Page</a>
+                                    <a class="logout-btn" href="javascript:void(0);" onclick="loggoutUser();" >Logout</a>
                                 </div>
                             </li>
 
@@ -49,11 +50,11 @@
                 </div>
         </header>
         <section id="slide-nav">
-            <a href="all-food.html"> All Fast Food</a>
-            <a href="orders.html">Orders</a>
-            <a href="add-fastfood.html">Create New Food</a>
-
-            <a href="login.html">Logout</a>
+            <a href="all-food.html"> All Menu</a>
+            <a href="orders.html">Orders History</a>
+            <a href="add-fastfood.html">Create New Menu</a>
+            <a href="../fastfood.html">User Page</a>
+            <a class="logout-btn" href="javascript:void(0);" onclick="loggoutUser();" >Logout</a>
         </section>
         <div class="main-body centerdivh">
             <div id="myModal" class="modal">
@@ -89,7 +90,7 @@
                 <table class="order-table">
                     <tr class="table-title">
                         <th>Order Id</th>
-                        <th> Food Name</th>
+                        <th> Phone Number</th>
                         <th> Plates</th>
                         <th> Price</th>
                         <th>Address</th>
@@ -99,7 +100,7 @@
 
                     <tr class="table-content">
                         <td>36756</td>
-                        <td>Rice and Chicken</td>
+                        <td>08028022343</td>
                         <td>1</td>
                         <td>NGN 1,000</td>
                         <td>28, ishoko street, lagos</td>
@@ -114,7 +115,7 @@
                     </tr>
                     <tr class="table-content">
                         <td>56756</td>
-                        <td>Rice and Chicken</td>
+                        <td>08025468043</td>
                         <td>1</td>
                         <td>NGN 1,000</td>
                         <td>28, ishoko street, lagos</td>
@@ -131,7 +132,7 @@
                     </tr>
                     <tr class="table-content">
                         <td>93026</td>
-                        <td>Rice and Chicken</td>
+                        <td>08028022343</td>
                         <td>1</td>
                         <td>NGN 1,000</td>
                         <td>28, ishoko street, lagos</td>
@@ -146,7 +147,7 @@
                     </tr>
                     <tr class="table-content">
                         <td>16857</td>
-                        <td>Eba and Okro</td>
+                        <td>08028022343</td>
                         <td>1</td>
                         <td>NGN 1,000</td>
                         <td>28, ishoko street, lagos</td>
@@ -162,7 +163,7 @@
                     </tr>
                     <tr class="table-content">
                         <td>35956</td>
-                        <td>Rice and Beans</td>
+                        <td>08028022343</td>
                         <td>1</td>
                         <td>NGN 1,000</td>
                         <td>28, ishoko street, lagos</td>
@@ -201,5 +202,6 @@
 </body>
 <script type="text/javascript" src="../../js/default.js"></script>
 <script type="text/javascript" src="../../js/utils.js"></script>
+<script type="text/javascript" src="../../js/admin-private.js"></script>
 
 </html>

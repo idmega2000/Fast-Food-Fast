@@ -35,6 +35,7 @@ class OrdersModel extends DbConnect {
       orderedMenuItems,
       totalMenuPrice
     ];
+    console.log(params);
     return this.pool.query(sql, params);
   }
 

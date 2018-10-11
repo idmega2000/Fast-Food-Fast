@@ -8,6 +8,8 @@
     <meta name="keywords" content="Fast-Food-Fast, order for your food, we deliver food">
     <meta name="author" content="Idris Kelani">
     <title> Fast-Food-Fast</title>
+    <script type="text/javascript" src="../../js/jwt-decode.min.js"></script>
+<script type="text/javascript" src="../../js/admin-private.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../../css/headers.css">
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
@@ -37,10 +39,11 @@
                                     <span style="font-size: 15px;">&#9660;</span>
                                 </a>
                                 <div class="dropdown-content">
-                                    <a href="all-food.html"> All Fast Food</a>
-                                    <a href="orders.html">Orders</a>
-                                    <a href="add-fastfood.html">Create New Food</a>
-                                    <a href="login.html">Logout</a>
+                                    <a href="all-food.html"> All Menu</a>
+                                    <a href="orders.html">Orders History</a>
+                                    <a href="add-fastfood.html">Create New Menu</a>
+                                    <a href="../fastfood.html">User Page</a>
+                                    <a class="logout-btn" href="javascript:void(0);" onclick="loggoutUser();" >Logout</a>
                                 </div>
                             </li>
 
@@ -55,7 +58,8 @@
             <a href="all-food.html"> All Fast Food</a>
             <a href="orders.html">Orders</a>
             <a href="add-fastfood.html">Create New Food</a>
-            <a href="login.html">Logout</a>
+            <a href="../fastfood.html">User Page</a>
+            <a class="logout-btn" href="javascript:void(0);" onclick="loggoutUser();" >Logout</a>
         </section>
         <div id="loaderDiv">
                 <div id="loaderTop"></div>
@@ -64,46 +68,53 @@
         <div class="main-body centerdiv addBodyDiv">
             <div class="centerdiv create-cont-wrapper">
                 <form onsubmit="return false;">
-                    <h1 id="addHeaderTest">ADD NEW MENU</h1>
+                    <h1 class="add-header-text">ADD NEW MENU</h1>
                     <div class="input-div">
-                        <div class="error-div">
+                        <div class="error-div centerdiv">
                             <span id="signUpErrorHandler" class="error-hander"></span>
                         </div>
                     </div>
                     <div class="left-ad">
                         <div class="input-div">
-                            <span>Menu name</span>
-                            <span class="is-required">*</span>
+                            <span class="add-span">Menu name</span>
+                            <span class="is-required add-span">*</span>
                         </div>
-                        <input class="admin-input user-input-small" id="menuName" type="text" placeholder="&#x1F372;  Enter Food Name" required/>
+                        <input class="admin-input user-input-small" id="menuName" type="text" placeholder="&#x1F372;  Enter Food Name"/>
                         <div class="input-div">
-                            <span>Menu Price</span>
-                            <span class="is-required">*</span>
+                            <span class="add-span" >Menu Price</span>
+                            <span class="is-required add-span">*</span>
                         </div>
-                        <input class="admin-input user-input-small" id="menuPrice" type="text" ; placeholder="&#8358;  Enter Food Price" required/>
+                        <input class="admin-input user-input-small" id="menuPrice" type="text" ; placeholder="&#8358;  Enter Food Price"/>
                         <div class="input-div">
-                            <span>Categories</span>
-                            <span class="is-required">*</span>
+                            <span class="add-span">Categories</span>
+                            <span class="is-required add-span">*</span>
                         </div>
-                        <select id="menuCategory" class="admin-input-sel user-input-small" required>
+                        <select id="menuCategory" class="admin-input-sel">
                             <option value="0">Select Category:</option>
-                            <option value="African Dishe">African Dishes</option>
+                            <option value="African Dishes">African Dishes</option>
                             <option value="Intercontinental dishes">Intercontinental dishes</option>
                             <option value="Drinks">Drinks</option>
                             <option value="Chinese Food">Chinese Food</option>
                             <option value="Asian Food">Asian Food</option>
                         </select>
                     </div>
-                    <div class="right-ad ">
-                        <div class="upload-img-box ">
+                    <div class="right-ad">
+                        <div class="centerdiv upload-img-box" >
+                                <img id="uploaded-img-holder"  />
 
                         </div>
-                        <div class="centerdiv">
-                            <input id="menuImage" class="choose-img-btn" type="file" accept="image/*" required/>
+                        <div class="centerdiv upload-wrapper">
+                            <input id="menuImage" class="choose-img-btn" type="file" accept="image/*" onchange="loadFile(event)"/>
                         </div>
+                        <script>
+                                var loadFile = function(event) {
+                                  var output = document.getElementById('uploaded-img-holder');
+                                  output.src = URL.createObjectURL(event.target.files[0]);
+                                };
+                              </script>
                     </div>
                     <div class="create-food-btn-div centerdiv">
-                        <button id="addMenuBtn" class="create-food-btn">Create Fast Food</button>
+                        <button id="addMenuBtn" class="create-food-btn">Create Menu</button>
                     </div>
                 </form>
 
@@ -119,8 +130,6 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 <script type="text/javascript" src="../../js/default.js"></script>
-<script type="text/javascript" src="../../js/jwt-decode.min.js"></script>
-<script type="text/javascript" src="../../js/admin-private.js"></script>
 <script type="text/javascript" src="../../js/Request.js"></script>
 <script type="text/javascript" src="../../js/menu.js"></script>
 

@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <link rel="stylesheet" type="text/css" href="../../css/form.css">
     <link rel="stylesheet" type="text/css" href="../../css/modal.css">
+    <script type="text/javascript" src="../../js/jwt-decode.min.js"></script>
+    <script type="text/javascript" src="../../js/admin-private.js"></script>
 </head>
 
 <body>
@@ -38,10 +40,11 @@
                                     <span style="font-size: 15px;">&#9660;</span>
                                 </a>
                                 <div class="dropdown-content">
-                                    <a href="all-food.html"> All Fast Food</a>
-                                    <a href="orders.html">Orders</a>
-                                    <a href="add-fastfood.html">Create New Food</a>
-                                    <a href="login.html">Logout</a>
+                                    <a href="all-food.html"> All Menu</a>
+                                    <a href="orders.html">Orders History</a>
+                                    <a href="add-fastfood.html">Create New Menu</a>
+                                    <a href="../fastfood.html">User Page</a>
+                                    <a class="logout-btn" href="javascript:void(0);" onclick="loggoutUser();">Logout</a>
                                 </div>
                             </li>
                         </ul>
@@ -50,14 +53,15 @@
                 </div>
         </header>
         <section id="slide-nav">
-            <a href="all-food.html"> All Fast Food</a>
-            <a href="orders.html">Orders</a>
-            <a href="add-fastfood.html">Create New Food</a>
-            <a href="login.html">Logout</a>
+            <a href="all-food.html"> All Menu</a>
+            <a href="orders.html">Orders History</a>
+            <a href="add-fastfood.html">Create New Menu</a>
+            <a href="../fastfood.html">User Page</a>
+            <a class="logout-btn" onclick="loggoutUser();" href="../login.html">Logout</a>
         </section>
-
+        
         <div class="main-body">
-            <div class="search-wrapper container">
+            <div class="search-wrapper earch-wrapper-admin container">
                 <div class="search-body">
                     <input class="search-input" type="text" name="searchfood" id="searchFood" placeholder="Search Fast Food" />
                     <i id="filterSearch" class="fa fa-search"></i>
@@ -99,203 +103,7 @@
                     </div>
 
                 </div>
-            <div class="container">
-                <div class="order-meals">
-                    <div class="row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-
-                            </div>
-                            <div class="food-btn-div centerdiv">
-                                <form action="edit-fastfood.html">
-                                    <button class=" ad-ev-btn edit-btn">Edit
-                                        <span style='font-size:20px;'>&#x270D;</span>
-                                    </button>
-                                </form>
-                                <button class="ad-ev-btn delete-btn modal-btn">Delete
-                                    <span style='font-size:20px;'>&#x232B;</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div class="food-btn-div centerdiv">
-                                <form action="edit-fastfood.html">
-                                    <button class=" ad-ev-btn edit-btn">Edit
-                                        <span style='font-size:20px;'>&#x270D;</span>
-                                    </button>
-                                </form>
-                                <button class="ad-ev-btn delete-btn modal-btn">Delete
-                                    <span style='font-size:20px;'>&#x232B;</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div class="food-btn-div centerdiv">
-                                <form action="edit-fastfood.html">
-                                    <button class=" ad-ev-btn edit-btn">Edit
-                                        <span style='font-size:20px;'>&#x270D;</span>
-                                    </button>
-                                </form>
-                                <button class="ad-ev-btn delete-btn modal-btn">Delete
-                                    <span style='font-size:20px;'>&#x232B;</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-meals">
-                    <div class="row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div class="food-btn-div centerdiv">
-                                <form action="edit-fastfood.html">
-                                    <button class=" ad-ev-btn edit-btn">Edit
-                                        <span style='font-size:20px;'>&#x270D;</span>
-                                    </button>
-                                </form>
-                                <button class="ad-ev-btn delete-btn modal-btn">Delete
-                                    <span style='font-size:20px;'>&#x232B;</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div class="food-btn-div centerdiv">
-                                <form action="edit-fastfood.html">
-                                    <button class=" ad-ev-btn edit-btn">Edit
-                                        <span style='font-size:20px;'>&#x270D;</span>
-                                    </button>
-                                </form>
-                                <button class="ad-ev-btn delete-btn modal-btn">Delete
-                                    <span style='font-size:20px;'>&#x232B;</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div class="food-btn-div centerdiv">
-                                <form action="edit-fastfood.html">
-                                    <button class=" ad-ev-btn edit-btn">Edit
-                                        <span style='font-size:20px;'>&#x270D;</span>
-                                    </button>
-                                </form>
-                                <button class="ad-ev-btn delete-btn modal-btn">Delete
-                                    <span style='font-size:20px;'>&#x232B;</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-meals">
-                    <div class="row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div class="food-btn-div centerdiv">
-                                <form action="edit-fastfood.html">
-                                    <button class=" ad-ev-btn edit-btn">Edit
-                                        <span style='font-size:20px;'>&#x270D;</span>
-                                    </button>
-                                </form>
-                                <button class="ad-ev-btn delete-btn modal-btn">Delete
-                                    <span style='font-size:20px;'>&#x232B;</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" row col-4 order-a-meal">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div class="food-btn-div centerdiv">
-                                <form action="edit-fastfood.html">
-                                    <button class=" ad-ev-btn edit-btn">Edit
-                                        <span style='font-size:20px;'>&#x270D;</span>
-                                    </button>
-                                </form>
-                                <button class="ad-ev-btn delete-btn modal-btn">Delete
-                                    <span style='font-size:20px;'>&#x232B;</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row col-4 order-a-meal check-border">
-                        <div class="red-order-meals">
-                            <div class="order-image">
-                                <img src="../../img/fried-rice-by-afrolems-nigerian-style.jpg" />
-                            </div>
-                            <div class="order-content">
-                                <h3>Rice and chicken</h3>
-                                <p>Price: NGN 1,000</p>
-                            </div>
-                            <div class="food-btn-div centerdiv">
-                                <form action="edit-fastfood.html">
-                                    <button class=" ad-ev-btn edit-btn">Edit
-                                        <span style='font-size:20px;'>&#x270D;</span>
-                                    </button>
-                                </form>
-                                <button class="ad-ev-btn delete-btn modal-btn">Delete
-                                    <span style='font-size:20px;'>&#x232B;</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="container main-body-container">
             </div>
         </div>
         <footer id="mainfooter" class="login-footer">
@@ -308,7 +116,6 @@
 </body>
 <script type="text/javascript" src="../../js/default.js"></script>
 <script type="text/javascript" src="../../js/modal.js"></script>
-<script type="text/javascript" src="../../js/jwt-decode.min.js"></script>
 <script type="text/javascript" src="../../js/Request.js"></script>
-<script type="text/javascript" src="../../js/admin-private.js"></script>
+<script type="text/javascript" src="../../js/AllMenu.js"></script>
 </html>

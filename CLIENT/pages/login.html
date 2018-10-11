@@ -12,7 +12,9 @@
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/headers.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
-    <link rel="stylesheet" type="text/css" href="../css/form.css">
+    <link rel="stylesheet" type="text/css" href="../css/form.css"> 
+    <script type="text/javascript" src="../js/jwt-decode.min.js"></script>
+    <script type="text/javascript" src="../js/alreadyLoginCheck.js"></script>
 </head>
 
 <body>
@@ -39,7 +41,7 @@
                                 <a href="login.html">Login</a>
                             </li>
                             <li>
-                                <a href="signup.html">Signup</a>
+                                <a class="logout-btn" href="signup.html">Signup</a>
                             </li>
 
                         </ul>
@@ -50,7 +52,7 @@
         <section id="slide-nav">
             <a href="../index.html">Home</a>
             <a href="login.html">Login</a>
-            <a href="signup.html">Signup</a>
+            <a class="logout-btn" href="signup.html">Signup</a>
         </section>
         <div id="loaderDiv">
             <div id="loaderTop"></div>
@@ -80,8 +82,6 @@
                                 </div>
                                 <input class="user-input" type="password" name="Password" id="password" placeholder="Enter Password" />
                                 <i id="filterUserInput" class="fa fa-lock"></i>
-
-
                             </div>
                             <div class="form-btn">
                                 <button id="loginBtn" class="signin-btn" type="submit">Sign In</button>
@@ -104,8 +104,6 @@
         </div>
 </body>
 <script type="text/javascript" src="../js/default.js"></script>
-<script type="text/javascript" src="../js/jwt-decode.min.js"></script>
-<script type="text/javascript" src="../js/AuthRequest.js"></script>
 <script type="text/javascript" src="../js/UserAuthentication.js"></script>
 
 </html>

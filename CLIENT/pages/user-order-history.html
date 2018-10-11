@@ -8,12 +8,15 @@
     <meta name="keywords" content="Fast-Food-Fast, order for your food, we deliver food">
     <meta name="author" content="Idris Kelani">
     <title> Fast-Food-Fast</title>
+    <script type="text/javascript" src="../js/jwt-decode.min.js"></script>
+    <script type="text/javascript" src="../js/private.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/headers.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/form.css">
     <link rel="stylesheet" type="text/css" href="../css/modal.css">
+
 </head>
 
 <body>
@@ -44,7 +47,7 @@
                                     <a href="fastfood.html">Fast Food</a>
                                     <a href="user-orderhistory.html">Order History</a>
                                     <a href="#">Profile</a>
-                                    <a href="login.html">Logout</a>
+                                    <a href="login.html" href="javascript:void(0);" onclick="loggoutUser();" >Logout</a>
                                 </div>
                             </li>
 
@@ -58,7 +61,7 @@
             <a href="fastfood.html">Fast Food</a>
             <a href="user-orderhistory.html">Order History</a>
             <a href="#">Profile</a>
-            <a href="login.html">Logout</a>
+            <a href="login.html" href="javascript:void(0);" onclick="loggoutUser();" >Logout</a>
         </section>
         <div class="main-body centerdivh">
             <h1>Order History</h1>
@@ -69,7 +72,6 @@
                     <tr class="table-title">
                         <th>Date</th>
                         <th>Order Id</th>
-                        <th> Food Name</th>
                         <th> Plates</th>
                         <th> Price</th>
                         <th> Status</th>
@@ -78,7 +80,6 @@
                     <tr class="table-content">
                         <td>23/09/2018</td>
                         <td>36756</td>
-                        <td>Rice and Chicken</td>
                         <td>1</td>
                         <td>NGN 1,000</td>
                         <td>Processing</td>
@@ -86,7 +87,6 @@
                     <tr class="table-content">
                         <td>23/09/2018</td>
                         <td>56756</td>
-                        <td>Rice and Chicken</td>
                         <td>1</td>
                         <td>NGN 1,000</td>
                         <td>Completed</td>
@@ -94,7 +94,6 @@
                     <tr class="table-content">
                         <td>23/09/2018</td>
                         <td>93026</td>
-                        <td>Rice and Chicken</td>
                         <td>1</td>
                         <td>NGN 1,000</td>
                         <td>Completed</td>
@@ -102,7 +101,6 @@
                     <tr class="table-content">
                         <td>23/09/2018</td>
                         <td>16857</td>
-                        <td>Eba and Okro</td>
                         <td>1</td>
                         <td>NGN 1,000</td>
                         <td>Declined</td>
@@ -110,7 +108,6 @@
                     <tr class="table-content">
                         <td>23/09/2018</td>
                         <td>35956</td>
-                        <td>Rice and Beans</td>
                         <td>1</td>
                         <td>NGN 1,000</td>
                         <td>Completed</td>

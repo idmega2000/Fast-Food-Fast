@@ -18,14 +18,13 @@ CREATE TABLE IF NOT EXISTS users
     
 CREATE TABLE IF NOT EXISTS menu
     (menu_id SERIAL PRIMARY KEY,
-    menu_name VARCHAR,
-    menu_price INTEGER,
+    menu_name VARCHAR NOT NULL,
+    menu_price INTEGER NOT NULL,
     menu_image VARCHAR,
     menu_category VARCHAR,
     menu_added_date TIMESTAMP NOT NULL DEFAULT NOW(),
     menu_edited_date TIMESTAMP,
     menu_deleted_date TIMESTAMP
-
   ); 
     
 CREATE TABLE IF NOT EXISTS orders(
@@ -68,14 +67,15 @@ class DbConnect {
   createAllTables() {
     this.pool.query(createTable)
       .then(() => {
+        const adminName = process.env.ADMIN_NAME;
         const adminEmail = process.env.ADMIN_USEREMAIL;
         const password = process.env.ADMIN_PASSWORD;
         const hashPassword = bcrypt.hashSync(password, 10);
         const userRole = 'admin';
         const sql = `INSERT INTO 
-        users(user_email, user_password, user_role) 
-        VALUES ($1, $2, $3) ON CONFLICT DO NOTHING`;
-        const params = [adminEmail, hashPassword, userRole];
+        users(user_name, user_email, user_password, user_role) 
+        VALUES ($1, $2, $3, $4) ON CONFLICT DO NOTHING`;
+        const params = [adminName,adminEmail, hashPassword, userRole];
         tableCreatedEmitter.emit('databaseStarted');
         this.pool.query(sql, params).then(() => {
 
