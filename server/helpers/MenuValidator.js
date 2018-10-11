@@ -11,6 +11,7 @@ class MenuValidator {
      * @returns {object} Returns error or move to next middleware if no error
      */
   addMenuValidator(req, res, next) {
+    console.log(req.body);
     const textInput = req.body;
     const whitespace = (/([\s]+)/g);
     const alphnumaOnly = (/^[a-zA-Z0-9 ]*$/);

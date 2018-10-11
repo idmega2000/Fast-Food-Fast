@@ -267,7 +267,6 @@
         margin-left: 10px;
         margin-right: 50px;
         margin-top: 30px;
-
     }
     .right-ad{
         float: left;
@@ -325,7 +324,6 @@
         outline: none;
         cursor: pointer;
     }
-
     .create-food-btn-div{
         clear: both;
         border: none;
@@ -421,7 +419,6 @@
         color: rgb(226, 0, 30);
         text-align: center;  
     }
-
 
     @media screen and (min-width: 600px) and (max-width: 900px) {
         .search-input{

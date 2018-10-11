@@ -3,7 +3,6 @@ const errorHandle = document.getElementById('signUpErrorHandler');
 const addMenuBtn = document.getElementById('addMenuBtn');
 const loader = document.getElementById('loaderDiv');
 
-
 let holdImage = '';
 
 
@@ -147,6 +146,7 @@ class Menu extends Request {
       menuPrice,
       menuCategory,
       ...(holdImage !== '' && { menuImage: holdImage })
+
     };
     const uDrl = '/menu';
     this.post(uDrl, allData)

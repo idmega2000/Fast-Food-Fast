@@ -57,6 +57,7 @@ class Request {
          */
   put(uDir, payload) {
     const url = `${hostUrl}${uDir}`;
+
     return fetch(url, {
       method: 'put',
       headers: {
@@ -69,3 +70,4 @@ class Request {
       .then(res => res.json());
   }
 }
+

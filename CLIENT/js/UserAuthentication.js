@@ -1,4 +1,5 @@
 
+
 const emailReg = (/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 const alphaOnly = (/^[a-zA-Z0-9]*$/);
 const signupBtn = document.getElementById('signupBtn');
@@ -180,7 +181,6 @@ class UserAuthentication {
 }
 
 const authentication = new UserAuthentication();
-// authentication.checkToken()
 
 if (signupBtn) {
   signupBtn.onclick = () => {
