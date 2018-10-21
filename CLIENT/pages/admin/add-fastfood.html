@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -46,12 +45,8 @@
                                     <a class="logout-btn" href="javascript:void(0);" onclick="loggoutUser();" >Logout</a>
                                 </div>
                             </li>
-
-
-
                         </ul>
                     </nav>
-
                 </div>
         </header>
         <section id="slide-nav">
@@ -106,12 +101,7 @@
                         <div class="centerdiv upload-wrapper">
                             <input id="menuImage" class="choose-img-btn" type="file" accept="image/*" onchange="loadFile(event)"/>
                         </div>
-                        <script>
-                                var loadFile = function(event) {
-                                  var output = document.getElementById('uploaded-img-holder');
-                                  output.src = URL.createObjectURL(event.target.files[0]);
-                                };
-                              </script>
+
                     </div>
                     <div class="create-food-btn-div centerdiv">
                         <button id="addMenuBtn" class="create-food-btn">Create Menu</button>

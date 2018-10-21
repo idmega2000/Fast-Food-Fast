@@ -1,21 +1,12 @@
 
-//const hostUrl = 'http://localhost:3000/api/v1';
-const hostUrl = 'https://fast-food-fast-idris.herokuapp.com/api/v1';
+const hostUrl = 'http://localhost:3000/api/v1';
+// const hostUrl = 'https://fast-food-fast-idris.herokuapp.com/api/v1';
 
 const scrollButton = document.getElementById('arrowP');
 const navbarSlider = document.getElementById('header-sm-sc');
-const placeOrderBtn = document.getElementById('placeOrderBtn');
 const compOrdDiv = document.getElementById('compOrdDiv');
 const canBookBtn = document.getElementById('canBookBtn');
 
-
-if (placeOrderBtn) {
-  placeOrderBtn.onclick = () => {
-    compOrdDiv.style.display = 'block';
-    document.body.scrollTop = 550;
-    document.documentElement.scrollTop = 550;
-  };
-}
 
 if (canBookBtn) {
   canBookBtn.onclick = () => {
@@ -40,4 +31,10 @@ const moveDownwards = () => {
 
 if (scrollButton) {
   scrollButton.onclick = moveDownwards;
+}
+
+const quantityHolder = document.querySelectorAll('.quantity-amount-holder');
+if (quantityHolder.length > 0 && localStorage.getItem('totalQuantity')) {
+  quantityHolder[0].innerHTML = localStorage.getItem('totalQuantity');
+  quantityHolder[1].innerHTML = localStorage.getItem('totalQuantity');
 }

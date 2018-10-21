@@ -13,11 +13,11 @@ class Request {
   }
 
   /**
-         * This function post data to the endpoint
-         * @param {object} uDir - the user directory to access.
-         * @param {object} payload - The response object.
-         * @returns {Promise} Returns the information from the endpoint.
-         */
+     * This function post data to the endpoint
+     * @param {object} uDir - the user directory to access.
+     * @param {object} payload - The response object.
+     * @returns {Promise} Returns the information from the endpoint.
+     */
   post(uDir, payload) {
     const url = `${hostUrl}${uDir}`;
     return fetch(url, {

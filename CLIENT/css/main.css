@@ -24,6 +24,7 @@ input:hover , textarea:hover{
 .allbody{
     position: relative;
     margin: 0;
+    min-height: 100vh;
 }
 
 footer{	
@@ -92,6 +93,7 @@ footer p,footer a{
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 100%;
+    min-height: 77vh;
 }
 .main-body-rel{
     position: relative;
@@ -128,6 +130,7 @@ footer p,footer a{
     max-height:100%;
     border-radius: 8px;
 }
+
 
 /* content idea from getbootstrap.com*/
 
@@ -325,7 +328,51 @@ footer p,footer a{
     margin-right: auto;
     text-align: center;
 }
-
+.selected-price{
+    display: flex;
+}
+.unit-price{
+    flex: 1;
+    margin: auto;
+    display: inline-flex;
+    margin-left: 30px;
+}
+.menu-plates{
+    flex: 1;
+    margin: auto;
+    display: inline-flex;
+}
+.unit-price > p{
+    font-size: 20px;
+}
+.decrement-value, .increment-value{
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    text-align:center;
+    background-color: #ee6e73;
+    border: none;
+    outline: none;
+}
+input.quantity-number {
+    text-align: center;
+    border: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 0px;
+    margin-left: 7px;
+    margin-right: 7px;
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+  }
+  
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
 .red-order-meals{
     width: 80%;
     margin-left: auto;
@@ -366,6 +413,10 @@ footer p,footer a{
 	line-height: 1.8;
 	color: white;
     font-size: 49px;
+}
+.org-order-body{
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 

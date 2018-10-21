@@ -5,6 +5,11 @@ const loader = document.getElementById('loaderDiv');
 
 let holdImage = '';
 
+const loadFile = (event) => {
+  const output = document.getElementById('uploaded-img-holder');
+  output.src = URL.createObjectURL(event.target.files[0]);
+};
+
 
 const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dr4yibvoq/upload';
 const CLOUDINARY_UPLOAD_PRESET = 'dnn2vfdk';
@@ -12,7 +17,7 @@ const CLOUDINARY_UPLOAD_PRESET = 'dnn2vfdk';
 
 /* eslint-disable class-methods-use-this */
 /**
- * Represents all the differnt fetch type to be done.
+ * Represents all the different fetch type to be done.
  */
 class Menu extends Request {
   /**

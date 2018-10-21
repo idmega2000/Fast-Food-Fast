@@ -24,9 +24,19 @@
             <div class="nav">
                 <div class="header-container">
                     <div id="header-sm-sc">
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
+                        <div class="small-header-cart">
+                            <div class="shopping-cart">
+                                <a href="order-cart.html">
+                                    <span class="quantity-amount-holder"></span>
+                                </a>
+                                <a class="fa fa-shopping-cart" href="order-cart.html"></a>
+                            </div>
+                        </div>
+                        <div class="header-bars">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
                     </div>
                     <div id="homecontainer">
                         <a href="../index.html">
@@ -35,6 +45,9 @@
                     </div>
                     <nav class="nav-list">
                         <div class="shopping-cart">
+                            <a href="order-cart.html">
+                                <span class="quantity-amount-holder"></span>
+                            </a>
                             <a class="fa fa-shopping-cart" href="order-cart.html"></a>
                         </div>
                         <ul class="ul-user">
@@ -53,231 +66,78 @@
                     </nav>
 
                 </div>
-                <div id="myModal" class="modal-del del-modal">
+                <div id="myModal" class="modal">
 
                     <!-- Modal content -->
                     <div class="modal-content">
+                        <span class="close">&times;</span>
                         <div class="modal-body del-order-body">
-                            <h4>Order Deleted successfully</h4>
-                            <div class="form-btn">
-                                <button id="closeModal" class=" close-modal del-ques-btn modal-btn" type="submit">Close</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div id="myModalDel" class="modal">
-
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                            <div class="modal-body del-order-body">
-                                <h4>Order Completed</h4>
-                                <div class="form-btn">
-                                    <button id="closeModaldel" class=" close-modal del-ques-btn" type="submit">Close</button>
+                            <form class="order-form">
+                                <h1 class="login-form-title">Complete Order</h1>
+                                <div class="order-error-div">
+                                    <span class="order-error-span"> this is it</span>
                                 </div>
-                            </div>
+                                <input type="checkbox" value="" /> Use My name and Phone Number
+                                <input type="checkbox" value="" /> Use My Address
+                                <div class="input-wrapper">
+                                    <div class="input-div">
+                                        <span>
+                                            <i class="fas fa-user">Recipient Name</i>
+                                        </span>
+                                        <span class="is-required">*</span>
+                                    </div>
+                                    <input class="order-input order-name" type="text" name="username" id="ordererName" placeholder="Enter Phone Number" />
+                                </div>
+                                <div class="input-wrapper">
+                                    <div class="input-div">
+                                        <span>
+                                            <i class="fas fa-phone"> Telephone</i>
+                                        </span>
+                                        <span class="is-required">*</span>
+                                    </div>
+                                    <input class="order-input order-phone" type="text" name="username" id="ordererName" placeholder="Enter Phone Number" />
+                                </div>
+                                <div class="input-wrapper">
+                                    <div class="input-div">
+                                        <span>
+                                            <i class="fas fa-home"> Delivery Address</i>
+                                        </span>
+                                        <span class="is-required">*</span>
+                                    </div>
+                                    <textarea class="order-text-area order-address" cols="30" rows="10" placeholder="Enter Delivery Address"></textarea>
+                                </div>
+                                <div class="form-btn centerdiv">
+                                    <button class="order-modal-btn" type="submit">Submit Order</button>
+                                </div>
+                            </form>
+
                         </div>
-    
                     </div>
+                </div>
+            </div>
         </header>
         <section id="slide-nav">
             <a href="fastfood.html">Fast Food</a>
             <a href="user-order-history.html">Order History</a>
             <a href="#">Profile</a>
-            <a class="logout-btn" href="login.html" href="javascript:void(0);" onclick="loggoutUser();" >Logout</a>
+            <a class="logout-btn" href="login.html" href="javascript:void(0);" onclick="loggoutUser();">Logout</a>
         </section>
         <div class="main-body centerdivh cart-page">
             <h1>Order Cart</h1>
-            <div class="centerdiv container">
-
+            <div class="centerdiv container org-order-body">
                 <table class="order-table">
-
                     <tr class="table-title">
-                        <th>Date</th>
-                        <th>Order Id</th>
-                        <th> Categor</th>
-                        <th> Plates</th>
+                        <th>S/N</th>
+                        <th> Meal Name</th>
+                        <th> Unit Price</th>
+                        <th> Plate</th>
                         <th> Price</th>
-                        <th> Status</th>
-                    </tr>
-
-                    <tr class="table-content">
-                        <td>23/09/2018</td>
-                        <td>36756</td>
-                        <td>Rice and Chicken</td>
-                        <td>
-                            <div>
-                                <select>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>NGN 1,000</td>
-                        <td>
-                            <button class="del-cart-btn modal-btn">Delete</button>
-                        </td>
-                    </tr>
-                    <tr class="table-content">
-                        <td>23/09/2018</td>
-                        <td>56756</td>
-                        <td>Rice and Chicken</td>
-                        <td>
-                            <div>
-                                <select>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>NGN 1,000</td>
-                        <td>
-                            <button class="del-cart-btn modal-btn">Delete</button>
-                        </td>
-                    </tr>
-                    <tr class="table-content">
-                        <td>23/09/2018</td>
-                        <td>93026</td>
-                        <td>Rice and Chicken</td>
-                        <td>
-                            <div>
-                                <select>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>NGN 1,000</td>
-                        <td>
-                            <button class="del-cart-btn modal-btn">Delete</button>
-                        </td>
-                    </tr>
-                    <tr class="table-content">
-                        <td>23/09/2018</td>
-                        <td>16857</td>
-                        <td>Eba and Okro</td>
-                        <td>
-                            <div>
-                                <select>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>NGN 1,000</td>
-                        <td>
-                            <button class="del-cart-btn modal-btn">Delete</button>
-                        </td>
-                    </tr>
-                    <tr class="table-content">
-                        <td>23/09/2018</td>
-                        <td>35956</td>
-                        <td>Rice and Beans</td>
-                        <td>
-                            <div>
-                                <select>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>NGN 1,000</td>
-                        <td>
-                            <button class="del-cart-btn modal-btn">Delete</button>
-                        </td>
-                    </tr>
-                    <tr class="table-content">
-                        <td>Total</td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            6
-                        </td>
-                        <td>NGN 6,000</td>
-                        <td>
-                        </td>
+                        <th> Action</th>
                     </tr>
                 </table>
             </div>
             <div class="place-order-div">
-                <button id="placeOrderBtn">Place Order</button>
-            </div>
-            <div class="centerdiv container" id="compOrdDiv">
-                
-                    <table class="comp-table centerdiv">
-                        <tr class="comp-tab-cont">
-                            <td>Name</td>
-                            <td>
-                                <input class="comp-order-input" type="text" placeholder="Enter your phone Number">
-                            </td>
-                        </tr>
-                        <tr class="comp-tab-cont" >
-                            <td>Phone Number</td>
-                            <td>
-                                <input class="comp-order-input" type="text" placeholder="Enter your Phone Number">
-                            </td>
-                        </tr>
-                        <tr class="comp-tab-cont">
-                            <td>Address</td>
-                            <td>
-                                <textarea class="comp-order-text-area" cols="30" rows="10" placeholder="Enter Delivery Address"></textarea>
-                            </td>
-                        </tr>
-                        
-                    </table>
-                    <button id="delAOrder" class="comp-booking-btn">complete</button>
-                    <button id="canBookBtn" class="comp-booking-btn">cancel</button>
-
+                <button id="placeOrderBtn" class="modal-btn">Place Order</button>
             </div>
         </div>
         <!--table ends-->
@@ -285,13 +145,12 @@
             <p>Fast-Food-Fast &copy; 2018
                 <a href="#">Terms & Privacy</a>
             </p>
-
         </footer>
-        </div>
+    </div>
 </body>
 <script type="text/javascript" src="../js/default.js"></script>
 <script type="text/javascript" src="../js/modal.js"></script>
-<script type="text/javascript" src="../js/private.js"></script>
+<script type="text/javascript" src="../js/Request.js"></script>
+<script type="text/javascript" src="../js/OrderMenu.js"></script>
 
 </html>
-  
