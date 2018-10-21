@@ -5,6 +5,6 @@ if (!token) {
 }
 
 const loggoutUser = () => {
-  localStorage.removeItem('token');
+  localStorage.clear();
   location.href = './login.html';
-}
+};

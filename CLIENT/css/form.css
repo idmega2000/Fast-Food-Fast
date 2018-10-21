@@ -134,7 +134,7 @@
         width: 0;
     }
 
-    #filterUserInput {
+    .filter-user-input {
         position: relative;
         z-index: 1;
         left: 10px;
@@ -149,6 +149,7 @@
         border-collapse: collapse;
         margin-top: 30px;
         font-weight: bold;
+        width: 900px;
     }
     .order-table tr {
         height: 50px;   
@@ -329,7 +330,7 @@
         border: none;
     }
 
-    .del-cart-btn{
+    .del-meal-btn{
         border: none;
         border-radius: 5px;
         width: 60px;
@@ -339,9 +340,6 @@
         border: none;
         outline: none;
         cursor: pointer;
-    }
-    .place-order-div{
-        margin-top: 50px;
     }
 
     #placeOrderBtn{
@@ -356,50 +354,7 @@
         cursor: pointer;
     }
 
-    .comp-order-input{
-        width: 430px;
-        height: 32px;
-        border-radius: 5px;
-        outline: none;
-        padding-left: 5px;
-        
-    }
-    .comp-order-text-area{
-        width: 430px;
-        height: 50px;
-        border-radius: 5px;
-        outline: none;
-        padding-left: 5px;
-    }
-    .comp-booking-btn{
-        width: 100px;
-        height: 34px;
-        background: #ee6e73;
-        outline: none;
-        border-radius: 6px;
-        font-weight: 800;
-        border: none;
-        outline: none;
-        cursor: pointer;
-    }
 
-    .comp-tab-cont{
-        margin: 20px;
-        padding: 10px;
-        height: 90px;
-    }
-    #compOrdDiv{
-        display: none;
-        border: 2px solid #365768;
-        width: 60%;
-        margin-top: 70px;
-    }
-    .disp-comp-ord{
-        display: block;
-    }
-    .comp-table.tr{
-        margin-top: 50px;
-    }
     .disabled-hover {
         cursor: not-allowed;
         background: none;
@@ -443,7 +398,7 @@
             height: 800px;
             margin: 50px;
         }
-        .del-cart-btn{
+        .del-meal-btn{
             font-size: 12px;
             width: 40px;
             height: 23px;
@@ -502,7 +457,7 @@
             padding: 3px;
             font-size: 12px;
         }
-        .del-cart-btn{
+        .del-meal-btn{
             font-size: 10px !important;
             width: 40px;
             height: 23px;
@@ -528,4 +483,3 @@
          }
 
     }
-

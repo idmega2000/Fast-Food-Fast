@@ -34,6 +34,11 @@ body{
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
+
+}
+.fa-shopping-cart{
+	text-decoration: none;
+	color: white;
 }
 #headercontainer a{
 	text-decoration: none;
@@ -69,6 +74,12 @@ header a:hover{
 	margin: auto;
     cursor: pointer;
 	opacity: 0.9;
+}
+.small-header-cart{
+	flex: 1;
+}
+.header-bars{
+	flex: 1;
 }
 .bar {
     width: 20px;
@@ -185,13 +196,13 @@ header a:hover{
     color: #f1f1f1;
 }
 .nav-slide-toggle{
-	height: 200px !important;
+	height: 240px !important;
 	display: block !important;
 }
 
 @media screen and (min-width: 600px) and (max-width: 900px) {
 	#header-sm-sc{
-		display: block;
+		display: flex;
 	}
 	.nav-list{
 		display: none !important;
@@ -200,7 +211,7 @@ header a:hover{
 		display: none;
 	}
 	#homecontainer{
-		width: 90%;
+		width: 70%;
 	}
 	#homecontainer h1{
 		font-size: 28px;
@@ -210,7 +221,8 @@ header a:hover{
 
 @media screen and (max-width: 600px) {
 	#header-sm-sc{
-		display: block;
+		display: flex;
+		align-items: center;
 	}
 	.nav-list{
 		display: none !important;
@@ -219,7 +231,7 @@ header a:hover{
 		display: none;
 	}
 	#homecontainer{
-		width: 90%;
+		width: 70%;
 	}
 	#homecontainer h1{
 		font-size: 23px;
