@@ -4,6 +4,8 @@
     position: fixed; 
     z-index: 1; 
     padding-top: 100px; 
+    max-height: 80vh;
+    padding-bottom: 160px;
     left: 0;
     right: 0;
     top: 0;
@@ -25,6 +27,7 @@
     margin: auto;
     padding: 0;
     width: 50%;
+    min-height: 350px;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
@@ -45,7 +48,7 @@
 }
 
 /* The Close Button */
-.close {
+.close, .close-order-modal {
     color: #aaaaaa;
     margin-right: 20px;
     float: right;
@@ -53,13 +56,11 @@
     font-weight: bold;
 }
 
-.close:hover, .close:focus {
+.close:hover, .close:focus , .close-order-modal:hover, .close-order-modal:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
 }
-
-
 
 .modal-body {padding: 30px 26px;}
 

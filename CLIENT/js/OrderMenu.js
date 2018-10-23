@@ -10,6 +10,11 @@ class UserMenu extends Request {
        */
   loadOrderElement() {
     let menuDetails = localStorage.getItem('menuCart');
+    if (!menuDetails) {
+      document.querySelector('.no-order').innerHTML = '<h1>No Meal Selected Yet</h1>';
+      document.querySelector('.place-order-btn').style.display = 'none';
+      return false;
+    }
     menuDetails = JSON.parse(menuDetails);
     const orderTable = document.querySelector('.order-table');
     menuDetails.forEach((element, index) => {
@@ -81,12 +86,25 @@ class UserMenu extends Request {
         let menuDetail = localStorage.getItem('menuCart');
         menuDetail = JSON.parse(menuDetail);
         const afterDelMenuCart = menuDetail.filter(meal => meal.menuId !== menuId.toString());
-        localStorage.setItem('menuCart', JSON.stringify(afterDelMenuCart));
         const deleteIndex = deleteBtn[i].getAttribute('data-rowId');
         document.querySelector('.order-table').deleteRow(deleteIndex);
-        this.setIndex();
-        this.getTotal();
-        this.deleteMeal();
+        if (afterDelMenuCart.length > 0) {
+          localStorage.setItem('menuCart', JSON.stringify(afterDelMenuCart));
+          this.setIndex();
+          this.getTotal();
+          this.deleteMeal();
+        } else {
+          const quantityHolder = document.querySelectorAll('.quantity-amount-holder');
+          quantityHolder[0].style.display = 'none';
+          quantityHolder[1].style.display = 'none';
+          localStorage.removeItem('menuCart');
+          localStorage.removeItem('totalPrice');
+          localStorage.removeItem('totalQuantity');
+          document.querySelector('.order-table').deleteRow(-1);
+          document.querySelector('.no-order').innerHTML = '<h1>No Meal Selected Yet</h1>';
+          document.querySelector('.place-order-btn').style.display = 'none';
+          
+        }
       };
     }
   }
@@ -127,23 +145,22 @@ class UserMenu extends Request {
   }
 
   /**
-       * this function load the cart menu/meals into the table
-       * @returns {HTMLElement} - returns html element and arrange the table
-       */
+     * this function load the cart menu/meals into the table
+     * @returns {HTMLElement} - returns html element and arrange the table
+     */
   getTotal() {
+    const updateTotalPrice = document.querySelector('.total-price');
+    const updateTotalQuantity = document.querySelector('.total-quantity');
     let menuDetails = localStorage.getItem('menuCart');
     menuDetails = JSON.parse(menuDetails);
     let totalQuantity = 0;
     let totalPrice = 0;
-    console.log(menuDetails);
     menuDetails.forEach((item) => {
       totalQuantity += Number(item.quantity);
       totalPrice += Number(item.menuPrice * item.quantity);
     });
     localStorage.setItem('totalQuantity', totalQuantity);
     localStorage.setItem('totalPrice', totalPrice);
-    const updateTotalPrice = document.querySelector('.total-price');
-    const updateTotalQuantity = document.querySelector('.total-quantity');
     updateTotalPrice.innerHTML = `&#8358 ${totalPrice}`;
     updateTotalQuantity.innerHTML = totalQuantity;
     const quantityHolder = document.querySelectorAll('.quantity-amount-holder');
@@ -169,7 +186,6 @@ class UserMenu extends Request {
       errorHandlerDiv.style.display = 'inline-block';
       errorHandler.innerHTML = 'Please Enter a name';
       requiredStar[0].style.color = 'red';
-      console.log(localStorage);
       return false;
     }
     if (!phone || phone.trim() === 0) {
@@ -197,7 +213,7 @@ class UserMenu extends Request {
     let menuCartDetails = localStorage.getItem('menuCart');
     menuCartDetails = JSON.parse(menuCartDetails);
     const payload = {
-      orderName: name,
+      recipientName: name,
       orderPhone: phone,
       orderAddress: address,
       menuCart: menuCartDetails
@@ -205,6 +221,7 @@ class UserMenu extends Request {
     this.post(uDir, payload)
       .then((res) => {
         if (res.error) {
+          errorHandlerDiv.style.display = 'inline-block';
           errorHandler.innerHTML = res.error;
           return false;
         }

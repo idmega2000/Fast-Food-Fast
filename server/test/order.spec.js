@@ -23,6 +23,7 @@ const tokenAdmin = jwt.sign({
 
 const newOrder = {
   orderPhone: '08045676746',
+  recipientName: 'Idris Wale',
   menuCart: [
     {
       menuId: 1, quantity: 4
@@ -33,6 +34,7 @@ const newOrder = {
 
 const invalidMenuId = {
   orderPhone: '08045676746',
+  recipientName: 'Idris Wale',
   menuCart: [
     {
       menuId: 10, quantity: 4
@@ -44,6 +46,7 @@ const invalidMenuId = {
 
 const orderShortPhoneNumber = {
   orderPhone: '080676746454',
+  recipientName: 'Idris Wale',
   menuCart: [
     {
       menuId: 1, quantity: 1
@@ -71,6 +74,7 @@ const wronStatusFormat = {
 
 const orderLessQuantity = {
   orderPhone: '08045676746',
+  recipientName: 'Idris Wale',
   menuCart: [
     { menuId: 1, quantity: 0.5 }
   ],
@@ -78,6 +82,7 @@ const orderLessQuantity = {
 };
 const orderbadQuantity = {
   orderPhone: '08045676746',
+  recipientName: 'Idris Wale',
   menuCart: [
     { menuId: 1, quantity: '1to4' }
   ],
@@ -86,6 +91,7 @@ const orderbadQuantity = {
 
 const orderBadMenuId = {
   orderPhone: '08045676746',
+  recipientName: 'Idris Wale',
   menuCart: [
     { menuId: [], quantity: 1 }
   ],
@@ -94,6 +100,7 @@ const orderBadMenuId = {
 
 const orderStringMenuId = {
   orderPhone: '08045676746',
+  recipientName: 'Idris Wale',
   menuCart: [
     { menuId: 'hkjdhkjd', quantity: 1 }
   ],
@@ -101,26 +108,45 @@ const orderStringMenuId = {
 };
 const orderEmptyMenuCart = {
   orderPhone: '08045676746',
+  recipientName: 'Idris Wale',
   menuCart: '',
   orderAddress: 'jofkjmlmdflkmfk',
 };
-const whiteSpaceAddress = {
+const noRecipientName = {
   orderPhone: '08045676746',
   menuCart: [
     { menuId: 1, quantity: 1 }
   ],
-  orderAddress: '   ',
+  orderAddress: '342 agaba road'
 };
-const emptyPhone = {
-  orderPhone: '',
+const shortNameInput = {
+  orderPhone: '08045676746',
+  recipientName: 'a',
   menuCart: [
     { menuId: 1, quantity: 1 }
   ],
-  orderAddress: '   ',
+  orderAddress: '342 agaba road'
+};
+const badNameInput = {
+  orderPhone: '08045676746',
+  recipientName: 'kelani|_',
+  menuCart: [
+    { menuId: 1, quantity: 1 }
+  ],
+  orderAddress: '342 agaba road'
+};
+const emptyPhone = {
+  orderPhone: '',
+  recipientName: 'Idris Wale',
+  menuCart: [
+    { menuId: 1, quantity: 1 }
+  ],
+  orderAddress: 'gkjgkjkhjl',
 };
 
 const emptyAddress = {
   orderPhone: '08045676746',
+  recipientName: 'Idris Wale',
   menuCart: [
     { menuId: 1, quantity: 1 }
   ],
@@ -128,22 +154,26 @@ const emptyAddress = {
 };
 const emptyArrayMenuCart = {
   orderPhone: '08045676746',
+  recipientName: 'Idris Wale',
   menuCart: [],
   orderAddress: '30 oshole street',
 };
 
 const notArrayMenuCart = {
   orderPhone: '08045676746',
+  recipientName: 'Idris Wale',
   menuCart: 'this is Andela',
   orderAddress: '30 oshole street',
 };
 const noMenuId = {
   orderPhone: '08045676746',
+  recipientName: 'Idris Wale',
   menuCart: [{ yam: 1, shot: 1 }],
   orderAddress: '30 oshole street',
 };
 const noQuantity = {
   orderPhone: '08045676746',
+  recipientName: 'Idris Wale',
   menuCart: [{ menuId: 1, shot: 1 }],
   orderAddress: '30 oshole street',
 };
@@ -249,15 +279,39 @@ describe('Post Orders', () => {
           done();
         });
     });
-  it('should return error when given an Address of whitespace only',
+  it('should return error when recipient name is not given',
     (done) => {
       request.post(path)
         .set('Authorization', `Bearer ${token}`)
-        .send(whiteSpaceAddress)
+        .send(noRecipientName)
         .end((req, res) => {
           assert.equal(res.status, 400);
           assert.equal(res.body.error,
-            'Address should not be white space only');
+            'Name field is required');
+          done();
+        });
+    });
+  it('should return error when given names with bad characters',
+    (done) => {
+      request.post(path)
+        .set('Authorization', `Bearer ${token}`)
+        .send(badNameInput)
+        .end((req, res) => {
+          assert.equal(res.status, 400);
+          assert.equal(res.body.error,
+            'Recipient Name can only be alphanumeric character');
+          done();
+        });
+    });
+  it('should return error when given short recipient name',
+    (done) => {
+      request.post(path)
+        .set('Authorization', `Bearer ${token}`)
+        .send(shortNameInput)
+        .end((req, res) => {
+          assert.equal(res.status, 400);
+          assert.equal(res.body.error,
+            'Recipient name can only be char greater than one & less than 30');
           done();
         });
     });

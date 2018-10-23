@@ -10,7 +10,6 @@ body{
     padding: 0px;
     background-color: rgb(245, 230, 230);
 	display: block;
-    height: 100%;
 
 }
 button:hover{
@@ -90,7 +89,7 @@ footer p,footer a{
 
 .main-body{ 
     width: 100%;
-    display: grid;
+    display: block;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 100%;
     min-height: 77vh;
@@ -593,6 +592,10 @@ input.quantity-number {
 .arrow {
     display: none;
   }
+  .no-order, .no-menu, .no-order-history{
+      font-size: 0.6rem;
+  }
+
     
 }
 

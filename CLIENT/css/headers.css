@@ -19,7 +19,7 @@ body{
 	border-bottom: 2px solid rgb(216, 123, 123);
 }	
 .nav-list{
-	display: flex;
+   display: flex;
    flex-direction: row;
 }
 

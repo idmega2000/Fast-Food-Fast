@@ -90,16 +90,25 @@ class OrdersValidator {
      */
   placeOrderValidator(req, res, next) {
     const nigNumber = (/^[0]\d{10}$/);
+    const alphNumOnly = (/^[a-zA-Z0-9 ]*$/);
     const textInput = req.body;
     const address = textInput.orderAddress;
     const info = textInput.menuCart;
     const phone = textInput.orderPhone;
+    const name = textInput.recipientName;
 
     if (Object.keys(textInput).length === 0) {
       return res.status(400)
         .json({
           status: 'Failed',
           error: 'Please Enter valid data'
+        });
+    }
+    if (!name || name.trim().length === 0) {
+      return res.status(400)
+        .json({
+          status: 'Failed',
+          error: 'Name field is required'
         });
     }
     if (!phone) {
@@ -109,7 +118,7 @@ class OrdersValidator {
           error: 'Phone field is required'
         });
     }
-    if (!address) {
+    if (!address || address.trim().length === 0) {
       return res.status(400)
         .json({
           status: 'Failed',
@@ -123,12 +132,18 @@ class OrdersValidator {
           error: 'Menu Cart is required'
         });
     }
-    if (address.trim().length === 0) {
-      return res.status(400)
-        .json({
-          status: 'Failed',
-          error: 'Address should not be white space only'
-        });
+    if (!name.match(alphNumOnly)) {
+      return res.status(400).json({
+        status: 'Failed',
+        error: 'Recipient Name can only be alphanumeric character'
+      });
+    }
+    if (name.length < 2 || name.length > 30) {
+      return res.status(400).json({
+        status: 'Failed',
+        error:
+        'Recipient name can only be char greater than one & less than 30'
+      });
     }
 
     if (!Array.isArray(info)) {

@@ -11,9 +11,9 @@ CREATE TABLE IF NOT EXISTS users
     user_email VARCHAR NOT NULL UNIQUE, 
     user_password VARCHAR NOT NULL,
     user_role VARCHAR NOT NULL DEFAULT 'user',
-    user_name VARCHAR UNIQUE, 
+    user_name VARCHAR, 
     user_address VARCHAR, 
-    user_phone VARCHAR UNIQUE, 
+    user_phone VARCHAR, 
     user_image VARCHAR);
     
 CREATE TABLE IF NOT EXISTS menu
@@ -30,13 +30,14 @@ CREATE TABLE IF NOT EXISTS menu
 CREATE TABLE IF NOT EXISTS orders(
     order_id SERIAL PRIMARY KEY,
     user_id int REFERENCES users(user_id) NOT NULL,
-    order_name VARCHAR,
+    recipient_name VARCHAR,
     order_phone VARCHAR,
     order_address VARCHAR,
     order_menu jsonb NOT NULL,
     order_total_price INT,
-    order_added_date TIMESTAMP NOT NULL DEFAULT NOW(),
-    order_status VARCHAR DEFAULT 'new'
+    order_total_quantity INT,
+    order_status VARCHAR DEFAULT 'new',
+    order_added_date TIMESTAMP NOT NULL DEFAULT NOW()    
 );`;
 export const tableCreatedEmitter = new events.EventEmitter();
 let connectionString = '';
@@ -75,7 +76,7 @@ class DbConnect {
         const sql = `INSERT INTO 
         users(user_name, user_email, user_password, user_role) 
         VALUES ($1, $2, $3, $4) ON CONFLICT DO NOTHING`;
-        const params = [adminName,adminEmail, hashPassword, userRole];
+        const params = [adminName, adminEmail, hashPassword, userRole];
         tableCreatedEmitter.emit('databaseStarted');
         this.pool.query(sql, params).then(() => {
 
