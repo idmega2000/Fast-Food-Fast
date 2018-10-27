@@ -9,6 +9,7 @@ const dbModels = new DbConnect();
      * @param {object} menuItmes - the order menu details.
      * @param {object} newARrayData - holds an array of menu Data of orders.
      * @param {object} menuTPrice - saves the total price of the whole menu.
+     * @param {object} menuTQuantity - saves the total price of the whole menu.
      * @param {object} req - The response object.
      * @param {object} res - The response object.
      * @param {func} next - The response object.
@@ -19,10 +20,12 @@ const organiseEachMenu = (
   menuItmes,
   newARrayData,
   menuTPrice,
+  menuTQuantity,
   req, res, next
 ) => {
   const aMenuId = menuItmes[count].menuId;
   const aMenuQuantity = menuItmes[count].quantity;
+  menuTQuantity += Number(aMenuQuantity);
   const sql = 'SELECT * FROM menu WHERE menu_id = $1';
   const param = [aMenuId];
   dbModels.pool.query(sql, param)
@@ -44,7 +47,8 @@ const organiseEachMenu = (
         });
         if (count === menuItmes.length - 1) {
           req.menuCart = newARrayData;
-          req.menutoTotal = menuTPrice;
+          req.menuPriceTotal = menuTPrice;
+          req.menuQuantityTotal = menuTQuantity;
           return next();
         }
         return organiseEachMenu(
@@ -52,9 +56,10 @@ const organiseEachMenu = (
           menuItmes,
           newARrayData,
           menuTPrice,
+          menuTQuantity,
           req,
           res,
-          next,
+          next
         );
       }
       return res.status(422)
@@ -78,6 +83,16 @@ const organiseOrderedMenuList = (req, res, next) => {
   const count = 0;
   const newARrayData = [];
   const menuTPrice = 0;
-  organiseEachMenu(count, menuItmes, newARrayData, menuTPrice, req, res, next);
+  const menuTQuantity = 0;
+  organiseEachMenu(
+    count,
+    menuItmes,
+    newARrayData,
+    menuTPrice,
+    menuTQuantity,
+    req,
+    res,
+    next
+  );
 };
 export default organiseOrderedMenuList;

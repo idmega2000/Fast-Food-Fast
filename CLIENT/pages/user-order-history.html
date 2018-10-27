@@ -11,7 +11,7 @@
     <script type="text/javascript" src="../js/jwt-decode.min.js"></script>
     <script type="text/javascript" src="../js/private.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-    crossorigin="anonymous">
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/headers.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/form.css">
@@ -56,89 +56,51 @@
                                 <a href="javascript:void(0)" class="dropbtn">Idmega
                                     <span style="font-size: 15px;">&#9660;</span>
                                 </a>
-                                <div class="dropdown-content">
+                                <div class="dropdown-content nav-dropdown">
                                     <a href="fastfood.html">Fast Food</a>
                                     <a href="user-order-history.html">Order History</a>
                                     <a href="#">Profile</a>
-                                    <a href="login.html" href="javascript:void(0);" onclick="loggoutUser();" >Logout</a>
+                                    <a href="login.html" href="javascript:void(0);" onclick="loggoutUser();">Logout</a>
                                 </div>
                             </li>
-
-
                         </ul>
                     </nav>
 
                 </div>
+                <div class="all-modal">
+
+                </div>
         </header>
-        <section id="slide-nav">
+        <section id="slide-nav" class="nav-dropdown">
             <a href="fastfood.html">Fast Food</a>
             <a href="user-order-history.html">Order History</a>
             <a href="#">Profile</a>
-            <a href="login.html" href="javascript:void(0);" onclick="loggoutUser();" >Logout</a>
+            <a href="login.html" href="javascript:void(0);" onclick="loggoutUser();">Logout</a>
         </section>
         <div class="main-body centerdivh">
-            <h1>Order History</h1>
+            <div>
+                <h1>Order History</h1>
+            </div>
+            <div class="select-category-wrapper">
+                <select class="select-category">
+                    <option value="all">All</option>
+                    <option value="new">New</option>
+                    <option value="processing">processing</option>
+                    <option value="cancelled">cancelled</option>
+                    <option value="complete">conpleted</option>
+                </select>
+            </div>
             <div class="centerdiv container">
+                <table class="user-history-table">
 
-                <table class="order-table">
-
-                    <tr class="table-title">
-                        <th>Date</th>
-                        <th>Order Id</th>
-                        <th> Plates</th>
-                        <th> Price</th>
-                        <th> Status</th>
-                    </tr>
-
-                    <tr class="table-content">
-                        <td>23/09/2018</td>
-                        <td class="modal-btn">36756</td>
-                        <td>1</td>
-                        <td>NGN 1,000</td>
-                        <td>Processing</td>
-                    </tr>
-                    <tr class="table-content">
-                        <td>23/09/2018</td>
-                        <td>56756</td>
-                        <td>1</td>
-                        <td>NGN 1,000</td>
-                        <td>Completed</td>
-                    </tr>
-                    <tr class="table-content">
-                        <td>23/09/2018</td>
-                        <td>93026</td>
-                        <td>1</td>
-                        <td>NGN 1,000</td>
-                        <td>Completed</td>
-                    </tr>
-                    <tr class="table-content">
-                        <td>23/09/2018</td>
-                        <td>16857</td>
-                        <td>1</td>
-                        <td>NGN 1,000</td>
-                        <td>Declined</td>
-                    </tr>
-                    <tr class="table-content">
-                        <td>23/09/2018</td>
-                        <td>35956</td>
-                        <td>1</td>
-                        <td>NGN 1,000</td>
-                        <td>Completed</td>
-                    </tr>
                 </table>
             </div>
+            <div class="no-order-history"></div>
         </div>
         <!--table ends-->
         <!-- pagination -->
         <!-- adopted from w3school-->
         <div class="centerdiv pagination">
-            <a href="#">&laquo;</a>
-            <a class="active" href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">&raquo;</a>
         </div>
         <!-- pagination ends-->
         <footer id="mainfooter" class="login-footer">
@@ -150,5 +112,9 @@
         </div>
 </body>
 <script type="text/javascript" src="../js/default.js"></script>
+<script type="text/javascript" src="../js/Request.js"></script>
+<script type="text/javascript" src="../js/Pagination.js"></script>
+<script type="text/javascript" src="../js/UserOrderHistory.js"></script>
+<script type="text/javascript" src="../js/modal.js"></script>
 
 </html>

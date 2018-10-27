@@ -12,6 +12,10 @@ const closeModal = document.getElementsByClassName('close')[0];
 const closeModalButton = document.getElementById('closeModal');
 const closeModalDbtn = document.getElementById('closeModaldel');
 
+
+const closeOrderModal = document.querySelectorAll('.close-order-modal');
+const userOrderScript = document.getElementById('user-order-script');
+
 const setModal = () => {
   modal.style.display = 'block';
 };

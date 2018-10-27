@@ -14,28 +14,33 @@ class OrdersModel extends DbConnect {
     const data = req.body;
     const menuDetails = req.menuCart;
     const ordererUserId = req.verUserId;
+    const orderRecipientName = data.recipientName;
     const address = data.orderAddress;
     const orderedMenuItems = JSON.stringify(menuDetails);
     const ordererPhone = data.orderPhone;
-    const totalMenuPrice = req.menutoTotal;
+    const totalMenuPrice = req.menuPriceTotal;
+    const totalMenuQuantity = req.menuQuantityTotal;
 
     const sql = `INSERT INTO orders(
       user_id, 
       order_phone, 
       order_address, 
       order_menu, 
-      order_total_price) 
-    VALUES 
-    ($1, $2, $3, $4, $5) 
+      order_total_price,
+      order_total_quantity,
+      recipient_name)
+      VALUES 
+    ($1, $2, $3, $4, $5, $6, $7) 
     RETURNING *`;
     const params = [
       ordererUserId,
       ordererPhone,
       address,
       orderedMenuItems,
-      totalMenuPrice
+      totalMenuPrice,
+      totalMenuQuantity,
+      orderRecipientName
     ];
-    console.log(params);
     return this.pool.query(sql, params);
   }
 
