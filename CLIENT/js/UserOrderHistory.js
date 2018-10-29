@@ -36,13 +36,13 @@ class UserOrderHistory extends Pagination {
       const cellDate = row.insertCell(1);
       const cellName = row.insertCell(2);
       const cellPrice = row.insertCell(3);
-      const cellPhone = row.insertCell(4);
+      const cellStatus = row.insertCell(4);
       cellIndex.innerHTML = index + snBeginning + 1;
       cellIndex.className = 'serial-number';
       cellDate.innerHTML = orderDate;
       cellName.innerHTML = orderQuantity;
       cellPrice.innerHTML = `&#8358 ${orderTotalPrice}`;
-      cellPhone.innerHTML = orderStatus;
+      cellStatus.innerHTML = orderStatus;
 
       const orderModal = document.querySelector('.all-modal');
       orderModal.innerHTML += `
@@ -63,8 +63,6 @@ class UserOrderHistory extends Pagination {
                                         <div> <b>Address:</b>${element.order_address}</div>
                                         <div class="order-dates">
                                             <div><b>Ordered Date:</b>${orderDate}</div>
-                                            <div>Accepted Date</div>
-                                            <div>Completed Date</div>
                                         </div>
                                     </div>
                                 </div>
@@ -89,39 +87,21 @@ class UserOrderHistory extends Pagination {
                                         <div>${food.quantity}</div>
                                         <div>${food.all_menu_price}</div>
                                         </div>`).join('')}
-                                    <div class="food-items">
-                                        <div>Rice and Chicken</div>
-                                        <div>400</div>
-                                        <div>5</div>
-                                        <div>2000</div>
-                                    </div>
-                                    <div class="food-items">
-                                        <div>Beans and Bread</div>
-                                        <div>600</div>
-                                        <div>3</div>
-                                        <div>1800</div>
-                                    </div>
-                                    <div class="food-items">
-                                        <div>rice and Ponmo</div>
-                                        <div> 300</div>
-                                        <div>3</div>
-                                        <div>900</div>
-                                    </div>
                                     <hr>
                                     <div class="food-items">
-                                        <div>
-                                            <b>Total</b>
-                                        </div>
-                                        <div>
-                                            <b>300</b>
-                                        </div>
-                                        <div>
-                                            <b>18</b>
-                                        </div>
-                                        <div>
-                                            <b>9000</b>
-                                        </div>
-                                    </div>
+                                          <div>
+                                              <b>Total</b>
+                                          </div>
+                                          <div>
+                                              <b></b>
+                                          </div>
+                                          <div>
+                                              <b>${element.order_total_quantity}</b>
+                                          </div>
+                                          <div>
+                                              <b>${element.order_total_price}</b>
+                                          </div>
+                                      </div>
                                 </div>
                             </div>
                         </div>
@@ -167,6 +147,7 @@ class UserOrderHistory extends Pagination {
             .innerHTML = '<h1>No Order History</h1>';
           return false;
         }
+        this.loadData = this.loadUserOrderHistory;
         this.createPagination(this.allCompleteDataArray);
       });
   }

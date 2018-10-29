@@ -6,28 +6,29 @@
  */
 class Pagination extends Request {
 /**
- * @constructs allorderHistoryArray
+ * @constructs allordersArray
  */
   constructor() {
     super();
     this.allCompleteDataArray = '';
     this.arrayOutputNumber = '';
     this.currentDataArray = '';
+    this.loadData = '';
   }
 
   /**
      * This function post data to the endpoint
-     * @param {array} orderHistoryArray - the array of all orders
+     * @param {array} ordersArray - the array of all orders
      * @returns {HTMLElement} Returns the created paginataion linkers.
      */
-  createPagination(orderHistoryArray) {
+  createPagination(ordersArray) {
     document.querySelector('.pagination').innerHTML = '';
-    this.currentDataArray = orderHistoryArray;
+    this.currentDataArray = ordersArray;
     const paginationDiv = document.querySelector('.pagination');
     paginationDiv.innerHTML += '<a class="arrow-backward">&laquo;</a>';
     let count = 1;
 
-    for (let i = 0; i <= orderHistoryArray.length; i += this.arrayOutputNumber) {
+    for (let i = 0; i <= ordersArray.length; i += this.arrayOutputNumber) {
       paginationDiv.innerHTML += `<a class="pagination-list">${count}</a>`;
       document.getElementsByClassName('pagination-list')[count - 1]
         .setAttribute('data-pageId', count);
@@ -36,11 +37,11 @@ class Pagination extends Request {
     paginationDiv.innerHTML += '<a class="arrow-forward">&raquo;</a>';
     const activeClass = document.getElementsByClassName('pagination-list')[0];
     activeClass.className += ' active';
-    const firstPageArray = orderHistoryArray
+    const firstPageArray = ordersArray
       .slice(0, this.arrayOutputNumber);
     this.paginationOnClick();
     this.arrowsOnclick();
-    this.loadUserOrderHistory(firstPageArray, 0);
+    this.loadData(firstPageArray, 0);
   }
 
   /**
@@ -52,7 +53,7 @@ class Pagination extends Request {
     const to = this.arrayOutputNumber * pageId;
     const from = (this.arrayOutputNumber * (pageId - 1));
     const arrayToDisplay = this.currentDataArray.slice(from, to);
-    this.loadUserOrderHistory(arrayToDisplay, from);
+    this.loadData(arrayToDisplay, from);
   }
 
   /**
