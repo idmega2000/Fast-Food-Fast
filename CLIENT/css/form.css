@@ -149,7 +149,7 @@
         border-collapse: collapse;
         margin-top: 30px;
         font-weight: bold;
-        width: 900px;
+        width: 100%;
     }
     .order-table tr {
         height: 50px;   
@@ -184,6 +184,14 @@
         outline: none;
         cursor: pointer;
         border-radius: 4px;
+    }
+    .complete-btn{
+        background: #039be5;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 2px;
+        padding: 3px;
     }
     /* pagination css*/
     /* idea gotten from w3school https://www.w3schools.com/howto/howto_css_pagination.asp*/
@@ -426,6 +434,16 @@
     background: #ee6e73;
     color: white;
 }
+.centerdiv .order-table .table-title{
+    background: #ee6e73;
+    color: white;
+}
+.view-details{
+    cursor: pointer;
+    background-color: #72989e;
+    padding: 4px;
+}
+
 /* select category */
 .select-category {
     -webkit-appearance: none;
@@ -484,12 +502,14 @@
   }
 
     @media screen and (min-width: 600px) and (max-width: 900px) {
+
         .search-input{
             width: 290px;
         }
-            .order-table th, .order-table tr , .order-table td {
+        .order-table th, .order-table tr , .order-table td {
             text-align: center;
-            padding: 16px;
+            font-size: 11px;
+            padding: 4px;
         }
         .left-ad{
             float: none;
@@ -530,13 +550,8 @@
     }
 
     @media screen and (max-width: 600px) {
-
         .search-input{
             width: 220px;
-        }
-        .order-table th, .order-table tr , .order-table td {
-            text-align: center;
-            padding: 7px;
         }
         .user-input-small{
             width: 200px;
@@ -562,8 +577,8 @@
         }
         .order-table th, .order-table tr , .order-table td {
             text-align: center;
-            padding: 3px;
-            font-size: 12px;
+            font-size: 8px;
+            padding: 1px;
         }
         .del-meal-btn{
             font-size: 10px;
@@ -585,9 +600,6 @@
         }
         #compOrdDiv{
             width: 90%;
-         }
-         td{
-             font-size: 13px;
          }
 
     }

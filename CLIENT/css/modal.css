@@ -97,7 +97,9 @@
     outline: none;
     cursor: pointer;
 }
-
+.order-modal{
+    text-align: left;
+}
 #myModalDel{
     display: none;
 }

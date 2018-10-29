@@ -12,6 +12,8 @@
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <link rel="stylesheet" type="text/css" href="../../css/form.css">
     <link rel="stylesheet" type="text/css" href="../../css/modal.css">
+    <script type="text/javascript" src="../../js/jwt-decode.min.js"></script>
+    <script type="text/javascript" src="../../js/admin-private.js"></script>
 </head>
 
 <body>
@@ -40,7 +42,7 @@
                                     <a href="orders.html">Orders History</a>
                                     <a href="add-fastfood.html">Create Menu</a>
                                     <a href="../fastfood.html">User Page</a>
-                                    <a class="logout-btn" href="javascript:void(0);" onclick="loggoutUser();" >Logout</a>
+                                    <a class="logout-btn" href="javascript:void(0);" onclick="loggoutUser();">Logout</a>
                                 </div>
                             </li>
 
@@ -54,9 +56,12 @@
             <a href="orders.html">Orders History</a>
             <a href="add-fastfood.html">Create New Menu</a>
             <a href="../fastfood.html">User Page</a>
-            <a class="logout-btn" href="javascript:void(0);" onclick="loggoutUser();" >Logout</a>
+            <a class="logout-btn" href="javascript:void(0);" onclick="loggoutUser();">Logout</a>
         </section>
         <div class="main-body centerdivh">
+            <div class="all-modal">
+
+            </div>
             <div id="myModal" class="modal">
 
                 <!-- Modal content -->
@@ -66,7 +71,7 @@
                         <h3>Rice and Jollof</h3>
                     </div>
                     <div class="modal-body">
-                        <h4>Are you sure u want to Delete this food?</h4>
+                        <h4>Are you sure u want to Decline this food?</h4>
                         <div class="form-btn">
                             <button id="delAOrder" class="del-ques-btn" type="submit">Yes</button>
                             <button class="del-ques-btn modal-btn" type="submit">No</button>
@@ -80,116 +85,33 @@
                 </div>
 
             </div>
-            <h1>Order Request</h1>
+            <div>
+                <h1>Order History</h1>
+            </div>
+            <div class="select-category-wrapper">
+                <select class="select-category">
+                    <option value="all">All</option>
+                    <option value="new">New</option>
+                    <option value="processing">processing</option>
+                    <option value="cancelled">cancelled</option>
+                    <option value="complete">conpleted</option>
+                </select>
+            </div>
             <div class="centerdiv container">
                 <!-- Modal content -->
-       
+
 
             </div>
-            <div class="centerdiv container">
+            <div class="centerdiv container order-table-container">
                 <table class="order-table">
-                    <tr class="table-title">
-                        <th>Order Id</th>
-                        <th> Phone Number</th>
-                        <th> Plates</th>
-                        <th> Price</th>
-                        <th>Address</th>
-                        <th> Order Request</th>
-                        <th>Completed</th>
-                    </tr>
-
-                    <tr class="table-content">
-                        <td>36756</td>
-                        <td>08028022343</td>
-                        <td>1</td>
-                        <td>NGN 1,000</td>
-                        <td>28, ishoko street, lagos</td>
-                        <td>
-                            <button class="accept-btn">&#x2714;</button>
-                            <button class="reject-btn modal-btn">&#x2718;</button>
-                        </td>
-                        <td>
-                            <input class="completed-checkbox" type="checkbox" disabled>
-                            <br>
-                        </td>
-                    </tr>
-                    <tr class="table-content">
-                        <td>56756</td>
-                        <td>08025468043</td>
-                        <td>1</td>
-                        <td>NGN 1,000</td>
-                        <td>28, ishoko street, lagos</td>
-                        <td>
-                            <button class="accept-btn">&#x2714;</button>
-                            <button class="reject-btn ">&#x2718;</button>
-                        </td>
-                        <td>
-                            <input class="completed-checkbox" type="checkbox" disabled>
-
-                            <br>
-                        </td>
-
-                    </tr>
-                    <tr class="table-content">
-                        <td>93026</td>
-                        <td>08028022343</td>
-                        <td>1</td>
-                        <td>NGN 1,000</td>
-                        <td>28, ishoko street, lagos</td>
-                        <td>
-                            <button class="accept-btn">&#x2714;</button>
-                            <button class="reject-btn">&#x2718;</button>
-                        </td>
-                        <td>
-                            <input class="completed-checkbox" type="checkbox" disabled>
-                            <br>
-                        </td>
-                    </tr>
-                    <tr class="table-content">
-                        <td>16857</td>
-                        <td>08028022343</td>
-                        <td>1</td>
-                        <td>NGN 1,000</td>
-                        <td>28, ishoko street, lagos</td>
-                        <td>
-                            <button class="accept-btn">&#x2714;</button>
-                            <button class="reject-btn">&#x2718;</button>
-                        </td>
-                        <td>
-                            <input class="completed-checkbox" type="checkbox" disabled>
-
-                            <br>
-                        </td>
-                    </tr>
-                    <tr class="table-content">
-                        <td>35956</td>
-                        <td>08028022343</td>
-                        <td>1</td>
-                        <td>NGN 1,000</td>
-                        <td>28, ishoko street, lagos</td>
-                        <td>
-                            <button class="accept-btn">&#x2714;</button>
-                            <button class="reject-btn">&#x2718;</button>
-                        </td>
-                        <td>
-                            <input class="completed-checkbox" type="checkbox" disabled>
-                            <br>
-                        </td>
-                    </tr>
                 </table>
             </div>
+            <div class="no-order-history"></div>
         </div>
         <!--table ends-->
         <!-- pagination -->
         <!-- adopted from w3school-->
         <div class="centerdiv pagination">
-            <a href="#">&laquo;</a>
-            <a class="active" href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">&raquo;</a>
         </div>
         <!-- pagination ends-->
         <footer id="mainfooter" class="login-footer">
@@ -202,6 +124,8 @@
 </body>
 <script type="text/javascript" src="../../js/default.js"></script>
 <script type="text/javascript" src="../../js/utils.js"></script>
-<script type="text/javascript" src="../../js/admin-private.js"></script>
+<script type="text/javascript" src="../../js/Request.js"></script>
+<script type="text/javascript" src="../../js/Pagination.js"></script>
+<script type="text/javascript" src="../../js/AllOrders.js"></script>
 
 </html>
