@@ -47,11 +47,35 @@ class allOrders extends Pagination {
       cellPrice.innerHTML = `&#8358 ${orderTotalPrice}`;
       cellPrice.className = 'arrange-order-price';
       if (element.order_status === 'new') {
-        cellRequest.innerHTML = `<button class="accept-btn">&#x2714;</button>
-                                <button class="reject-btn modal-btn">&#x2718;</button>`;
+        cellRequest.innerHTML = `<button class="accept-btn" data-menuId="${element.order_id}">&#x2714;</button>
+                                <button class="reject-btn modal-btn" data-menuId="${element.order_id}">&#x2718;</button>`;
+        const rejectOrderModal = document.querySelector('.all-reject-order-modal');
+        rejectOrderModal.innerHTML += ` <div id="myModal" class="modal reject-order-modal">
+
+          <!-- Modal content -->
+          <div class="modal-content">
+              <div class="modal-header">
+                  <span class="close-reject-order">&times;</span>
+                  <h3>Reject Order</h3>
+              </div>
+              <div class="modal-body">
+                  <h4>Are you sure u want to Reject this Order?</h4>
+                  <div class="form-btn">
+                      <button class="del-ques-btn reject-order-yes" type="submit">Yes</button>
+                      <button class="del-ques-btn reject-order-no" type="submit">No</button>
+                  </div>
+              </div>
+              <div class="modal-footer">
+
+
+                  <h3>Fast-Foof-Fast</h3>
+              </div>
+          </div>
+
+      </div>`;
       }
       if (element.order_status === 'processing') {
-        cellRequest.innerHTML = '<button class="complete-btn">Complete</button>';
+        cellRequest.innerHTML = `<button class="complete-btn" data-menuId="${element.order_id}">Complete</button>`;
       }
       if (element.order_status === 'cancelled') {
         cellRequest.innerHTML = 'Cancelled';
@@ -215,22 +239,79 @@ class allOrders extends Pagination {
 
     for (let i = 0; i < acceptBtn.length; i += 1) {
       acceptBtn[i].onclick = () => {
-        acceptBtn[i].parentElement.innerHTML = '<button class="complete-btn">Complete</button>';
-        this.requestEventclicks();
+        const menuId = acceptBtn[i].getAttribute('data-menuId');
+        const payload = {
+          orderStatus: 'processing'
+        };
+        this.updateOrderStatus(menuId, payload)
+          .then((res) => {
+            if (res.order.order_status === 'processing') {
+              acceptBtn[i].parentElement.innerHTML = `<button class="complete-btn" data-menuId="${menuId}">Complete</button>`;
+              this.requestEventclicks();
+            }
+          });
       };
     }
 
     for (let i = 0; i < rejectBtn.length; i += 1) {
       rejectBtn[i].onclick = () => {
-        rejectBtn[i].parentElement.innerHTML = 'Cancelled';
+        const menuId = acceptBtn[i].getAttribute('data-menuId');
+        const openModal = document.querySelectorAll('.reject-order-modal');
+        const closeRejectOrderModal = document.querySelectorAll('.close-reject-order');
+        const selectYes = document.querySelectorAll('.reject-order-yes');
+        const selectNo = document.querySelectorAll('.reject-order-no');
+        openModal[i].style.display = 'block';
+        selectYes[i].onclick = () => {
+          const payload = {
+            orderStatus: 'cancelled'
+          };
+          this.updateOrderStatus(menuId, payload)
+            .then((res) => {
+              if (res.order.order_status === 'cancelled') {
+                rejectBtn[i].parentElement.innerHTML = 'Cancelled';
+              }
+              openModal[i].style.display = 'none';
+            });
+        };
+        selectNo[i].onclick = () => {
+          openModal[i].style.display = 'none';
+        };
+        closeRejectOrderModal[i].onclick = () => {
+          openModal[i].style.display = 'none';
+        };
+        window.addEventListener('click', (event) => {
+          if (event.target === openModal[i]) {
+            openModal[i].style.display = 'none';
+          }
+        });
       };
     }
 
     for (let i = 0; i < completeBtn.length; i += 1) {
       completeBtn[i].onclick = () => {
-        completeBtn[i].parentElement.innerHTML = 'Completed';
+        const menuId = acceptBtn[i].getAttribute('data-menuId');
+        const payload = {
+          orderStatus: 'complete'
+        };
+        this.updateOrderStatus(menuId, payload)
+          .then((res) => {
+            if (res.order.order_status === 'complete') {
+              completeBtn[i].parentElement.innerHTML = 'Completed';
+            }
+          });
       };
     }
+  }
+
+  /**
+   * This function
+   * @param {integer} menuId - the menuId to be updated
+   * @param {object} payload - the data to be inserted
+   * @returns {Array} - returns array of details of the order updated
+   */
+  updateOrderStatus(menuId, payload) {
+    const uDir = `/orders/${menuId}`;
+    return this.put(uDir, payload);
   }
 }
 const userOrderHistory = new allOrders();
