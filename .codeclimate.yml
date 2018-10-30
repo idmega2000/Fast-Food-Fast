@@ -1,12 +1,12 @@
 exclude_paths:
-   -"UI"
-   -"CLIENT"
+   - "UI/"
+   - "CLIENT/"
 checks:
   return-statement:
-    enable: false
+    enabled: false
   similar-code:
     enabled: false
   identical-code:
-    enable: false
+    enabled: false
   file-lines:
-    enable: false
+    enabled: true

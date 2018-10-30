@@ -48,7 +48,7 @@
 }
 
 /* The Close Button */
-.close, .close-order-modal {
+.close, .close-order-modal, .close-reject-order {
     color: #aaaaaa;
     margin-right: 20px;
     float: right;
@@ -56,7 +56,9 @@
     font-weight: bold;
 }
 
-.close:hover, .close:focus , .close-order-modal:hover, .close-order-modal:focus {
+.close:hover, .close:focus , 
+.close-order-modal:hover, .close-order-modal:focus, 
+.close-reject-order:hover, .close-reject-order:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
