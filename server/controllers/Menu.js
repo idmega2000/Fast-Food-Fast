@@ -98,16 +98,21 @@ class Menu {
      * @returns {object} Returns all orders information.
      */
   updateMenu(req, res) {
-    menuModel.updateMenu(req.param.id)
+    menuModel.updateMenu(req.body, req.params.id)
       .then((result) => {
-        if (result.rowCount > 0) {
-          return res.status(200)
+        if (result.rowCount < 1) {
+          return res.status(404)
             .json({
-              status: 'success',
-              message: 'menu updated successfully',
-              menu: result.rows
+              status: 'Failed',
+              error: 'menuId does not exist',
             });
         }
+        return res.status(200)
+          .json({
+            status: 'success',
+            message: 'menu updated successfully',
+            menu: result.rows
+          });
       })
       .catch(() => {
         res.status(500)

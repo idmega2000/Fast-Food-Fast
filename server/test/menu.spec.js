@@ -18,6 +18,13 @@ const newMeal = {
   menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 
+const newMealEdited = {
+  menuName: 'Dodo and chicken',
+  menuPrice: '1000',
+  menuCategory: 'intercontenental',
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
+};
+
 const newMealDel = {
   menuName: 'Rice and Beans',
   menuPrice: '1200',
@@ -378,23 +385,13 @@ describe('Get Available menu Api Test', () => {
           done();
         });
     });
+});
 
-  it('should return success when given valid menu data',
-    (done) => {
-      request.delete(`${path}/tobi`)
-        .send(newMealDel)
-        .set('Authorization', `Bearer ${token}`)
-        .expect('Content-Type', /json/)
-        .end((err, res) => {
-          assert.equal(res.statusCode, 400);
-          assert.equal(res.body.error, 'menuId can only be Integer');
-          done();
-        });
-    });
 
-  it('should return success when given valid menu data',
+describe('Edit menu Api Test', () => {
+  it('should return error when given menuId that does not exist',
     (done) => {
-      request.delete(`${path}/1222`)
+      request.put(`${path}/1222`)
         .send(newMealDel)
         .set('Authorization', `Bearer ${token}`)
         .expect('Content-Type', /json/)
@@ -406,15 +403,60 @@ describe('Get Available menu Api Test', () => {
     });
   it('should return success when given valid menu data',
     (done) => {
-      request.delete(`${path}/2`)
-        .send(newMealDel)
+      request.put(`${path}/1`)
+        .send(newMealEdited)
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 200);
+          assert.equal(res.body.message, 'menu updated successfully');
+          assert.equal(res.body.menu[0].menu_name, 'Dodo and chicken');
+          assert.equal(res.body.menu[0].menu_price, '1000');
+          assert.equal(res.body.menu[0].menu_category, 'intercontenental');
+          assert.equal(res.body.menu[0].menu_image,
+            'www.andelaimagesforbootcamp.jpg');
+          done();
+        });
+    });
+});
+
+describe('Delete menu Api Test', () => {
+  it('should return error when given an invalid menuId',
+    (done) => {
+      request.delete(`${path}/tobi`)
+        .send()
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 400);
+          assert.equal(res.body.error, 'menuId can only be Integer');
+          done();
+        });
+    });
+
+  it('should return error when given menuId that does not exist',
+    (done) => {
+      request.delete(`${path}/1222`)
+        .send()
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 404);
+          assert.equal(res.body.error, 'menuId does not exist');
+          done();
+        });
+    });
+  it('should return success when given valid menu data',
+    (done) => {
+      request.delete(`${path}/1`)
+        .send()
         .set('Authorization', `Bearer ${token}`)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 200);
           assert.equal(res.body.message, 'menu deleted successfully');
-          assert.equal(res.body.menu[0].menu_name, 'Rice and Beans');
-          assert.equal(res.body.menu[0].menu_price, '1200');
+          assert.equal(res.body.menu[0].menu_name, 'Dodo and chicken');
+          assert.equal(res.body.menu[0].menu_price, '1000');
           assert.equal(res.body.menu[0].menu_category, 'intercontenental');
           assert.equal(res.body.menu[0].menu_image,
             'www.andelaimagesforbootcamp.jpg');

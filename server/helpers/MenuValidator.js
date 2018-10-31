@@ -33,7 +33,9 @@ class MenuValidator {
         error: 'Invalid input type'
       });
     }
-    if ((name.match(/^\s*$/)) || (price.match(/^\s*$/)) || (category.match(/^\s*$/))) {
+    if ((name.match(/^\s*$/))
+    || (price.match(/^\s*$/))
+    || (category.match(/^\s*$/))) {
       return res.status(400).json({
         error: 'Please Make sure all Input only contain Alphanumeric characters'
       });

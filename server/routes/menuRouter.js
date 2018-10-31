@@ -41,6 +41,8 @@ menuRouter
       .verifyAdminToken,
     menuValidator
       .menuIdValidator,
+    menuValidator
+      .addMenuValidator,
     menu
       .updateMenu);
 
