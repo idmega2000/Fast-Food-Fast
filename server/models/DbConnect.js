@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS menu
     menu_category VARCHAR,
     menu_added_date TIMESTAMP NOT NULL DEFAULT NOW(),
     menu_edited_date TIMESTAMP,
-    menu_deleted_date TIMESTAMP
+    menu_deleted BOOLEAN DEFAULT false
   ); 
     
 CREATE TABLE IF NOT EXISTS orders(

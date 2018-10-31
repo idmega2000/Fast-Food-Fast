@@ -27,8 +27,36 @@ class MenuModel extends DbConnect {
        * @returns {Promise} Returns all menu available.
        */
   getAllMenu() {
-    const sql = 'SELECT * FROM menu';
-    return this.pool.query(sql);
+    const deleteFalse = false;
+    const sql = 'SELECT * FROM menu WHERE menu_deleted = $1';
+    const param = [deleteFalse]
+    return this.pool.query(sql, param);
+  }
+
+  /**
+       * This function deletes a menu
+       * @param {object} menuId - the menuId to be deleted.
+       * @returns {Promise} Returns the queried data .
+       */
+  deleteMenu(menuId) {
+    const dateTrue = true;
+    const sql = `UPDATE menu SET
+                  menu_deleted = $1 
+                  WHERE menu_id = $2 
+                  RETURNING *`;
+    const params = [dateTrue, menuId];
+    return this.pool.query(sql, params);
+  }
+
+
+  /**
+       * This function deletes a menu
+       * @param {object} data - the req.body object.
+       * @param {integer} menuId - the menuId to be updated
+       * @returns {Promise} Returns the queried data .
+       */
+  upadateMenu(data, menuId) {
+    const name = data.menuName;
   }
 }
 export default MenuModel;

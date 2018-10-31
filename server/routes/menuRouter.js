@@ -26,4 +26,22 @@ menuRouter
     menu
       .getAvailableMenu);
 
+menuRouter
+  .delete('/:id',
+    checkAuthorization
+      .verifyAdminToken,
+    menuValidator
+      .menuIdValidator,
+    menu
+      .deleteMenu);
+
+menuRouter
+  .put('/:id',
+    checkAuthorization
+      .verifyAdminToken,
+    menuValidator
+      .menuIdValidator,
+    menu
+      .updateMenu);
+
 export default menuRouter;

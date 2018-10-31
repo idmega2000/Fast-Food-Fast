@@ -18,6 +18,13 @@ const newMeal = {
   menuImage: 'www.andelaimagesforbootcamp.jpg'
 };
 
+const newMealDel = {
+  menuName: 'Rice and Beans',
+  menuPrice: '1200',
+  menuCategory: 'intercontenental',
+  menuImage: 'www.andelaimagesforbootcamp.jpg'
+};
+
 const newMealBadImage = {
   menuName: 'Dodo and Beans',
   menuPrice: '1000',
@@ -305,6 +312,7 @@ describe('Add menu Api Test', () => {
           done();
         });
     });
+
   it('should return error when given image with bad format ',
     (done) => {
       request.post(`${path}/`)
@@ -344,6 +352,69 @@ describe('Get Available menu Api Test', () => {
           assert.equal(res.statusCode, 200);
           assert.equal(res.body.menu[0].menu_name, 'Dodo and Beans');
           assert.equal(res.body.menu[0].menu_price, '1000');
+          assert.equal(res.body.menu[0].menu_category, 'intercontenental');
+          assert.equal(res.body.menu[0].menu_image,
+            'www.andelaimagesforbootcamp.jpg');
+          done();
+        });
+    });
+});
+
+describe('Get Available menu Api Test', () => {
+  it('should return success when given valid menu data',
+    (done) => {
+      request.post(`${path}/`)
+        .send(newMealDel)
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 201);
+          assert.equal(res.body.message, 'Menu Added Successfully');
+          assert.equal(res.body.menu.menu_name, 'Rice and Beans');
+          assert.equal(res.body.menu.menu_price, '1200');
+          assert.equal(res.body.menu.menu_category, 'intercontenental');
+          assert.equal(res.body.menu.menu_image,
+            'www.andelaimagesforbootcamp.jpg');
+          done();
+        });
+    });
+
+  it('should return success when given valid menu data',
+    (done) => {
+      request.delete(`${path}/tobi`)
+        .send(newMealDel)
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 400);
+          assert.equal(res.body.error, 'menuId can only be Integer');
+          done();
+        });
+    });
+
+  it('should return success when given valid menu data',
+    (done) => {
+      request.delete(`${path}/1222`)
+        .send(newMealDel)
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 404);
+          assert.equal(res.body.error, 'menuId does not exist');
+          done();
+        });
+    });
+  it('should return success when given valid menu data',
+    (done) => {
+      request.delete(`${path}/2`)
+        .send(newMealDel)
+        .set('Authorization', `Bearer ${token}`)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 200);
+          assert.equal(res.body.message, 'menu deleted successfully');
+          assert.equal(res.body.menu[0].menu_name, 'Rice and Beans');
+          assert.equal(res.body.menu[0].menu_price, '1200');
           assert.equal(res.body.menu[0].menu_category, 'intercontenental');
           assert.equal(res.body.menu[0].menu_image,
             'www.andelaimagesforbootcamp.jpg');
