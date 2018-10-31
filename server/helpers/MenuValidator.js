@@ -11,7 +11,6 @@ class MenuValidator {
      * @returns {object} Returns error or move to next middleware if no error
      */
   addMenuValidator(req, res, next) {
-    console.log(req.body);
     const textInput = req.body;
     const whitespace = (/([\s]+)/g);
     const alphnumaOnly = (/^[a-zA-Z0-9 ]*$/);
@@ -123,6 +122,26 @@ class MenuValidator {
     }
 
     next();
+  }
+
+  /**
+     * This function validate the order id parameter
+     * @param {object} req - the request object.
+     * @param {object} res - The response object.
+     * @param {func} next - The response object.
+     * @returns {object} Returns status code and error messages
+     */
+  menuIdValidator(req, res, next) {
+    const inputTypes = (/^[0-9]*$/);
+    const input = req.params.id;
+    if (!input.match(inputTypes)) {
+      return res.status(400)
+        .json({
+          status: 'Failed',
+          error: 'menuId can only be Integer'
+        });
+    }
+    return next();
   }
 }
 
