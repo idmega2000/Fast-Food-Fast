@@ -7,8 +7,8 @@ import DbConnect from './DbConnect';
 class MenuModel extends DbConnect {
   /**
        * This function adds a menu to the database
-       * @param {object} data - the req.body object .
-       * @returns {Promise} Returns the queried data .
+       * @param {object} data - the req.body object.
+       * @returns {Promise} Returns the queried data.
        */
   postMenu(data) {
     const name = data.menuName;
@@ -29,7 +29,7 @@ class MenuModel extends DbConnect {
   getAllMenu() {
     const deleteFalse = false;
     const sql = 'SELECT * FROM menu WHERE menu_deleted = $1';
-    const param = [deleteFalse]
+    const param = [deleteFalse];
     return this.pool.query(sql, param);
   }
 
@@ -55,8 +55,21 @@ class MenuModel extends DbConnect {
        * @param {integer} menuId - the menuId to be updated
        * @returns {Promise} Returns the queried data .
        */
-  upadateMenu(data, menuId) {
+  updateMenu(data, menuId) {
     const name = data.menuName;
+    const price = data.menuPrice;
+    const category = data.menuCategory;
+    const image = data.menuImage || 'https://res.cloudinary.com/dr4yibvoq/image/upload/v1539037405/defaultimage.png';
+
+    const sql = `UPDATE menu SET 
+                  menu_name = $1, 
+                  menu_price = $2,
+                  menu_category =$3,
+                  menu_edited_date = now(),
+                  menu_image = $4 WHERE menu_id = $5 RETURNING *;
+                  `;
+    const params = [name, price, category, image, menuId];
+    return this.pool.query(sql, params);
   }
 }
 export default MenuModel;
