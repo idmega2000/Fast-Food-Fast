@@ -500,6 +500,10 @@
     -o-transition: .25s all ease;
     transition: .25s all ease;
   }
+  .menu-icons{
+      font-size:  22px;
+      padding-bottom: 5px;
+  }
 
     @media screen and (min-width: 600px) and (max-width: 900px) {
 
