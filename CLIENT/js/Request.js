@@ -50,14 +50,13 @@ class Request {
   }
 
   /**
-         * This function post data to the endpoint
+         * This function update data to the endpoint
          * @param {object} uDir - the request object.
          * @param {object} payload - The response object.
          * @returns {Promise} Returns the information from the endpoint.
          */
   put(uDir, payload) {
     const url = `${hostUrl}${uDir}`;
-
     return fetch(url, {
       method: 'put',
       headers: {
@@ -69,5 +68,23 @@ class Request {
     })
       .then(res => res.json());
   }
-}
 
+  /**
+         * This function delete data
+         * @param {object} uDir - the request object.
+         * @param {object} payload - The response object.
+         * @returns {Promise} Returns the information from the endpoint.
+         */
+  delete(uDir) {
+    const url = `${hostUrl}${uDir}`;
+    return fetch(url, {
+      method: 'delete',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.token}`
+      },
+    })
+      .then(res => res.json());
+  }
+}

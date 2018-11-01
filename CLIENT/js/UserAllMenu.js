@@ -10,6 +10,9 @@ class UserAllMenu extends Request {
      * @returns {innerHTML} Returns the menucart content that are available.
      */
   loadMenuElement(allArray) {
+    const newMenuCart = [];
+    let menuTotalQuantitty = 0;
+    let menuTotalPrice = 0;
     allArray.forEach((element, index) => {
       if (allArray.length < 1) {
         document.querySelector('.no-menu').innerHTML = '<h1>No Menu Yet</h1>';
@@ -50,7 +53,11 @@ class UserAllMenu extends Request {
         menuDetails = JSON.parse(menuDetails);
         const menuIdExist = menuDetails
           .find(item => item.menuId === mId.toString());
+
         if (menuIdExist) {
+          menuTotalQuantitty += Number(menuIdExist.quantity);
+          menuTotalPrice += menuIdExist.menuPrice * Number(menuIdExist.quantity);
+          newMenuCart.push(menuIdExist);
           const orderBtn = document.getElementsByClassName('order-btn')[index];
           document.getElementsByClassName('quantity-number')[index]
             .setAttribute('value', menuIdExist.quantity);
@@ -59,6 +66,14 @@ class UserAllMenu extends Request {
         }
       }
     });
+    if (newMenuCart.length > 0) {
+      localStorage.setItem('menuCart', JSON.stringify(newMenuCart));
+      localStorage.setItem('totalQuantity', menuTotalQuantitty);
+      localStorage.setItem('totalPrice', menuTotalPrice);
+      const quantityHolder = document.querySelectorAll('.quantity-amount-holder');
+      quantityHolder[0].innerHTML = menuTotalQuantitty;
+      quantityHolder[1].innerHTML = menuTotalQuantitty;
+    }
     this.orderActions();
   }
 
@@ -179,8 +194,6 @@ class UserAllMenu extends Request {
               quantity: currentQuantity
             });
           }
-
-
           localStorage.setItem('menuCart', JSON.stringify(menuDetails));
           let totalQuantity = 0;
           let totalPrice = 0;
