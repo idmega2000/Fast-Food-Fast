@@ -289,7 +289,7 @@ class allOrders extends Pagination {
 
     for (let i = 0; i < completeBtn.length; i += 1) {
       completeBtn[i].onclick = () => {
-        const menuId = acceptBtn[i].getAttribute('data-menuId');
+        const menuId = completeBtn[i].getAttribute('data-menuId');
         const payload = {
           orderStatus: 'complete'
         };

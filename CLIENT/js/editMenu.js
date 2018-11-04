@@ -3,6 +3,7 @@ const errorHandle = document.getElementById('signUpErrorHandler');
 const addMenuBtn = document.getElementById('addMenuBtn');
 const loader = document.getElementById('loaderDiv');
 const imageUpload = document.querySelector('.choose-img-btn');
+const imgOutputDisplay = document.getElementById('uploaded-img-holder').src;
 
 const removeImageBtn = document.querySelector('.remove-img-btn');
 
@@ -12,12 +13,25 @@ let holdImage = '';
 const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dr4yibvoq/upload';
 const CLOUDINARY_UPLOAD_PRESET = 'dnn2vfdk';
 
+const doBeforClose = () => {
+  this.event.preventDefault();
+  this.event.returnValue = '';
+  localStorage.removeItem('menuToEdit');
+};
 
 /* eslint-disable class-methods-use-this */
 /**
  * Represents all the different fetch type to be done.
  */
 class Menu extends Request {
+  /**
+   * @constructor
+   */
+  constructor() {
+    super();
+    this.menuDetailToEdit = '';
+  }
+
   /**
      * This function validates the menu inputs
      * @returns {object} Returns the error.
@@ -27,7 +41,8 @@ class Menu extends Request {
     const menuPrice = document.getElementById('menuPrice').value;
     const menuCat = document.getElementById('menuCategory');
     const menuCategory = menuCat.options[menuCat.selectedIndex].value;
-    const menuImage = document.getElementById('menuImage');  
+    const menuImage = document.getElementById('menuImage');
+
 
     const alphnumaOnly = (/^[a-zA-Z0-9 ]*$/);
     const name = menuName;
@@ -104,6 +119,18 @@ class Menu extends Request {
         loader.style.display = 'flex';
         this.uploadMenuImage();
       }
+    } else if (imgOutputDisplay && imgOutputDisplay !== '') {
+      const partOfImage = imgOutputDisplay.split('.');
+      if (!(partOfImage[partOfImage.length - 1].toLowerCase() === 'jpg'
+      || partOfImage[partOfImage.length - 1].toLowerCase() === 'jpeg'
+      || partOfImage[partOfImage.length - 1].toLowerCase() === 'png'
+      || partOfImage[partOfImage.length - 1].toLowerCase() === 'git')
+      ) {
+        errorHandle.innerHTML = 'Please upload a valid image';
+        return;
+      }
+      holdImage = imgOutputDisplay;
+      this.addMenu();
     } else {
       this.addMenu();
     }
@@ -124,7 +151,7 @@ class Menu extends Request {
       url: CLOUDINARY_URL,
       method: 'POST',
       header: {
-        'Content-Type': 'application/x-ww-form-urlendoded'
+        'Content-Type': 'application/x-ww-form-urlencoded'
       },
       data: formData
     })
@@ -151,8 +178,9 @@ class Menu extends Request {
       ...(holdImage !== '' && { menuImage: holdImage })
 
     };
-    const uDrl = '/menu';
-    this.post(uDrl, allData)
+    const menuDetail = this.menuDetailToEdit;
+    const uDrl = `/menu/${menuDetail.menu_id}`;
+    this.put(uDrl, allData)
       .then((res) => {
         if (res.error) {
           loader.style.display = 'none';
@@ -160,13 +188,38 @@ class Menu extends Request {
           return;
         }
         setTimeout(() => {
+          window.removeEventListener('beforeunload', doBeforClose);
           location.href = 'all-food.html';
         },
         2000);
       });
   }
+
+  /** This function load in the menu data from the localstorage
+   * @returns {HTMLElement} returns the data in the form
+  */
+  LoadMenuData() {
+    let menuDetail = localStorage.getItem('menuToEdit');
+    if (!menuDetail) {
+      location.href = 'add-fastfood.html';
+      return;
+    }
+    menuDetail = JSON.parse(menuDetail);
+    this.menuDetailToEdit = menuDetail;
+    const menuName = document.getElementById('menuName');
+    const menuPrice = document.getElementById('menuPrice');
+    const menuCat = document.getElementById('menuCategory');
+    const menuCategory = menuCat.options[menuCat.selectedIndex];
+    const theImage = document.getElementById('uploaded-img-holder');
+    menuName.value = menuDetail.menu_name;
+    menuCat.value = menuDetail.menu_category;
+    menuPrice.value = menuDetail.menu_price;
+    menuCategory.value = menuDetail.menu_category;
+    theImage.src = menuDetail.menu_image;
+  }
 }
 const menu = new Menu();
+menu.LoadMenuData();
 
 if (addMenuBtn) {
   addMenuBtn.onclick = () => {
@@ -174,12 +227,14 @@ if (addMenuBtn) {
   };
 }
 imageUpload.onchange = (event) => {
-  const output = document.getElementById('uploaded-img-holder');
-  output.src = URL.createObjectURL(event.target.files[0]);
+  const theImageDisplay = document.getElementById('uploaded-img-holder');
+  theImageDisplay.src = URL.createObjectURL(event.target.files[0]);
 };
 
 removeImageBtn.onclick = () => {
-  const output = document.getElementById('uploaded-img-holder');
-  output.src = '';
+  const theImageDisplay = document.getElementById('uploaded-img-holder');
+  theImageDisplay.src = '';
   imageUpload.value = '';
 };
+
+window.addEventListener('beforeunload', doBeforClose, false);

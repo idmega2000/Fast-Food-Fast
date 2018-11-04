@@ -297,22 +297,35 @@
         width: inherit;
         height: inherit;
     }
+    .images-btns{
+        display: flex;
+    }
     .upload-wrapper {
         position: relative;
         overflow: hidden;
-        display: flex;
         margin-top: 20px;
+      }
+    .remove-img-btn{
+        cursor: pointer;
+        outline: none;
+        border: none;
+        color: white;
+        background-color: rgb(226, 0, 30);
+        padding: 8px 15px;
+        border-radius: 8px;
+        font-size: 16px;
+        height: 43px;
+        margin-top: 20px;
+        width: 109px;
       }
     .choose-img-btn{
         cursor: pointer;
         outline: none;
         border: 2px solid gray;
-        color: gray;
         background-color: white;
         padding: 8px 15px;
         border-radius: 8px;
         font-size: 16px;
-        font-weight: bold;
         width: 100px;
     }
     .add-span{
