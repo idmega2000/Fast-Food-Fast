@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -8,7 +9,7 @@
     <meta name="author" content="Idris Kelani">
     <title> Fast-Food-Fast</title>
     <script type="text/javascript" src="../../js/jwt-decode.min.js"></script>
-<script type="text/javascript" src="../../js/admin-private.js"></script>
+    <script type="text/javascript" src="../../js/admin-private.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../../css/headers.css">
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
@@ -42,7 +43,7 @@
                                     <a href="orders.html">Orders</a>
                                     <a href="add-fastfood.html">Add Menu</a>
                                     <a href="../fastfood.html">User Page</a>
-                                    <a class="logout-btn" href="javascript:void(0);" onclick="loggoutUser();" >Logout</a>
+                                    <a class="logout-btn" href="javascript:void(0);" onclick="loggoutUser();">Logout</a>
                                 </div>
                             </li>
                         </ul>
@@ -54,16 +55,16 @@
             <a href="orders.html">Orders</a>
             <a href="add-fastfood.html">Add Menu</a>
             <a href="../fastfood.html">User Page</a>
-            <a class="logout-btn" href="javascript:void(0);" onclick="loggoutUser();" >Logout</a>
+            <a class="logout-btn" href="javascript:void(0);" onclick="loggoutUser();">Logout</a>
         </section>
         <div id="loaderDiv">
-                <div id="loaderTop"></div>
-                <div class="loader"></div>
-            </div>
+            <div id="loaderTop"></div>
+            <div class="loader"></div>
+        </div>
         <div class="main-body centerdiv addBodyDiv">
             <div class="centerdiv create-cont-wrapper">
                 <form onsubmit="return false;">
-                    <h1 class="add-header-text">ADD NEW MENU</h1>
+                    <h1 class="add-header-text">EDIT MENU</h1>
                     <div class="input-div">
                         <div class="error-div centerdiv">
                             <span id="signUpErrorHandler" class="error-hander"></span>
@@ -74,12 +75,12 @@
                             <span class="add-span">Menu name</span>
                             <span class="is-required add-span">*</span>
                         </div>
-                        <input class="admin-input user-input-small" id="menuName" type="text" placeholder="&#x1F372;  Enter Food Name"/>
+                        <input class="admin-input user-input-small" id="menuName" type="text" placeholder="&#x1F372;  Enter Food Name" />
                         <div class="input-div">
-                            <span class="add-span" >Menu Price</span>
+                            <span class="add-span">Menu Price</span>
                             <span class="is-required add-span">*</span>
                         </div>
-                        <input class="admin-input user-input-small" id="menuPrice" type="text" ; placeholder="&#8358;  Enter Food Price"/>
+                        <input class="admin-input user-input-small" id="menuPrice" type="text" ; placeholder="&#8358;  Enter Food Price" />
                         <div class="input-div">
                             <span class="add-span">Categories</span>
                             <span class="is-required add-span">*</span>
@@ -103,7 +104,7 @@
                         </div>
                     </div>
                     <div class="create-food-btn-div centerdiv">
-                        <button id="addMenuBtn" class="create-food-btn">Create Menu</button>
+                        <button id="addMenuBtn" class="create-food-btn">Update Menu</button>
                     </div>
                 </form>
 
@@ -120,6 +121,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 <script type="text/javascript" src="../../js/default.js"></script>
 <script type="text/javascript" src="../../js/Request.js"></script>
-<script type="text/javascript" src="../../js/menu.js"></script>
+<script type="text/javascript" src="../../js/editMenu.js"></script>
 
 </html>

@@ -5,19 +5,28 @@
  */
 class AllMenu extends Request {
   /**
-           * This function post data to the endpoint
-           * @returns {Promise} Returns the all information from the endpoint.
-           */
+   * @constructs the all menu data
+   */
+  constructor() {
+    super();
+    this.allMenuData = '';
+  }
+
+  /**
+     * This function post data to the add menu endpoint
+     * @returns {Promise} Returns the all information from the endpoint.
+     */
   getAllMenu() {
     const uDir = '/menu';
     this.get(uDir)
       .then((res) => {
+        this.allMenuData = res.menu;
         this.loader(res.menu);
       });
   }
 
   /**
-         * This function arrange all fected menu data in the page
+         * This function arrange all fetched menu data in the page
          * @param {array} allArray this is all menu fetched.
          * @returns {HTMLElement} Returns the information from the endpoint.
          */
@@ -38,11 +47,9 @@ class AllMenu extends Request {
                   <p>Price: NGN ${mPrice}</p>
               </div>
               <div class="food-btn-div centerdiv">
-                  <form action="edit-fastfood.html">
                       <button class=" ad-ev-btn edit-btn">Edit
                           <span class="menu-icons"> &#x270D;</span>
                       </button>
-                  </form>
                   <button class="ad-ev-btn delete-btn modal-btn">Delete
                       <span class="menu-icons"> &#x232B;</span>
                   </button>
@@ -51,10 +58,11 @@ class AllMenu extends Request {
       </div>`;
     });
     this.deleteMenu();
+    this.editMenuClick();
   }
 
   /**
-         * This function delettes a menu
+         * This function deletes a menu
          * @returns {HTMLElement} Returns the information from the endpoint.
          */
   deleteMenu() {
@@ -105,6 +113,23 @@ class AllMenu extends Request {
             successBody.style.display = 'none';
           }
         };
+      };
+    }
+  }
+
+  /**
+         * This function set the edit menu
+         * before passing to the edit menu page
+         * @returns {HTMLElement} Returns the information from the endpoint.
+         */
+  editMenuClick() {
+    const editBtn = document.querySelectorAll('.edit-btn');
+    for (let i = 0; i < editBtn.length; i += 1) {
+      editBtn[i].onclick = () => {
+        const menuId = document.querySelectorAll('.red-order-meals')[i].getAttribute('data-menuId');
+        const clickedMenuData = this.allMenuData.find(menu => menu.menu_id === Number(menuId));
+        localStorage.setItem('menuToEdit', JSON.stringify(clickedMenuData));
+        location.href = 'edit-fastfood.html';
       };
     }
   }
