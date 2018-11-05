@@ -14,15 +14,15 @@ class AuthModel extends DbConnect {
     const salt = bcrypt.genSaltSync(10);
     const hashPassword = bcrypt.hashSync(data.userPassword, salt);
     const sql = `INSERT INTO 
-        users(user_email, user_password) 
-        VALUES ($1, $2) RETURNING *`;
-    const params = [data.userEmail, hashPassword];
+        users(user_email, user_password, user_name) 
+        VALUES ($1, $2, $3) RETURNING *`;
+    const params = [data.userEmail, hashPassword, data.userName];
     return this.pool.query(sql, params);
   }
 
   /**
      * This function login a user into the database
-     * @param {object} data - the req.body object .
+     * @param {object} data - the req.body object.
      * @returns {Promise} Returns token and status.
      */
   userSignIn(data) {

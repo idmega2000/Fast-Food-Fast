@@ -6,70 +6,93 @@ const request = supertest(app);
 const path = '/api/v1/auth';
 
 const shortUserEmail = {
+  userName: 'john andela',
   userEmail: 'idm',
   userPassword: 'andela'
 };
 
 const shortPassword = {
+  userName: 'john andela',
   userEmail: 'idmegat@gmail.com',
   userPassword: 'and'
 };
 
 const whiteSpace = {
+  userName: 'john andela',
   userEmail: 'wh tespa@gmail.com',
   userPassword: 'andkinte'
 };
 
 const worongInputType = {
+  userName: 'john andela',
   userEmail: [],
   userPassword: 'andkinte'
 };
 
 const emailHaveWrongInput = {
+  userName: 'john andela',
   userEmail: 'wh}tespa',
   userPassword: 'andkinte'
 };
 
 const passHaveWrongInput = {
+  userName: 'john andela',
   userEmail: 'sholaforyou@gmail.com',
   userPassword: 'and-~kinte'
 };
 const passHavelongInput = {
+  userName: 'john andela',
   userEmail: 'sholaforyou@gmail.com',
   userPassword: 'kjdhfkjjnhfkjhnfikjnfkjnifjnfjinfijnfifnkfnkjfninte'
 };
 const emailHavelongInput = {
+  userName: 'john andela',
   userEmail: 'whjlkmlkhfijfdhifj@jfkhfhfhhjfhffhiff.com',
   userPassword: 'andkinte'
 };
 const newUser = {
+  userName: 'john andela',
   userEmail: 'idmega3000@gmail.com',
   userPassword: 'andela'
 };
 
 const existingUserSignUP = {
+  userName: 'john andela',
   userEmail: 'idrisaa@gmail.com',
   userPassword: 'andela'
 };
 
 const emptyUserEmail = {
+  userName: 'john andela',
   userEmail: '',
   userPassword: 'andela'
 };
 
 const emptyPassword = {
+  userName: 'john andela',
   userEmail: 'idrisaa@gmail.com',
   userPassword: ''
 };
 const loginWrongUser = {
+  userName: 'john andela',
   userEmail: 'idrisa@gmail.com',
   userPassword: 'anielata'
 };
 const existingUserWrongPass = {
+  userName: 'john andela',
   userEmail: 'idrisaa@gmail.com',
   userPassword: 'andelaja'
 };
-
+const nameHaveWrongInput = {
+  userName: 'wh}+tespa',
+  userEmail: 'shola@gmail.com',
+  userPassword: 'andkinte'
+};
+const nameLongInput = {
+  userName: 'whjlkmlkhfijfdhifjjfkhfhfhhjfhffhiff hdidodhd',
+  userEmail: 'shola@gmail.com',
+  userPassword: 'andkinte'
+};
 
 describe('All Tes Authentication', () => {
   it('should return error when given empty useremail',
@@ -184,6 +207,31 @@ describe('All Tes Authentication', () => {
           done();
         });
     });
+  it('should return error when given name with bad input',
+    (done) => {
+      request.post(`${path}/signup`)
+        .send(nameHaveWrongInput)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 400);
+          assert.equal(res.body.error,
+            'name can only be char and number');
+          done();
+        });
+    });
+
+  it('should return error when given name that is too long',
+    (done) => {
+      request.post(`${path}/signup`)
+        .send(nameLongInput)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          assert.equal(res.statusCode, 400);
+          assert.equal(res.body.error,
+            'name should be less than 20 char');
+          done();
+        });
+    });
 
 
   it('should return error when given too long password',
@@ -235,7 +283,7 @@ describe('Login Api Test', () => {
         .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 401);
-          assert.equal(res.body.error, 'User does not exist!');
+          assert.equal(res.body.error, 'Incorrect Email/Password');
           done();
         });
     });
@@ -247,7 +295,7 @@ describe('Login Api Test', () => {
         .expect('Content-Type', /json/)
         .end((err, res) => {
           assert.equal(res.statusCode, 401);
-          assert.equal(res.body.error, 'The Password is invalid');
+          assert.equal(res.body.error, 'Incorrect Email/Password');
           done();
         });
     });

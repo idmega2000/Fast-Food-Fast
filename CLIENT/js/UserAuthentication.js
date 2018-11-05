@@ -1,10 +1,10 @@
 
-
 const emailReg = (/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 const alphaOnly = (/^[a-zA-Z0-9]*$/);
 const signupBtn = document.getElementById('signupBtn');
 const loader = document.getElementById('loaderDiv');
 const loginBtn = document.getElementById('loginBtn');
+const alphaWithSpace = (/^[a-zA-Z0-9 ]*$/);
 
 /* eslint-disable class-methods-use-this */
 /**
@@ -18,8 +18,13 @@ class UserAuthentication {
   authSignup() {
     const errorHandle = document.getElementById('signUpErrorHandler');
     const email = document.getElementById('userEmail').value;
+    const name = document.getElementById('userName').value;
     const password = document.getElementById('password').value;
     const repPassword = document.getElementById('confirmPassword').value;
+    if (!name) {
+      errorHandle.innerHTML = 'Name is Required';
+      return false;
+    }
     if (!email) {
       errorHandle.innerHTML = 'Email is Required';
       return false;
@@ -44,6 +49,14 @@ class UserAuthentication {
       errorHandle.innerHTML = 'Password can only be alphabets and numbers';
       return false;
     }
+    if (!name.match(alphaWithSpace)) {
+      errorHandle.innerHTML = 'name can only be alphabets and numbers';
+      return false;
+    }
+    if (email.length >= 20) {
+      errorHandle.innerHTML = 'name should be less than 20 char';
+      return false;
+    }
     if (email.length > 40) {
       errorHandle.innerHTML = 'Email should be less than 30 char';
       return false;
@@ -58,6 +71,7 @@ class UserAuthentication {
     }
     const uDrl = '/auth/signup';
     const payload = {
+      userName: name,
       userEmail: email,
       userPassword: password
     };

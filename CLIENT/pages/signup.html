@@ -8,6 +8,7 @@
     <meta name="keywords" content="Fast-Food-Fast, order for your food, we deliver food">
     <meta name="author" content="Idris Kelani">
     <title> Fast-Food-Fast</title>
+    <script type="text/javascript" src="../js/jwt-decode.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/headers.css">
@@ -21,7 +22,7 @@
         <header>
             <div class="nav">
                 <div class="header-container">
-                    <div id="header-sm-sc">
+                    <div class="admin-header-bars">
                         <div class="bar"></div>
                         <div class="bar"></div>
                         <div class="bar"></div>
@@ -70,11 +71,19 @@
                             </div>
                             <div class="input-wrapper">
                                 <div class="input-div">
+                                    <span>Name</span>
+                                    <span class="is-required">*</span>
+                                </div>
+                                <input class="user-input" type="text" name="username" id="userName" placeholder="Enter Nameame" />
+                                <i class="fa fa-user filter-user-input"></i>
+                            </div>
+                            <div class="input-wrapper">
+                                <div class="input-div">
                                     <span>Email</span>
                                     <span class="is-required">*</span>
                                 </div>
-                                <input class="user-input" type="text" name="useremail" id="userEmail" placeholder="Enter Username" />
-                                <i id="filterUserInput" class="fa fa-user"></i>
+                                <input class="user-input" type="text" name="useremail" id="userEmail" placeholder="Enter Email" />
+                                <i class="fas fa-envelope filter-user-input"></i>
                             </div>
                             <div class="input-wrapper">
                                 <div class="input-div">
@@ -82,7 +91,7 @@
                                     <span class="required">*</span>
                                 </div>
                                 <input class="user-input" type="password" name="Password" id="password" placeholder="Enter Password" />
-                                <i id="filterUserInput" class="fa fa-lock"></i>
+                                <i class="fa fa-lock filter-user-input"></i>
                             </div>
                             <div class="input-wrapper">
                                 <div class="input-div">
@@ -90,7 +99,7 @@
                                     <span class="required">*</span>
                                 </div>
                                 <input class="user-input" type="password" name="cpassword" id="confirmPassword" placeholder=" Confirm Password" />
-                                <i id="filterUserInput" class="fa fa-lock"></i>
+                                <i class="fa fa-lock filter-user-input"></i>
                             </div>
                             <div class="form-btn">
                                 <button id="signupBtn" class="signin-btn" type="submit">Sign Up</button>
@@ -112,7 +121,6 @@
         </div>
 </body>
 <script type="text/javascript" src="../js/default.js"></script>
-<script type="text/javascript" src="../js/jwt-decode.min.js"></script>
 <script type="text/javascript" src="../js/AuthRequest.js"></script>
 <script type="text/javascript" src="../js/UserAuthentication.js"></script>
 

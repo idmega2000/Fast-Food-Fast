@@ -3,6 +3,7 @@
 
 const emailReg = (/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 const alphaOnly = (/^[a-zA-Z0-9]*$/);
+const alphaWithSpace = (/^[a-zA-Z0-9 ]*$/);
 
 /* eslint-disable class-methods-use-this */
 /**
@@ -21,13 +22,16 @@ class AuthValidator {
     const whitespace = (/([\s]+)/g);
     const email = textInput.userEmail;
     const password = textInput.userPassword;
+    const name = textInput.userName;
+
 
     if (!email || !password) {
       return res.status(400).json({
         error: 'Please fill all field'
       });
     }
-    if (typeof email !== 'string' || typeof password !== 'string') {
+    if (typeof email !== 'string'
+    || typeof password !== 'string') {
       return res.status(400).json({
         error: 'Invalid input type'
       });
@@ -77,6 +81,21 @@ class AuthValidator {
         status: 'Failed',
         error: 'Password must be less than 40 char'
       });
+    }
+
+    if (name) {
+      if (name.length >= 20) {
+        return res.status(400).json({
+          status: 'Failed',
+          error: 'name should be less than 20 char'
+        });
+      }
+      if (!name.match(alphaWithSpace)) {
+        return res.status(400).json({
+          status: 'Failed',
+          error: 'name can only be char and number'
+        });
+      }
     }
 
     next();

@@ -1,13 +1,18 @@
 
-const hostUrl = 'http://localhost:3000/api/v1';
-//const hostUrl = 'https://fast-food-fast-idris.herokuapp.com/api/v1';
+// const hostUrl = 'http://localhost:3000/api/v1';
+const hostUrl = 'https://fast-food-fast-idris.herokuapp.com/api/v1';
 
 const scrollButton = document.getElementById('arrowP');
 const navbarSlider = document.getElementById('header-sm-sc');
 const adminNavbarSlider = document.querySelectorAll('.admin-header-bars')[0];
 const compOrdDiv = document.getElementById('compOrdDiv');
 const canBookBtn = document.getElementById('canBookBtn');
+const displayUserNameDropDown = document.getElementsByClassName('dropbtn')[0];
 
+if (typeof decoded !== 'undefined') {
+  const firstName = decoded.userName.split(' ')[0];
+  displayUserNameDropDown.textContent = firstName;
+}
 
 if (canBookBtn) {
   canBookBtn.onclick = () => {
