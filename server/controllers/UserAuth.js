@@ -20,6 +20,7 @@ class UserAuth {
       .then((result) => {
         const token = jwt.sign({
           userId: result.rows[0].user_id,
+          userName: result.rows[0].user_name,
           userRole: result.rows[0].user_role,
           userEmail: result.rows[0].user_email
         }, process.env.JWT_KEY);
@@ -49,12 +50,13 @@ class UserAuth {
           return res.status(401)
             .json({
               status: 'Failed',
-              error: 'User does not exist!'
+              error: 'Incorrect Email/Password'
             });
         } if (bcrypt.compareSync(req.body.userPassword,
           result.rows[0].user_password)) {
           const token = jwt.sign({
             userId: result.rows[0].user_id,
+            userName: result.rows[0].user_name,
             userRole: result.rows[0].user_role,
             userEmail: result.rows[0].user_email
           }, process.env.JWT_KEY);
@@ -68,7 +70,7 @@ class UserAuth {
         return res.status(401)
           .json({
             status: 'Failed',
-            error: 'The Password is invalid'
+            error: 'Incorrect Email/Password'
           });
       })
       .catch(() => {

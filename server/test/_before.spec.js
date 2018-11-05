@@ -4,6 +4,7 @@ import { tableCreatedEmitter } from '../models/DbConnect';
 import app from '../app';
 
 const startUser = {
+  userName: 'Idris Wale',
   userEmail: 'idrisaa@gmail.com',
   userPassword: 'andela'
 };
